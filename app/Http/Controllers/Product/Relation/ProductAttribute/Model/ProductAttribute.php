@@ -19,15 +19,15 @@ class ProductAttribute extends Model
      */
     public function attribute(): HasOne
     {
-        return $this->hasOne(Attribute::class);
+        return $this->hasOne(Attribute::class, 'id', 'attribute_id');
     }
 
     /**
-     * First attribute value
+     * First value
      * @return HasOne
      */
     public function value(): HasOne
     {
-        return $this->hasOne(AttributeValue::class);
+        return $this->hasOne(AttributeValue::class, 'id', 'attribute_value_id');
     }
 }

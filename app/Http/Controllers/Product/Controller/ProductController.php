@@ -19,4 +19,13 @@ class ProductController extends Controller
     {
         $this->service = $service;
     }
+
+    /**
+     * @param string $slug
+     * @return mixed
+     */
+    public function show(string $slug): mixed
+    {
+        return $this->service->productBySlug($slug);
+    }
 }
