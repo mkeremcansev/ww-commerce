@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Product\ResourceCollection;
 
 use App\Http\Controllers\Brand\ResourceCollection\BrandResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeResourceCollection;
-use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeValueResourceCollection;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\DB;
 
 class ProductResourceCollection extends JsonResource
 {

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Product\Repository;
 
 use App\Http\Controllers\Product\Contract\ProductInterface;
-use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Controllers\Product\Model\Product;
 
 class ProductRepository implements ProductInterface
