@@ -5,22 +5,29 @@ namespace App\Http\Controllers\Product\Controller;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Product\ResourceCollection\ProductResourceCollection;
 use App\Http\Controllers\Product\Service\ProductService;
+use App\Http\Helper\ResponseHelper;
+use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
     /**
      * @param ProductService $service
+     * @param ResponseHelper $response
      */
-    public function __construct(public ProductService $service)
+    public function __construct(public ProductService $service, public ResponseHelper $response)
     {
     }
 
     /**
      * @param string $slug
-     * @return ProductResourceCollection|null
+     * @return ProductResourceCollection|JsonResponse
      */
-    public function show(string $slug): ?ProductResourceCollection
+    public function show(string $slug): ProductResourceCollection|JsonResponse
     {
-        return $this->service->productBySlug($slug);
+        $product = $this->service->productBySlug($slug);
+
+        return $product
+            ? new ProductResourceCollection($product)
+            : $this->response->notFound();
     }
 }

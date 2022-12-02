@@ -16,14 +16,10 @@ class ProductService
 
     /**
      * @param string $slug
-     * @return ProductResourceCollection|null
+     * @return mixed
      */
-    public function productBySlug(string $slug): ?ProductResourceCollection
+    public function productBySlug(string $slug): mixed
     {
-        $product = $this->repository->productBySlug($slug);
-
-        return $product
-            ? new ProductResourceCollection($product)
-            : null;
+        return $this->repository->productBySlug($slug);
     }
 }
