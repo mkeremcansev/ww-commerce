@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product\Repository;
 
 use App\Http\Controllers\Product\Contract\ProductInterface;
+use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Controllers\Product\Model\Product;
 
 class ProductRepository implements ProductInterface
@@ -22,7 +23,7 @@ class ProductRepository implements ProductInterface
     {
         return $this->product
             ->query()
-            ->with(['attributes' => ['attribute', 'value']])
+            ->with(['attributes' => ['values'], 'brand', 'categories'])
             ->whereSlug($slug)
             ->first();
     }

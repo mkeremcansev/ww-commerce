@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Product\Service;
 
 use App\Http\Controllers\Product\Contract\ProductInterface;
 use App\Http\Controllers\Product\Helper\ProductHelper;
-use App\Http\Controllers\Product\Resource\ProductResource;
+use App\Http\Controllers\Product\ResourceCollection\ProductResourceCollection;
 
 class ProductService
 {
@@ -18,14 +18,14 @@ class ProductService
 
     /**
      * @param string $slug
-     * @return mixed
+     * @return ProductResourceCollection|null
      */
-    public function productBySlug(string $slug): mixed
+    public function productBySlug(string $slug): ?ProductResourceCollection
     {
         $product = $this->repository->productBySlug($slug);
 
         return $product
-            ? new ProductResource($this->helper->format($product))
+            ? new ProductResourceCollection($product)
             : null;
     }
 }

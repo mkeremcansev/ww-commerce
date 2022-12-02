@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->string('path')->default(BrandDefaultPathEnumeration::DEFAULT_PATH);
             $table->softDeletes();
             $table->timestamps();

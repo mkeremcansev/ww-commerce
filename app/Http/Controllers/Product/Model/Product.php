@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers\Product\Model;
 
+use App\Http\Controllers\Brand\Model\Brand;
+use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
+use App\Http\Controllers\Product\Relation\Category\Model\Category;
 use App\Http\Controllers\Product\Relation\ProductAttribute\Model\ProductAttribute;
+use App\Http\Controllers\Product\Relation\ProductCategory\Model\ProductCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
@@ -13,11 +20,26 @@ class Product extends Model
     use HasFactory, SoftDeletes;
 
     /**
-     * All attributes
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function attributes(): HasMany
+    public function attributes(): BelongsToMany
     {
-        return $this->hasMany(ProductAttribute::class);
+        return $this->belongsToMany(Attribute::class, ProductAttribute::class)->distinct();
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class,ProductCategory::class);
     }
 }

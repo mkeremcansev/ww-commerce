@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('content');
-            $table->decimal('price', 5, 2);
-            $table->enum('active', [ProductStatusEnumeration::PASSIVE, ProductStatusEnumeration::ACTIVE]);
+            $table->decimal('price', 9);
+            $table->enum('status', [ProductStatusEnumeration::PASSIVE, ProductStatusEnumeration::ACTIVE]);
             $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
