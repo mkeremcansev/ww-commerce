@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Product\Controller;
 
+use App\Exceptions\ResponseHandler;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Product\ResourceCollection\ProductResourceCollection;
 use App\Http\Controllers\Product\Service\ProductService;
-use App\Http\Helper\ResponseHelper;
 use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
     /**
      * @param ProductService $service
-     * @param ResponseHelper $response
+     * @param ResponseHandler $response
      */
-    public function __construct(public ProductService $service, public ResponseHelper $response)
+    public function __construct(public ProductService $service, public ResponseHandler $response)
     {
     }
 

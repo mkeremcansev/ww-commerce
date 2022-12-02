@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Exceptions\ResponseHandler;
+use App\Http\Enumeration\RouteGroupThrottleEnumeration;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -52,7 +54,9 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+            return Limit::perMinute(RouteGroupThrottleEnumeration::RATE_LIMIT)->by($request->user()?->id ?: $request->ip())->response(function (){
+                return (new ResponseHandler())->tooManyRequests();
+            });
         });
     }
 }
