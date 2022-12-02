@@ -8,16 +8,10 @@ use App\Http\Controllers\Product\Model\Product;
 class ProductRepository implements ProductInterface
 {
     /**
-     * @var Product
-     */
-    public Product $product;
-
-    /**
      * @param Product $product
      */
-    public function __construct(Product $product)
+    public function __construct(public Product $product)
     {
-        $this->product = $product;
     }
 
     /**

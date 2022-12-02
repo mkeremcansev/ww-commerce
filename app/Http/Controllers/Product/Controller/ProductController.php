@@ -8,16 +8,10 @@ use App\Http\Controllers\Product\Service\ProductService;
 class ProductController extends Controller
 {
     /**
-     * @var ProductService
-     */
-    public ProductService $service;
-
-    /**
      * @param ProductService $service
      */
-    public function __construct(ProductService $service)
+    public function __construct(public ProductService $service)
     {
-        $this->service = $service;
     }
 
     /**

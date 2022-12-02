@@ -9,23 +9,11 @@ use App\Http\Controllers\Product\Resource\ProductResource;
 class ProductService
 {
     /**
-     * @var ProductInterface
-     */
-    public ProductInterface $repository;
-
-    /**
-     * @var ProductHelper
-     */
-    public ProductHelper $helper;
-
-    /**
      * @param ProductInterface $repository
      * @param ProductHelper $helper
      */
-    public function __construct(ProductInterface $repository, ProductHelper $helper)
+    public function __construct(public ProductInterface $repository, public ProductHelper $helper)
     {
-        $this->repository = $repository;
-        $this->helper = $helper;
     }
 
     /**

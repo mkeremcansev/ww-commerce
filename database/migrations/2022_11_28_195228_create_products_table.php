@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Product\Enumeration\ProductActiveAndPassiveEnumeration;
+use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('content');
             $table->decimal('price', 5, 2);
-            $table->enum('active', [ProductActiveAndPassiveEnumeration::PASSIVE, ProductActiveAndPassiveEnumeration::ACTIVE]);
+            $table->enum('active', [ProductStatusEnumeration::PASSIVE, ProductStatusEnumeration::ACTIVE]);
             $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
