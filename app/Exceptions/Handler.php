@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -48,7 +50,13 @@ class Handler extends ExceptionHandler
         //
     }
 
-    public function render($request, Exception|Throwable $exception)
+    /**
+     * @param $request
+     * @param Exception|Throwable $exception
+     * @return Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws Throwable
+     */
+    public function render($request, Exception|Throwable $exception): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
     {
         $this->renderable(function (NotFoundHttpException $e, $request) {
             return (new ResponseHandler())->notFound();
