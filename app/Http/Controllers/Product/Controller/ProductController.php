@@ -12,9 +12,8 @@ class ProductController extends Controller
 {
     /**
      * @param ProductService $service
-     * @param ResponseHandler $response
      */
-    public function __construct(public ProductService $service, public ResponseHandler $response)
+    public function __construct(public ProductService $service)
     {
     }
 
@@ -28,6 +27,6 @@ class ProductController extends Controller
 
         return $product
             ? new ProductResourceCollection($product)
-            : $this->response->notFound();
+            : ResponseHandler::notFound();
     }
 }

@@ -55,7 +55,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(RouteGroupThrottleEnumeration::RATE_LIMIT)->by($request->user()?->id ?: $request->ip())->response(function (){
-                return (new ResponseHandler())->tooManyRequests();
+                return ResponseHandler::tooManyRequests();
             });
         });
     }

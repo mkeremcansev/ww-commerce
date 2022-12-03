@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception|Throwable $exception): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
     {
         $this->renderable(function (NotFoundHttpException $e, $request) {
-            return (new ResponseHandler())->notFound();
+            return ResponseHandler::notFound();
         });
 
         return parent::render($request, $exception);
