@@ -23,7 +23,7 @@ class CategoryRepository implements CategoryInterface
     {
         return $this->model
             ->with('parents')
-            ->where('category_id', null)
+            ->main()
             ->get();
     }
 }

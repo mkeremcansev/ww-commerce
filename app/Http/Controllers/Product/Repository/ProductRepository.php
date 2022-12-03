@@ -22,6 +22,7 @@ class ProductRepository implements ProductInterface
     {
         return $this->product
             ->query()
+            ->active()
             ->with(['attributes' => ['values'], 'brand', 'categories'])
             ->whereSlug($slug)
             ->first();

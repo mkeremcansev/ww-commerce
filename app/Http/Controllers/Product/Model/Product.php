@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product\Model;
 
 use App\Http\Controllers\Brand\Model\Brand;
+use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
 use App\Http\Controllers\Product\Relation\Category\Model\Category;
 use App\Http\Controllers\Product\Relation\ProductAttribute\Model\ProductAttribute;
@@ -39,5 +40,13 @@ class Product extends Model
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class,ProductCategory::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function scopeActive(): mixed
+    {
+        return $this->whereStatus(ProductStatusEnumeration::ACTIVE);
     }
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('content');
             $table->decimal('price', 9);
-            $table->enum('status', [ProductStatusEnumeration::PASSIVE, ProductStatusEnumeration::ACTIVE]);
+            $table->tinyInteger('status')->default(ProductStatusEnumeration::ACTIVE);
             $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();

@@ -18,4 +18,20 @@ class Category extends Model
     {
         return $this->hasMany(self::class, 'category_id', 'id')->with('parents')->distinct();
     }
+
+    /**
+     * @return mixed
+     */
+    public function scopeMain(): mixed
+    {
+        return $this->where('category_id', null);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function scopeSub(): mixed
+    {
+        return $this->where('category_id', '!=', null);
+    }
 }
