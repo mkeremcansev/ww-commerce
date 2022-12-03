@@ -17,6 +17,7 @@ class CategoryResourceCollection extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'path' => $this->path,
+            'parents' => self::collection($this->parents)
         ];
     }
 }
