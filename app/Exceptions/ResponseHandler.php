@@ -15,8 +15,6 @@ class ResponseHandler
     }
 
     /**
-     * Returns record result
-     *
      * @param array $parameters
      * @param null $message
      * @return JsonResponse
@@ -27,8 +25,6 @@ class ResponseHandler
     }
 
     /**
-     * Returns the update result
-     *
      * @param array $parameters
      * @param null $message
      * @return JsonResponse
@@ -39,8 +35,6 @@ class ResponseHandler
     }
 
     /**
-     * Returns the deletion result
-     *
      * @param array $parameters
      * @param null $message
      * @return JsonResponse
@@ -51,8 +45,6 @@ class ResponseHandler
     }
 
     /**
-     * Returns the recovery result
-     *
      * @param array $parameters
      * @param null $message
      * @return JsonResponse
@@ -63,8 +55,6 @@ class ResponseHandler
     }
 
     /**
-     * Returns successful result
-     *
      * @param array $parameters
      * @param null $message
      * @return JsonResponse
@@ -75,8 +65,6 @@ class ResponseHandler
     }
 
     /**
-     * Returns successful without message.
-     *
      * @param array $parameters
      * @return JsonResponse
      */
@@ -86,8 +74,6 @@ class ResponseHandler
     }
 
     /**
-     * Returns error result
-     *
      * @param array $parameters
      * @param null $message
      * @param int $statusCode
@@ -99,8 +85,6 @@ class ResponseHandler
     }
 
     /**
-     * Returns not found result
-     *
      * @param null $message
      * @param array $parameters
      * @return JsonResponse
@@ -111,8 +95,6 @@ class ResponseHandler
     }
 
     /**
-     * Returns notAuthorized result
-     *
      * @param array $parameters
      * @return JsonResponse
      */
@@ -122,8 +104,6 @@ class ResponseHandler
     }
 
     /**
-     * Formats the result and returns
-     *
      * @param int $statusCode
      * @param $message
      * @param null $data
