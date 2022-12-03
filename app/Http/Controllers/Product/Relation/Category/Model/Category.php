@@ -16,7 +16,7 @@ class Category extends Model
      */
     public function parents(): HasMany
     {
-        return $this->hasMany(self::class, 'category_id', 'id')->with('parents')->distinct();
+        return $this->hasMany(self::class)->with('parents');
     }
 
     /**

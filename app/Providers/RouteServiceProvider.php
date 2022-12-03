@@ -38,7 +38,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/product/relation/category/api.php')) // Category router API's
                 ->group(base_path('routes/product/relation/attribute/api.php')) // Attribute router API's
                 ->group(base_path('routes/brand/api.php')) // Brand router API's
-                ->group(base_path('routes/user/api.php')) // Brand router API's
+                ->group(base_path('routes/user/api.php')) // uSER router API's
             ;
 
             Route::middleware('web')
