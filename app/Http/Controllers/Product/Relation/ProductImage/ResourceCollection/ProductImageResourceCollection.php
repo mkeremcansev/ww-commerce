@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Product\Relation\AttributeValue\ResourceCollection;
+namespace App\Http\Controllers\Product\Relation\ProductImage\ResourceCollection;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AttributeValueResourceCollection extends JsonResource
+class ProductImageResourceCollection extends JsonResource
 {
     /**
      * @param $request
@@ -14,8 +14,6 @@ class AttributeValueResourceCollection extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'code' => $this->code,
             'path' => asset($this->path)
         ];
     }

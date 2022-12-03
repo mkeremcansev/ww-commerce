@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Product\ResourceCollection;
 use App\Http\Controllers\Brand\ResourceCollection\BrandResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeResourceCollection;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryResourceCollection;
+use App\Http\Controllers\Product\Relation\ProductImage\ResourceCollection\ProductImageResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResourceCollection extends JsonResource
@@ -22,6 +23,7 @@ class ProductResourceCollection extends JsonResource
             'price' => $this->price,
             'brand' => new BrandResourceCollection($this->brand),
             'categories' => CategoryResourceCollection::collection($this->categories),
+            'images' => ProductImageResourceCollection::collection($this->images),
             'attributes' => AttributeResourceCollection::collection($this->attributes)
         ];
     }

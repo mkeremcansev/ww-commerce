@@ -16,7 +16,7 @@ class CategoryResourceCollection extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'slug' => $this->slug,
-            'path' => $this->path,
+            'path' => asset($this->path),
             'parents' => self::collection($this->parents)
         ];
     }
