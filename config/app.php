@@ -194,8 +194,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \App\Providers\PatternBindProvider::class
-
+        \App\Providers\PatternBindProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class
     ],
 
     /*
