@@ -15,7 +15,6 @@ use App\Http\Controllers\Product\Relation\ProductCategory\Model\ProductCategory;
 use App\Http\Controllers\Product\Relation\ProductImage\Enumeration\ProductImageDefaultPathEnumeration;
 use App\Http\Controllers\Product\Relation\ProductImage\Model\ProductImage;
 use App\Http\Controllers\Product\Relation\ProductVariant\Model\ProductVariant;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
