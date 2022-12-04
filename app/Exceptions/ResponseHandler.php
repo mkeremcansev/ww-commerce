@@ -100,7 +100,16 @@ class ResponseHandler
      */
     public static function notAuthorized(array $parameters = []): JsonResponse
     {
-        return self::result(401, __(''), $parameters);
+        return self::result(401, __('words.userNotLoggedIn'), $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     * @return JsonResponse
+     */
+    public static function notHaveRole(array $parameters = []): JsonResponse
+    {
+        return self::result(403, __('words.userNotHaveAuthorization'), $parameters);
     }
 
     /**

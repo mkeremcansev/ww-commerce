@@ -3,9 +3,11 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -52,16 +54,20 @@ class Handler extends ExceptionHandler
 
     /**
      * @param $request
-     * @param Exception|Throwable $exception
+     * @param Exception|Throwable $e
      * @return Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
      * @throws Throwable
      */
-    public function render($request, Exception|Throwable $exception): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
+    public function render($request, Exception|Throwable $e): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
     {
-        $this->renderable(function (NotFoundHttpException $e, $request) {
+        $this->renderable(function (NotFoundHttpException $e) {
             return ResponseHandler::notFound();
+        })->renderable(function (AuthenticationException $e) use ($request) {
+            return ResponseHandler::notAuthorized();
+        })->renderable(function (UnauthorizedException $e){
+            return ResponseHandler::notHaveRole();
         });
 
-        return parent::render($request, $exception);
+        return parent::render($request, $e);
     }
 }
