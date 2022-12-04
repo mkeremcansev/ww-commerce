@@ -62,9 +62,9 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (NotFoundHttpException $e) {
             return ResponseHandler::notFound();
-        })->renderable(function (AuthenticationException $e) use ($request) {
+        })->renderable(function (AuthenticationException $e) {
             return ResponseHandler::notAuthorized();
-        })->renderable(function (UnauthorizedException $e){
+        })->renderable(function (UnauthorizedException $e) {
             return ResponseHandler::notHaveRole();
         });
 
