@@ -6,10 +6,12 @@ use App\Http\Controllers\Product\Contract\ProductInterface;
 use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
 use App\Http\Controllers\Product\Relation\Category\Repository\CategoryRepository;
 use App\Http\Controllers\Product\Repository\ProductRepository;
+use App\Http\Controllers\User\Contract\UserInterface;
 use App\Http\Controllers\User\Relation\Permission\Contract\PermissionInterface;
 use App\Http\Controllers\User\Relation\Permission\Repository\PermissionRepository;
 use App\Http\Controllers\User\Relation\Role\Contract\RoleInterface;
 use App\Http\Controllers\User\Relation\Role\Repository\RoleRepository;
+use App\Http\Controllers\User\Repository\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class PatternBindProvider extends ServiceProvider
@@ -38,6 +40,11 @@ class PatternBindProvider extends ServiceProvider
         $this->app->bind(
             RoleInterface::class,
             RoleRepository::class
+        );
+
+        $this->app->bind(
+            UserInterface::class,
+            UserRepository::class
         );
     }
 
