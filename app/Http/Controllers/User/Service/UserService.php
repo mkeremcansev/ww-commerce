@@ -41,13 +41,13 @@ class UserService
     /**
      * @param $email
      * @param $password
-     * @return User|null
+     * @return User|false
      */
-    public function user($email, $password): ?User
+    public function user($email, $password): User|bool
     {
         return $this->attempt($email, $password)
             ? $this->repository->userByEmail($email)
-            : null;
+            : false;
     }
 
     /**
