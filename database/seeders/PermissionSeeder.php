@@ -24,6 +24,15 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.show', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.destroy', 'guard_name' => 'web']);
+
+        //Brand permissions
+        $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.index', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.create', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.store', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.edit', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.show', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.update', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.destroy', 'guard_name' => 'web']);
     }
 
     /**
