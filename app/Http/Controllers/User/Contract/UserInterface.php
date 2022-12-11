@@ -11,4 +11,10 @@ interface UserInterface
      * @return User
      */
     public function userUpdateOrCreate(array $columns): User;
+
+    /**
+     * @param $email
+     * @return null|User
+     */
+    public function userByEmail($email): ?User;
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Product\Relation\Category\Controller;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryResourceCollection;
 use App\Http\Controllers\Product\Relation\Category\Service\CategoryService;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,10 @@ class CategoryController extends Controller
     {
     }
 
-    public function index()
+    /**
+     * @return AnonymousResourceCollection
+     */
+    public function index(): AnonymousResourceCollection
     {
         return CategoryResourceCollection::collection($this->service->index());
     }

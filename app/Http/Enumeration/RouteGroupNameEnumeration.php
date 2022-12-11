@@ -6,4 +6,5 @@ abstract class RouteGroupNameEnumeration
 {
     const PRODUCT_GROUP = 'product.';
     const CATEGORY_GROUP = 'category.';
+    const USER_GROUP = 'user.';
 }

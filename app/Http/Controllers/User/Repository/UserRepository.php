@@ -17,6 +17,18 @@ class UserRepository implements UserInterface
      */
     public function userUpdateOrCreate(array $columns): User
     {
-        return $this->user->firstOrCreate($columns);
+        return $this->user
+            ->firstOrCreate($columns);
+    }
+
+    /**
+     * @param $email
+     * @return null|User
+     */
+    public function userByEmail($email): ?User
+    {
+        return $this->user
+            ->whereEmail($email)
+            ->first();
     }
 }

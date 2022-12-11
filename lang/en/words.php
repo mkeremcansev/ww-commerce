@@ -4,4 +4,6 @@ return [
     'tooManyRequests' => 'Too many requests.',
     'userNotLoggedIn' => 'User not logged in.',
     'userNotHaveAuthorization' => 'User not have the required authorization.',
+    'loginSuccess' => 'Login success.',
+    'invalidAuthorizationInformation' => 'Email address or Password is incorrect.',
 ];
