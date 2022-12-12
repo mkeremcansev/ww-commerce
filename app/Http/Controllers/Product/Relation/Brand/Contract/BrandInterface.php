@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product\Relation\Brand\Contract;
 
 use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
+use Illuminate\Support\Collection;
 
 interface BrandInterface
 {
@@ -28,4 +29,16 @@ interface BrandInterface
      * @return Brand|null
      */
     public function brandById($id): ?Brand;
+
+    /**
+     * @return Collection
+     */
+    public function brands(): Collection;
+
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool;
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product\Relation\Brand\Service;
 
 use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
+use Illuminate\Support\Collection;
 
 class BrandService
 {
@@ -12,6 +13,14 @@ class BrandService
      */
     public function __construct(public BrandInterface $repository)
     {
+    }
+
+    /**
+     * @return Collection
+     */
+    public function index(): Collection
+    {
+        return $this->repository->brands();
     }
 
     /**

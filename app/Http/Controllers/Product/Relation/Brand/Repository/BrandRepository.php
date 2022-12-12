@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product\Relation\Brand\Repository;
 
 use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
+use Illuminate\Support\Collection;
 
 class BrandRepository implements BrandInterface
 {
@@ -57,6 +58,14 @@ class BrandRepository implements BrandInterface
         return $this->model
             ->whereId($id)
             ->first();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function brands(): Collection
+    {
+        return $this->model->get();
     }
 
     /**

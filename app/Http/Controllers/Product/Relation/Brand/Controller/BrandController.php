@@ -9,6 +9,7 @@ use App\Http\Controllers\Product\Relation\Brand\Request\BrandUpdateRequest;
 use App\Http\Controllers\Product\Relation\Brand\ResourceCollection\BrandResourceCollection;
 use App\Http\Controllers\Product\Relation\Brand\Service\BrandService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Str;
 
 class BrandController extends Controller
@@ -19,6 +20,14 @@ class BrandController extends Controller
      */
     public function __construct(public BrandService $service, public Str $str)
     {
+    }
+
+    /**
+     * @return AnonymousResourceCollection
+     */
+    public function index(): AnonymousResourceCollection
+    {
+        return BrandResourceCollection::collection($this->service->index());
     }
 
     /**
