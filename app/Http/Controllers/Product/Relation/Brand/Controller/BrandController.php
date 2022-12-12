@@ -80,5 +80,4 @@ class BrandController extends Controller
             ? ResponseHandler::destroy(['id' => $id])
             : ResponseHandler::recordNotFound();
     }
-
 }
