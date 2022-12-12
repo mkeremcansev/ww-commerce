@@ -6,4 +6,5 @@ return [
     'userNotHaveAuthorization' => 'User not have the required authorization.',
     'loginSuccess' => 'Login success.',
     'invalidAuthorizationInformation' => 'Email address or Password is incorrect.',
+    'createdSuccessfully' => 'Created successfully.',
 ];

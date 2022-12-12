@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Brand\ResourceCollection;
+namespace App\Http\Controllers\Product\Relation\Brand\ResourceCollection;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

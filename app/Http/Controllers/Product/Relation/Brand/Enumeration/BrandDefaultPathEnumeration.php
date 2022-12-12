@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Brand\Enumeration;
+namespace App\Http\Controllers\Product\Relation\Brand\Enumeration;
 
 abstract class BrandDefaultPathEnumeration
 {

@@ -21,7 +21,7 @@ class ResponseHandler
      */
     public static function store(array $parameters = [], $message = null): JsonResponse
     {
-        return self::result(200, $message ?? __(''), $parameters);
+        return self::result(200, $message ?? __('words.createdSuccessfully'), $parameters);
     }
 
     /**

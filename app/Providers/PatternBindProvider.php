@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Product\Contract\ProductInterface;
+use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
+use App\Http\Controllers\Product\Relation\Brand\Repository\BrandRepository;
 use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
 use App\Http\Controllers\Product\Relation\Category\Repository\CategoryRepository;
 use App\Http\Controllers\Product\Repository\ProductRepository;
@@ -45,6 +47,11 @@ class PatternBindProvider extends ServiceProvider
         $this->app->bind(
             UserInterface::class,
             UserRepository::class
+        );
+
+        $this->app->bind(
+            BrandInterface::class,
+            BrandRepository::class
         );
     }
 

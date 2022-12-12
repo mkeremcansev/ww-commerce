@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Product\Model;
 
-use App\Http\Controllers\Brand\Model\Brand;
 use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
+use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
 use App\Http\Controllers\Product\Relation\Category\Model\Category;
 use App\Http\Controllers\Product\Relation\ProductAttribute\Model\ProductAttribute;
 use App\Http\Controllers\Product\Relation\ProductCategory\Model\ProductCategory;
