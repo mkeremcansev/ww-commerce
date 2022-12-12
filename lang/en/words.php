@@ -7,4 +7,7 @@ return [
     'loginSuccess' => 'Login success.',
     'invalidAuthorizationInformation' => 'Email address or Password is incorrect.',
     'createdSuccessfully' => 'Created successfully.',
+    'updatedSuccessfully' => 'Updated successfully.',
+    'deletedSuccessfully' => 'Deleted successfully.',
+    'recordNotFound' => 'Record not found.',
 ];

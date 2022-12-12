@@ -31,7 +31,17 @@ class ResponseHandler
      */
     public static function update(array $parameters = [], $message = null): JsonResponse
     {
-        return self::result(200, $message ?? __(''), $parameters);
+        return self::result(200, $message ?? __('words.updatedSuccessfully'), $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     * @param null $message
+     * @return JsonResponse
+     */
+    public static function recordNotFound(array $parameters = [], $message = null): JsonResponse
+    {
+        return self::result(404, $message ?? __('words.recordNotFound'), $parameters);
     }
 
     /**
@@ -41,7 +51,7 @@ class ResponseHandler
      */
     public static function destroy(array $parameters = [], $message = null): JsonResponse
     {
-        return self::result(200, $message ?? __(''), $parameters);
+        return self::result(200, $message ?? __('words.deletedSuccessfully'), $parameters);
     }
 
     /**

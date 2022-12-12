@@ -24,4 +24,34 @@ class BrandService
     {
         return $this->repository->store($title, $slug, $path);
     }
+
+    /**
+     * @param $id
+     * @return Brand|null
+     */
+    public function edit($id): ?Brand
+    {
+        return $this->repository->brandById($id);
+    }
+
+    /**
+     * @param $id
+     * @param $title
+     * @param $slug
+     * @param $path
+     * @return bool
+     */
+    public function update($id, $title, $slug, $path): bool
+    {
+        return $this->repository->update($id, $title, $slug, $path);
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool
+    {
+        return $this->repository->destroy($id);
+    }
 }
