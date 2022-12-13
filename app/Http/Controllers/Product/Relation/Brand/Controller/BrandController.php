@@ -8,6 +8,7 @@ use App\Http\Controllers\Product\Relation\Brand\Request\BrandStoreRequest;
 use App\Http\Controllers\Product\Relation\Brand\Request\BrandUpdateRequest;
 use App\Http\Controllers\Product\Relation\Brand\ResourceCollection\BrandResourceCollection;
 use App\Http\Controllers\Product\Relation\Brand\Service\BrandService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Str;
@@ -24,10 +25,11 @@ class BrandController extends Controller
 
     /**
      * @return AnonymousResourceCollection
+     * @throws Exception
      */
     public function index(): AnonymousResourceCollection
     {
-        return BrandResourceCollection::collection($this->service->index());
+        return $this->service->index();
     }
 
     /**

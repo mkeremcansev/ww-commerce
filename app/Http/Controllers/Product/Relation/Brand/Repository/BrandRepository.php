@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product\Relation\Brand\Repository;
 
 use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 
 class BrandRepository implements BrandInterface
@@ -61,11 +62,16 @@ class BrandRepository implements BrandInterface
     }
 
     /**
-     * @return Collection
+     * @param array $columns
+     * @return mixed
      */
-    public function brands(): Collection
+    public function brands(array $columns = []): mixed
     {
-        return $this->model->get();
+        return $this->model
+            ->when(count($columns),
+                fn($eloquent) => $eloquent->select($columns),
+                fn($eloquent) => $eloquent->get()
+            );
     }
 
     /**

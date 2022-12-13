@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product\Relation\Brand\Contract;
 
 use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 
 interface BrandInterface
@@ -31,9 +32,10 @@ interface BrandInterface
     public function brandById($id): ?Brand;
 
     /**
-     * @return Collection
+     * @param array $columns
+     * @return mixed
      */
-    public function brands(): Collection;
+    public function brands(array $columns = []): mixed;
 
 
     /**
