@@ -9,13 +9,16 @@ use Yajra\DataTables\DataTables;
 class DatatableHelper
 {
     /**
+     * @param $request
      * @param $query
      * @return Collection
      */
-    public static function filters($query): Collection
+    public static function filters($request, $query): Collection
     {
-        return collect(request()->all())->map(function ($value, $key) use ($query) {
+        return collect($request->validated())->map(function ($value, $key) use ($query) {
             switch ($value) {
+                case null:
+                    break;
                 case is_array($value):
                     $query->whereIn($key, $value);
                     break;
@@ -30,15 +33,16 @@ class DatatableHelper
     }
 
     /**
+     * @param $request
      * @param $data
      * @return mixed
      * @throws Exception
      */
-    public static function datatable($data): mixed
+    public static function datatable($request, $data): mixed
     {
         return DataTables::of($data)
-            ->filter(function ($query) {
-                return self::filters($query);
+            ->filter(function ($query) use ($request) {
+                return self::filters($request, $query);
             })
             ->make()
             ->getData()

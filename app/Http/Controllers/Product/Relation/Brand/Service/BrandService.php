@@ -2,15 +2,8 @@
 
 namespace App\Http\Controllers\Product\Relation\Brand\Service;
 
-use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
-use App\Http\Controllers\Product\Relation\Brand\ResourceCollection\BrandResourceCollection;
-use Exception;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Collection;
-use Yajra\DataTables\DataTables;
 
 class BrandService
 {
@@ -22,12 +15,11 @@ class BrandService
     }
 
     /**
-     * @return AnonymousResourceCollection
-     * @throws Exception
+     * @return mixed
      */
-    public function index(): AnonymousResourceCollection
+    public function index(): mixed
     {
-        return BrandResourceCollection::collection(DatatableHelper::datatable($this->repository->brands(['id', 'title', 'slug', 'path'])));
+        return $this->repository->brands(['id', 'title', 'slug', 'path']);
     }
 
     /**
