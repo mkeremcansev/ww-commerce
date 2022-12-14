@@ -13,10 +13,10 @@ class AttributeValueResourceCollection extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'code' => $this->code,
-            'path' => asset($this->path)
+            'id' => $this->id ?? null,
+            'title' => $this->title ?? null,
+            'code' => $this->code ?? null,
+            'path' => asset($this->path ?? null)
         ];
     }
 }

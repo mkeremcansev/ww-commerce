@@ -13,8 +13,8 @@ class ProductImageResourceCollection extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'path' => asset($this->path)
+            'id' => $this->id ?? null,
+            'path' => asset($this->path ?? null)
         ];
     }
 }

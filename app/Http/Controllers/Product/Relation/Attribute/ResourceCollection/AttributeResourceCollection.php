@@ -14,8 +14,8 @@ class AttributeResourceCollection extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'title' => $this->title,
+            'id' => $this->id ?? null,
+            'title' => $this->title ?? null,
             'attribute_values' => AttributeValueResourceCollection::collection($this->values)
         ];
     }

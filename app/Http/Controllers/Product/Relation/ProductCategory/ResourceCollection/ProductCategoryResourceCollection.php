@@ -13,10 +13,10 @@ class ProductCategoryResourceCollection extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'slug' => $this->slug,
-            'path' => asset($this->path)
+            'id' => $this->id ?? null,
+            'title' => $this->title ?? null,
+            'slug' => $this->slug ?? null,
+            'path' => asset($this->path ?? null)
         ];
     }
 }
