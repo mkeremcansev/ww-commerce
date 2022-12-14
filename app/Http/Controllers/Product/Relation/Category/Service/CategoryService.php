@@ -15,6 +15,6 @@ class CategoryService
 
     public function index()
     {
-        return $this->repository->categories();
+        return $this->repository->categories(['id', 'title', 'slug', 'path']);
     }
 }

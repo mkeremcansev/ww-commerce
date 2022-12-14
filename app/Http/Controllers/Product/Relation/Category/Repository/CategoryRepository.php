@@ -17,13 +17,15 @@ class CategoryRepository implements CategoryInterface
     }
 
     /**
-     * @return Builder[]|Collection
+     * @param array $columns
+     * @return mixed
      */
-    public function categories(): Collection|array
+    public function categories(array $columns = []): mixed
     {
         return $this->model
-            ->with('parents')
-            ->main()
-            ->get();
+            ->when(count($columns),
+                fn($eloquent) => $eloquent->select($columns),
+                fn($eloquent) => $eloquent->get()
+            );
     }
 }
