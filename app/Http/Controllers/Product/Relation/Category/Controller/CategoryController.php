@@ -7,6 +7,7 @@ use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Product\Relation\Category\Request\CategoryIndexRequest;
 use App\Http\Controllers\Product\Relation\Category\Request\CategoryStoreRequest;
+use App\Http\Controllers\Product\Relation\Category\Request\CategoryUpdateRequest;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryCreateResourceCollection;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryEditResourceCollection;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryResourceCollection;
@@ -42,7 +43,7 @@ class CategoryController extends Controller
     public function create(): array
     {
         return [
-          'category_id' => CategoryCreateResourceCollection::collection($this->service->create())
+            'category_id' => CategoryCreateResourceCollection::collection($this->service->create())
         ];
     }
 
@@ -52,7 +53,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request): JsonResponse
     {
-        $category = $this->service->repository->store($request->title, $this->str::slug($request->title), $request->path, $request->category_id);
+        $category = $this->service->store($request->title, $this->str::slug($request->title), $request->path, $request->category_id);
 
         return ResponseHandler::store(['id' => $category->id]);
     }
@@ -67,6 +68,20 @@ class CategoryController extends Controller
 
         return $category
             ? new CategoryEditResourceCollection($category)
+            : ResponseHandler::notFound();
+    }
+
+    /**
+     * @param int $id
+     * @param CategoryUpdateRequest $request
+     * @return JsonResponse
+     */
+    public function update(int $id, CategoryUpdateRequest $request): JsonResponse
+    {
+        $category = $this->service->update($id, $request->title, $this->str::slug($request->title), $request->path, $request->category_id);
+
+        return $category
+            ? ResponseHandler::update(['id' => $id])
             : ResponseHandler::notFound();
     }
 }

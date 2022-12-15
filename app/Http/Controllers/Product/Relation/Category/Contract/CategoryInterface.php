@@ -33,4 +33,14 @@ interface CategoryInterface
      * @return mixed
      */
     public function store($title, $slug, $path, $category_id): mixed;
+
+    /**
+     * @param $id
+     * @param $title
+     * @param $slug
+     * @param $path
+     * @param $category_id
+     * @return bool
+     */
+    public function update($id, $title, $slug, $path, $category_id): bool;
 }

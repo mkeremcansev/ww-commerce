@@ -72,4 +72,24 @@ class CategoryRepository implements CategoryInterface
             'category_id' => $category_id
         ]);
     }
+
+    /**
+     * @param $id
+     * @param $title
+     * @param $slug
+     * @param $path
+     * @param $category_id
+     * @return bool
+     */
+    public function update($id, $title, $slug, $path, $category_id): bool
+    {
+        $category = $this->categoryById($id);
+
+        return $category && $category->update([
+                'title' => $title,
+                'slug' => $slug,
+                'path' => $path,
+                'category_id' => $category_id
+            ]);
+    }
 }

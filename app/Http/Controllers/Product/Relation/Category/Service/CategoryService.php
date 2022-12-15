@@ -51,4 +51,17 @@ class CategoryService
     {
         return $this->repository->categoryById($id);
     }
+
+    /**
+     * @param $id
+     * @param $title
+     * @param $slug
+     * @param $path
+     * @param $category_id
+     * @return mixed
+     */
+    public function update($id, $title, $slug, $path, $category_id): mixed
+    {
+        return $this->repository->update($id,$title, $slug, $path, $category_id);
+    }
 }

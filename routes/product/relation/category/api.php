@@ -11,5 +11,6 @@ Route::name(RouteGroupNameEnumeration::CATEGORY_GROUP)->prefix(RouteGroupPathEnu
         Route::get('/create', 'create')->name('create')->middleware('auth:sanctum', 'permission:category.create');
         Route::post('/store', 'store')->name('store')->middleware('auth:sanctum', 'permission:category.store');
         Route::get('/{id}/edit', 'edit')->name('edit')->middleware('auth:sanctum', 'permission:category.edit');
+        Route::patch('/{id}/update', 'update')->name('update')->middleware('auth:sanctum', 'permission:category.update');
     });
 });
