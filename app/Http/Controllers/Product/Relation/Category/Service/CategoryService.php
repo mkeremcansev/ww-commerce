@@ -64,4 +64,13 @@ class CategoryService
     {
         return $this->repository->update($id,$title, $slug, $path, $category_id);
     }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool
+    {
+        return $this->repository->destroy($id);
+    }
 }

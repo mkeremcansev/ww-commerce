@@ -43,4 +43,10 @@ interface CategoryInterface
      * @return bool
      */
     public function update($id, $title, $slug, $path, $category_id): bool;
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool;
 }

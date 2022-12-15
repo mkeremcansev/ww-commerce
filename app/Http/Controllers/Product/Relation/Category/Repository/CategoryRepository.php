@@ -92,4 +92,15 @@ class CategoryRepository implements CategoryInterface
                 'category_id' => $category_id
             ]);
     }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool
+    {
+        $category = $this->categoryById($id);
+
+        return $category && $category->delete();
+    }
 }

@@ -84,4 +84,17 @@ class CategoryController extends Controller
             ? ResponseHandler::update(['id' => $id])
             : ResponseHandler::notFound();
     }
+
+    /**
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function destroy(int $id): JsonResponse
+    {
+        $category = $this->service->destroy($id);
+
+        return $category
+            ? ResponseHandler::destroy(['id' => $id])
+            : ResponseHandler::recordNotFound();
+    }
 }
