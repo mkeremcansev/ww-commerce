@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('code');
-            $table->string('path')->default(AttributeValueDefaultPathEnumeration::DEFAULT_PATH);
+            $table->string('path');
             $table->foreignId('attribute_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();

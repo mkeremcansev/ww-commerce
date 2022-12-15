@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->string('path')->default(CategoryDefaultPathEnumeration::DEFAULT_PATH);
+            $table->string('path');
             $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();

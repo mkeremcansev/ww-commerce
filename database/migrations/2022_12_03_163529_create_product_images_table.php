@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->string('path')->default(ProductImageDefaultPathEnumeration::DEFAULT_PATH);
+            $table->string('path');
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();

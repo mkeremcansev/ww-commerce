@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Product\Relation\Category\Model;
 
+use App\Http\Controllers\Product\Relation\Category\Enumeration\CategoryDefaultPathEnumeration;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,6 +11,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     use HasFactory, SoftDeletes;
+
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'title',
+        'slug',
+        'path',
+        'category_id'
+    ];
 
     /**
      * @return HasMany
