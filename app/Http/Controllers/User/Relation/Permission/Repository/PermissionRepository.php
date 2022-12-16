@@ -9,9 +9,9 @@ use Spatie\Permission\Models\Permission;
 class PermissionRepository implements PermissionInterface
 {
     /**
-     * @param Permission $permission
+     * @param Permission $model
      */
-    public function __construct(public Permission $permission)
+    public function __construct(public Permission $model)
     {
     }
 
@@ -20,7 +20,7 @@ class PermissionRepository implements PermissionInterface
      */
     public function permissions(): array|Collection
     {
-        return $this->permission->get();
+        return $this->model->get();
     }
 
     /**
@@ -29,6 +29,6 @@ class PermissionRepository implements PermissionInterface
      */
     public function permissionFirstOrCreate(array $columns): Permission
     {
-        return $this->permission->firstOrCreate($columns);
+        return $this->model->firstOrCreate($columns);
     }
 }

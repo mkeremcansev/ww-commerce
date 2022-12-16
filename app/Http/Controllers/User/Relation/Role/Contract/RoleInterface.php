@@ -17,4 +17,10 @@ interface RoleInterface
      * @return Role
      */
     public function roleFirstOrCreate(array $columns): Role;
+
+    /**
+     * @param array $columns
+     * @return mixed
+     */
+    public function roles(array $columns = []): mixed;
 }

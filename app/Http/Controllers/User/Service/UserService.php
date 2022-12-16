@@ -58,4 +58,34 @@ class UserService
     {
         return $user->createToken('auth')->plainTextToken;
     }
+
+    /**
+     * @param $id
+     * @return User|null
+     */
+    public function edit($id): ?User
+    {
+        return $this->repository->userById($id);
+    }
+
+    /**
+     * @param $id
+     * @param $name
+     * @param $email
+     * @param array $roleId
+     * @return bool
+     */
+    public function update($id, $name, $email, array $roleId): bool
+    {
+        return $this->repository->update($id, $name, $email, $roleId);
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool
+    {
+        return $this->repository->destroy($id);
+    }
 }

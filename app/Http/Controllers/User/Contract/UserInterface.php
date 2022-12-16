@@ -17,4 +17,25 @@ interface UserInterface
      * @return null|User
      */
     public function userByEmail($email): ?User;
+
+    /**
+     * @param $id
+     * @return User|null
+     */
+    public function userById($id): ?User;
+
+    /**
+     * @param $id
+     * @param $name
+     * @param $email
+     * @param array $roleId
+     * @return bool
+     */
+    public function update($id, $name, $email, array $roleId): bool;
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool;
 }

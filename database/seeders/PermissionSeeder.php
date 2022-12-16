@@ -16,6 +16,14 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
+        //User permissions
+        $this->firstOrCreate(['group_name' => 'User', 'name' => 'user.index', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'User', 'name' => 'user.create', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'User', 'name' => 'user.store', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'User', 'name' => 'user.edit', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'User', 'name' => 'user.update', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'User', 'name' => 'user.destroy', 'guard_name' => 'web']);
+
         //Category permissions
         $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.index', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.create', 'guard_name' => 'web']);

@@ -18,14 +18,14 @@ class ProductResourceCollection extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'content' => $this->content,
-            'price' => $this->price,
-            'brand' => new BrandResourceCollection($this->brand),
-            'categories' => ProductCategoryResourceCollection::collection($this->categories),
-            'images' => ProductImageResourceCollection::collection($this->images),
-            'attributes' => AttributeRelationResourceCollection::collection($this->attributes)
+            'id' => $this->id ?? null,
+            'title' => $this->title ?? null,
+            'content' => $this->content ?? null,
+            'price' => $this->price ?? null,
+            'brand' => new BrandResourceCollection($this->brand ?? null),
+            'categories' => ProductCategoryResourceCollection::collection($this->categories ?? null),
+            'images' => ProductImageResourceCollection::collection($this->images ?? null),
+            'attributes' => AttributeRelationResourceCollection::collection($this->attributes ?? null)
         ];
     }
 }

@@ -31,4 +31,43 @@ class UserRepository implements UserInterface
             ->whereEmail($email)
             ->first();
     }
+
+    /**
+     * @param $id
+     * @return null|User
+     */
+    public function userById($id): ?User
+    {
+        return $this->user
+            ->whereId($id)
+            ->first();
+    }
+
+    /**
+     * @param $id
+     * @param $name
+     * @param $email
+     * @param array $roleId
+     * @return bool
+     */
+    public function update($id, $name, $email, array $roleId): bool
+    {
+        $user = $this->userById($id);
+
+        return $user && $user->update([
+                'name' => $name,
+                'email' => $email,
+            ]) && $user->syncRoles($roleId);
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool
+    {
+        $user = $this->userById($id);
+
+        return $user && $user->delete();
+    }
 }

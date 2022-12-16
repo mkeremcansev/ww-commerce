@@ -7,7 +7,10 @@ use Spatie\Permission\Models\Role;
 
 class RoleRepository implements RoleInterface
 {
-    public function __construct(public Role $role)
+    /**
+     * @param Role $model
+     */
+    public function __construct(public Role $model)
     {
     }
 
@@ -17,7 +20,7 @@ class RoleRepository implements RoleInterface
      */
     public function roleByName(string $name): Role
     {
-        return $this->role->whereName($name)->first();
+        return $this->model->whereName($name)->first();
     }
 
     /**
@@ -26,7 +29,20 @@ class RoleRepository implements RoleInterface
      */
     public function roleFirstOrCreate(array $columns): Role
     {
-        return $this->role->firstOrCreate($columns);
+        return $this->model->firstOrCreate($columns);
+    }
+
+    /**
+     * @param array $columns
+     * @return mixed
+     */
+    public function roles(array $columns = []): mixed
+    {
+        return $this->model
+            ->when(count($columns),
+                fn($eloquent) => $eloquent->select($columns),
+                fn($eloquent) => $eloquent->get()
+            );
     }
 
 }
