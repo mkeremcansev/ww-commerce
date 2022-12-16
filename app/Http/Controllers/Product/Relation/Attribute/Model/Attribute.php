@@ -13,6 +13,13 @@ class Attribute extends Model
     use HasFactory, SoftDeletes;
 
     /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'title'
+    ];
+
+    /**
      * @return HasMany
      */
     public function values(): HasMany

@@ -8,4 +8,5 @@ abstract class RouteGroupNameEnumeration
     const CATEGORY_GROUP = 'category.';
     const USER_GROUP = 'user.';
     const BRAND_GROUP = 'brand.';
+    const ATTRIBUTE_GROUP = 'attribute.';
 }

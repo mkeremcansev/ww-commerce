@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Product\Relation\Attribute\ResourceCollection;
 use App\Http\Controllers\Product\Relation\AttributeValue\ResourceCollection\AttributeValueResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AttributeResourceCollection extends JsonResource
+class AttributeRelationResourceCollection extends JsonResource
 {
     /**
      * @param $request
@@ -15,7 +15,8 @@ class AttributeResourceCollection extends JsonResource
     {
         return [
             'id' => $this->id ?? null,
-            'title' => $this->title ?? null
+            'title' => $this->title ?? null,
+            'attribute_values' => AttributeValueResourceCollection::collection($this->values)
         ];
     }
 }

@@ -31,6 +31,22 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.edit', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.destroy', 'guard_name' => 'web']);
+
+        //Attribute permissions
+        $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.index', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.create', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.store', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.edit', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.update', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.destroy', 'guard_name' => 'web']);
+
+        //Attribute Value permissions
+        $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.index', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.create', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.store', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.edit', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.update', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.destroy', 'guard_name' => 'web']);
     }
 
     /**

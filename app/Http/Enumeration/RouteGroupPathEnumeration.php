@@ -8,4 +8,5 @@ abstract class RouteGroupPathEnumeration
     const CATEGORY_GROUP = 'category/';
     const USER_GROUP = 'user/';
     const BRAND_GROUP = 'brand/';
+    const ATTRIBUTE_GROUP = 'attribute/';
 }

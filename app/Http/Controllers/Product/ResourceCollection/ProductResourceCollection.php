@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Product\ResourceCollection;
 
+use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeRelationResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeResourceCollection;
 use App\Http\Controllers\Product\Relation\Brand\ResourceCollection\BrandResourceCollection;
 use App\Http\Controllers\Product\Relation\ProductCategory\ResourceCollection\ProductCategoryResourceCollection;
@@ -24,7 +25,7 @@ class ProductResourceCollection extends JsonResource
             'brand' => new BrandResourceCollection($this->brand),
             'categories' => ProductCategoryResourceCollection::collection($this->categories),
             'images' => ProductImageResourceCollection::collection($this->images),
-            'attributes' => AttributeResourceCollection::collection($this->attributes)
+            'attributes' => AttributeRelationResourceCollection::collection($this->attributes)
         ];
     }
 }
