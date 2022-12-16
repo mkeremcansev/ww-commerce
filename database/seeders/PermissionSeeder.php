@@ -32,6 +32,14 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'Role', 'name' => 'role.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Role', 'name' => 'role.destroy', 'guard_name' => 'web']);
 
+        //Permission permissions
+        $this->firstOrCreate(['group_name' => 'Permission', 'name' => 'permission.index', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Permission', 'name' => 'permission.create', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Permission', 'name' => 'permission.store', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Permission', 'name' => 'permission.edit', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Permission', 'name' => 'permission.update', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Permission', 'name' => 'permission.destroy', 'guard_name' => 'web']);
+
         //Category permissions
         $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.index', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.create', 'guard_name' => 'web']);
