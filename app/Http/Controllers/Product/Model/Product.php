@@ -9,6 +9,7 @@ use App\Http\Controllers\Product\Relation\Category\Model\Category;
 use App\Http\Controllers\Product\Relation\ProductAttribute\Model\ProductAttribute;
 use App\Http\Controllers\Product\Relation\ProductCategory\Model\ProductCategory;
 use App\Http\Controllers\Product\Relation\ProductImage\Model\ProductImage;
+use App\Http\Controllers\Product\Relation\ProductVariant\Model\ProductVariant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,11 +22,31 @@ class Product extends Model
     use HasFactory, SoftDeletes;
 
     /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'title',
+        'slug',
+        'price',
+        'content',
+        'status',
+        'brand_id'
+    ];
+
+    /**
      * @return BelongsToMany
      */
     public function attributes(): BelongsToMany
     {
         return $this->belongsToMany(Attribute::class, ProductAttribute::class)->distinct();
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function variants(): HasMany
+    {
+        return $this->hasMany(ProductVariant::class);
     }
 
     /**

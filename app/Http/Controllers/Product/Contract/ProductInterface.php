@@ -9,4 +9,55 @@ interface ProductInterface
      * @return mixed
      */
     public function productBySlug(string $slug): mixed;
+
+    /**
+     * @param $title
+     * @param $slug
+     * @param $price
+     * @param $content
+     * @param $categoryId
+     * @param $brandId
+     * @param $status
+     * @param $variants
+     * @return mixed
+     */
+    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants): mixed;
+
+    /**
+     * @param $variants
+     * @param $product
+     * @return void
+     */
+    public function extractedProductAndVariants($variants, $product): void;
+
+    /**
+     * @param $product
+     * @param $categoryId
+     * @return void
+     */
+    public function getAttach($product, $categoryId): void;
+
+    /**
+     * @param $product
+     * @param string|null $sku
+     * @param $stock
+     * @param $price
+     * @return void
+     */
+    public function extractedVariant($product, ?string $sku, $stock, $price): void;
+
+    /**
+     * @param $variant
+     * @param $product
+     * @return array
+     */
+    public function extractedAttributes($variant, $product): array;
+
+    /**
+     * @param $variants
+     * @param $product
+     * @param $categoryId
+     * @return void
+     */
+    public function extracted($variants, $product, $categoryId): void;
 }

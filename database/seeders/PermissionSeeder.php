@@ -71,6 +71,14 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.edit', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.destroy', 'guard_name' => 'web']);
+
+        //Product permissions
+        $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.index', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.create', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.store', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.edit', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.update', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.destroy', 'guard_name' => 'web']);
     }
 
     /**

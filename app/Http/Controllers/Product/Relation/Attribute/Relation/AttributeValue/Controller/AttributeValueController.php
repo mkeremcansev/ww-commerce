@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValu
 use App\Exceptions\ResponseHandler;
 use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Request\AttributeValueIndexRequest;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Request\AttributeValueStoreRequest;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Request\AttributeValueUpdateRequest;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\ResourceCollection\AttributeValueEditResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\ResourceCollection\AttributeValueResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Service\AttributeValueService;
+use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeResourceCollection;
 use Exception;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -36,11 +39,14 @@ class AttributeValueController extends Controller
 
     /**
      * @return array
+     * @throws BindingResolutionException
      */
     public function create(): array
     {
         return [
-            'attribute_id' => AttributeValueResourceCollection::collection($this->service->create())
+            'attribute_id' => AttributeResourceCollection::collection(app()
+                ->make(AttributeInterface::class)
+                ->attributes())
         ];
     }
 

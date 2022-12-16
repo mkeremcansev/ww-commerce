@@ -22,4 +22,20 @@ class ProductService
     {
         return $this->repository->productBySlug($slug);
     }
+
+    /**
+     * @param $title
+     * @param $slug
+     * @param $price
+     * @param $content
+     * @param $categoryId
+     * @param $brandId
+     * @param $status
+     * @param $variants
+     * @return mixed
+     */
+    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants): mixed
+    {
+        return $this->repository->store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants);
+    }
 }
