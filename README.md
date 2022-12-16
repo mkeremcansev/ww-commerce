@@ -12,7 +12,7 @@ Generate a new application key
 
 Run the database migrations (**Set the database connection in .env before migrating**)
 
-    php artisan migrate
+    php artisan fresh:seed
 
 Start the local development server
 
