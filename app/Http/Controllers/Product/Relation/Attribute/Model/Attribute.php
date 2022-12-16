@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Product\Relation\Attribute\Model;
 
-use App\Http\Controllers\Product\Relation\AttributeValue\Model\AttributeValue;
+use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Model\AttributeValue;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

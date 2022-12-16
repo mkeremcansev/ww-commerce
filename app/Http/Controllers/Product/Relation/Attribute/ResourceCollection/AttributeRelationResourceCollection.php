@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Product\Relation\Attribute\ResourceCollection;
 
-use App\Http\Controllers\Product\Relation\AttributeValue\ResourceCollection\AttributeValueResourceCollection;
+use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\ResourceCollection\AttributeValueResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AttributeRelationResourceCollection extends JsonResource

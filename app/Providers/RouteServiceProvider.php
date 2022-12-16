@@ -37,6 +37,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/product/api.php')) // Product router API's
                 ->group(base_path('routes/product/relation/category/api.php')) // Category router API's
                 ->group(base_path('routes/product/relation/attribute/api.php')) // Attribute router API's
+                ->group(base_path('routes/product/relation/attribute/relation/value/api.php')) // Attribute Value router API's
                 ->group(base_path('routes/product/relation/brand/api.php')) // Brand router API's
                 ->group(base_path('routes/user/api.php')) // User router API's
             ;
@@ -54,7 +55,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(RouteGroupThrottleEnumeration::RATE_LIMIT)->by($request->user()?->id ?: $request->ip())->response(function (){
+            return Limit::perMinute(RouteGroupThrottleEnumeration::RATE_LIMIT)->by($request->user()?->id ?: $request->ip())->response(function () {
                 return ResponseHandler::tooManyRequests();
             });
         });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Product\Relation\AttributeValue\Enumeration;
+namespace App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Enumeration;
 
 abstract class AttributeValueDefaultPathEnumeration
 {

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Http\Controllers\Product\Contract\ProductInterface;
 use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
+use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;
+use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Repository\AttributeValueRepository;
 use App\Http\Controllers\Product\Relation\Attribute\Repository\AttributeRepository;
 use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Controllers\Product\Relation\Brand\Repository\BrandRepository;
@@ -59,6 +61,11 @@ class PatternBindProvider extends ServiceProvider
         $this->app->bind(
             AttributeInterface::class,
             AttributeRepository::class
+        );
+
+        $this->app->bind(
+            AttributeValueInterface::class,
+            AttributeValueRepository::class
         );
     }
 
