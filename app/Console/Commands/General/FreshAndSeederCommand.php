@@ -12,7 +12,7 @@ class FreshAndSeederCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'fresh:seeder';
+    protected $signature = 'fresh:seed';
 
     /**
      * The console command description.
