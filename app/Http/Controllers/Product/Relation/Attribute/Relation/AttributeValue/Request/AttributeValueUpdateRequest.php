@@ -24,8 +24,8 @@ class AttributeValueUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255',
-            'code' => 'required|max:255',
+            'title' => 'required|max:255|unique:attribute_values,title,' . $this->id . ',id',
+            'code' => 'required|max:255|unique:attribute_values,code,' . $this->id . ',id',
             'path' => 'required|max:255',
             'attribute_id' => 'required|exists:attributes,id'
         ];

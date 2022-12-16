@@ -24,7 +24,7 @@ class BrandUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255',
+            'title' => 'required|max:255|unique:brands,title,' . $this->id . ',id',
             'path' => 'required|max:255',
         ];
     }

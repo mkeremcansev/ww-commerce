@@ -24,7 +24,7 @@ class AttributeValueStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255',
+            'title' => 'required|max:255|unique:attribute_values,title',
             'code' => 'required|max:255|unique:attribute_values,code',
             'path' => 'required|max:255',
             'attribute_id' => 'required|exists:attributes,id'

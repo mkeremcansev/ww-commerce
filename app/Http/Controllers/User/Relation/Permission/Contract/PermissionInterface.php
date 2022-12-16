@@ -8,9 +8,10 @@ use Spatie\Permission\Models\Permission;
 interface PermissionInterface
 {
     /**
-     * @return array|Collection
+     * @param array $columns
+     * @return mixed
      */
-    public function permissions(): array|Collection;
+    public function permissions(array $columns = []): mixed;
 
     /**
      * @param array $columns

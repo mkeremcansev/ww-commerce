@@ -23,4 +23,31 @@ interface RoleInterface
      * @return mixed
      */
     public function roles(array $columns = []): mixed;
+
+    /**
+     * @param $id
+     * @return Role|null
+     */
+    public function roleById($id): ?Role;
+
+    /**
+     * @param $name
+     * @param $permissionId
+     * @return mixed
+     */
+    public function store($name, $permissionId): mixed;
+
+    /**
+     * @param $id
+     * @param $name
+     * @param $permissionId
+     * @return bool
+     */
+    public function update($id, $name, $permissionId): bool;
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool;
 }

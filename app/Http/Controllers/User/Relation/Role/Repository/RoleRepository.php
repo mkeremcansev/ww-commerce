@@ -45,4 +45,54 @@ class RoleRepository implements RoleInterface
             );
     }
 
+    /**
+     * @param $id
+     * @return Role|null
+     */
+    public function roleById($id): ?Role
+    {
+        return $this->model
+            ->whereId($id)
+            ->first();
+    }
+
+    /**
+     * @param $name
+     * @param $permissionId
+     * @return mixed
+     */
+    public function store($name, $permissionId): mixed
+    {
+        return $this->model->create([
+            'name' => $name,
+            'guard_name' => 'web',
+        ])->givePermissionTo($permissionId);
+    }
+
+    /**
+     * @param $id
+     * @param $name
+     * @param $permissionId
+     * @return bool
+     */
+    public function update($id, $name, $permissionId): bool
+    {
+        $role = $this->roleById($id);
+
+        return $role && $role->update([
+                'name' => $name,
+                'permission_id' => $permissionId,
+            ]) && $role->syncPermissions($permissionId);
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool
+    {
+        $role = $this->roleById($id);
+
+        return $role && $role->delete();
+    }
 }

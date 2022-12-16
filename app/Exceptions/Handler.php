@@ -7,6 +7,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -66,6 +67,8 @@ class Handler extends ExceptionHandler
             return ResponseHandler::notAuthorized();
         })->renderable(function (UnauthorizedException $e) {
             return ResponseHandler::notHaveRole();
+        })->renderable(function (RoleAlreadyExists $e) {
+            return ResponseHandler::roleAlreadyExists();
         });
 
         return parent::render($request, $e);

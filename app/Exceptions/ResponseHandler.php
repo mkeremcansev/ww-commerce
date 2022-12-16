@@ -141,6 +141,15 @@ class ResponseHandler
     }
 
     /**
+     * @param array $parameters
+     * @return JsonResponse
+     */
+    public static function roleAlreadyExists(array $parameters = []): JsonResponse
+    {
+        return self::result(500, __('words.roleAlreadyExists'), $parameters);
+    }
+
+    /**
      * @param int $statusCode
      * @param $message
      * @param null $data

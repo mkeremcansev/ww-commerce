@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Product\Relation\Category\Request;
+namespace App\Http\Controllers\User\Relation\Role\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryUpdateRequest extends FormRequest
+class RoleUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class CategoryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255|unique:categories,title,' . $this->id . ',id',
-            'path' => 'required|max:255',
-            'category_id' => 'nullable|exists:categories,id'
+            'name' => 'required|max:255|unique:roles,name,' . $this->id . ',id',
+            'permission_id' => 'required|array',
+            'permission_id.*' => 'required|integer|exists:permissions,id',
         ];
     }
 }

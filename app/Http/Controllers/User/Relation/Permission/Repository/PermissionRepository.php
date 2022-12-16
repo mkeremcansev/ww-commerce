@@ -16,11 +16,16 @@ class PermissionRepository implements PermissionInterface
     }
 
     /**
-     * @return array|Collection
+     * @param array $columns
+     * @return mixed
      */
-    public function permissions(): array|Collection
+    public function permissions(array $columns = []): mixed
     {
-        return $this->model->get();
+        return $this->model
+            ->when(count($columns),
+                fn($eloquent) => $eloquent->select($columns),
+                fn($eloquent) => $eloquent->get()
+            );
     }
 
     /**

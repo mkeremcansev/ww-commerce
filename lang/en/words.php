@@ -3,6 +3,7 @@ return [
     'notFound' => 'Not found.',
     'tooManyRequests' => 'Too many requests.',
     'userNotLoggedIn' => 'User not logged in.',
+    'roleAlreadyExists' => 'Role already exists.',
     'userNotHaveAuthorization' => 'User not have the required authorization.',
     'loginSuccess' => 'Login success.',
     'invalidAuthorizationInformation' => 'Email address or Password is incorrect.',
