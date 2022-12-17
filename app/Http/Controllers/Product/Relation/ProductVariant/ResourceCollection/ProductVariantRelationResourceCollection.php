@@ -3,11 +3,6 @@
 namespace App\Http\Controllers\Product\Relation\ProductVariant\ResourceCollection;
 
 use App\Helpers\GeneralHelper;
-use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeRelationResourceCollection;
-use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeResourceCollection;
-use App\Http\Controllers\Product\Relation\Brand\ResourceCollection\BrandResourceCollection;
-use App\Http\Controllers\Product\Relation\ProductCategory\ResourceCollection\ProductCategoryResourceCollection;
-use App\Http\Controllers\Product\Relation\ProductImage\ResourceCollection\ProductImageResourceCollection;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Resources\Json\JsonResource;
 
