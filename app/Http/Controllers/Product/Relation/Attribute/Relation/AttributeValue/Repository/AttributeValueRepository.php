@@ -23,6 +23,17 @@ class AttributeValueRepository implements AttributeValueInterface
     }
 
     /**
+     * @param string $code
+     * @return AttributeValue|null
+     */
+    public function attributeValueByCode(string $code): ?AttributeValue
+    {
+        return $this->model
+            ->whereCode($code)
+            ->first();
+    }
+
+    /**
      * @param array $columns
      * @return mixed
      */

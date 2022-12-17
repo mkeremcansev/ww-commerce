@@ -38,4 +38,13 @@ class ProductService
     {
         return $this->repository->store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function edit($id): mixed
+    {
+        return $this->repository->productById($id);
+    }
 }

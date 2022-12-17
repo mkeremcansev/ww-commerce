@@ -25,10 +25,21 @@ class ProductRepository implements ProductInterface
     public function productBySlug(string $slug): mixed
     {
         return $this->product
-            ->query()
             ->active()
             ->with(['attributes' => ['values'], 'brand', 'categories', 'images'])
             ->whereSlug($slug)
+            ->first();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function productById($id): mixed
+    {
+        return $this->product
+            ->with('variants')
+            ->whereId($id)
             ->first();
     }
 
@@ -66,7 +77,7 @@ class ProductRepository implements ProductInterface
      * @return void
      * @throws BindingResolutionException
      */
-    public function extractedProductAndVariants($variants, $product): void
+    public function extractedProductInVariants($variants, $product): void
     {
         foreach ($variants as $variant) {
             list($sku, $stock, $price) = $this->extractedAttributes($variant, $product);
@@ -79,7 +90,7 @@ class ProductRepository implements ProductInterface
      * @param $categoryId
      * @return void
      */
-    public function getAttach($product, $categoryId): void
+    public function attachCategories($product, $categoryId): void
     {
         $product->categories()->attach($categoryId);
     }
@@ -132,7 +143,7 @@ class ProductRepository implements ProductInterface
      */
     public function extracted($variants, $product, $categoryId): void
     {
-        $this->extractedProductAndVariants($variants, $product);
-        $this->getAttach($product, $categoryId);
+        $this->extractedProductInVariants($variants, $product);
+        $this->attachCategories($product, $categoryId);
     }
 }

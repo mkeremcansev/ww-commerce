@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product\Controller;
 
 use App\Exceptions\ResponseHandler;
 use App\Helpers\EnumerationHelper;
+use App\Helpers\GeneralHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Product\Relation\Brand\ResourceCollection\BrandResource
 use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryCreateResourceCollection;
 use App\Http\Controllers\Product\Request\ProductStoreRequest;
+use App\Http\Controllers\Product\ResourceCollection\ProductEditResourceCollection;
 use App\Http\Controllers\Product\ResourceCollection\ProductResourceCollection;
 use App\Http\Controllers\Product\Service\ProductService;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -81,5 +83,18 @@ class ProductController extends Controller
         return $product
             ? new ProductResourceCollection($product)
             : ResponseHandler::notFound();
+    }
+
+    /**
+     * @param int $id
+     * @return ProductEditResourceCollection|JsonResponse
+     */
+    public function edit(int $id): ProductEditResourceCollection|JsonResponse
+    {
+        $product = $this->service->edit($id);
+
+        return $product
+            ? new ProductEditResourceCollection($this->service->edit($id))
+            : ResponseHandler::recordNotFound();
     }
 }

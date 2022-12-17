@@ -11,6 +11,12 @@ interface ProductInterface
     public function productBySlug(string $slug): mixed;
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public function productById($id): mixed;
+
+    /**
      * @param $title
      * @param $slug
      * @param $price
@@ -28,14 +34,14 @@ interface ProductInterface
      * @param $product
      * @return void
      */
-    public function extractedProductAndVariants($variants, $product): void;
+    public function extractedProductInVariants($variants, $product): void;
 
     /**
      * @param $product
      * @param $categoryId
      * @return void
      */
-    public function getAttach($product, $categoryId): void;
+    public function attachCategories($product, $categoryId): void;
 
     /**
      * @param $product

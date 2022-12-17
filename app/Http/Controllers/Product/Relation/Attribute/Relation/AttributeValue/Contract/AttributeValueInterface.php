@@ -13,6 +13,12 @@ interface AttributeValueInterface
     public function attributeValueById($id): ? AttributeValue;
 
     /**
+     * @param string $code
+     * @return AttributeValue|null
+     */
+    public function attributeValueByCode(string $code): ?AttributeValue;
+
+    /**
      * @param array $columns
      * @return mixed
      */
