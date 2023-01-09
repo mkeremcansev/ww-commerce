@@ -88,8 +88,7 @@ class PermissionSeeder extends Seeder
      */
     public function firstOrCreate(array $columns): void
     {
-        app()
-            ->make(PermissionInterface::class)
+        resolve(PermissionInterface::class)
             ->permissionFirstOrCreate($columns);
     }
 }

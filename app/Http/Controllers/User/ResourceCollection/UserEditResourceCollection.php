@@ -21,8 +21,7 @@ class UserEditResourceCollection extends JsonResource
             'name' => $this->name ?? null,
             'email' => $this->email ?? null,
             'roles' => RoleRelationResourceCollection::collection($this->roles ?? null),
-            'role_id' => RoleRelationResourceCollection::collection(app()
-                ->make(RoleInterface::class)
+            'role_id' => RoleRelationResourceCollection::collection(resolve(RoleInterface::class)
                 ->roles())
         ];
     }

@@ -39,14 +39,11 @@ class ProductController extends Controller
     public function create(): array
     {
         return [
-            'attribute_id' => AttributeRelationResourceCollection::collection(app()
-                ->make(AttributeInterface::class)
+            'attribute_id' => AttributeRelationResourceCollection::collection(resolve(AttributeInterface::class)
                 ->attributes()),
-            'category_id' => CategoryCreateResourceCollection::collection(app()
-                ->make(CategoryInterface::class)
+            'category_id' => CategoryCreateResourceCollection::collection(resolve(CategoryInterface::class)
                 ->mainCategoriesWithParents(['id', 'title', 'slug', 'path'])),
-            'brand_id' => BrandResourceCollection::collection(app()
-                ->make(BrandInterface::class)
+            'brand_id' => BrandResourceCollection::collection(resolve(BrandInterface::class)
                 ->brands()),
             'status' => EnumerationHelper::enumerationToArray(ProductStatusEnumeration::class)
         ];

@@ -45,8 +45,7 @@ class RoleController extends Controller
     {
         return [
             'permission_id' => PermissionRelationResourceCollection::collection(
-                app()
-                    ->make(PermissionInterface::class)
+                resolve(PermissionInterface::class)
                     ->permissions()
             )
         ];

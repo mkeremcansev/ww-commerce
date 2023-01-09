@@ -52,7 +52,8 @@ class GeneralHelper
         if (count($separator) > 1) {
             unset($separator[0]);
             foreach ($separator as $value) {
-                $variant = app()->make(AttributeValueInterface::class)->attributeValueByCode($value);
+                $variant = resolve(AttributeValueInterface::class)
+                    ->attributeValueByCode($value);
                 if ($variant) {
                     $variants[] = [
                         'stock' => $stock,

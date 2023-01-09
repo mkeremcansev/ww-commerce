@@ -37,14 +37,11 @@ class ProductEditResourceCollection extends JsonResource
             'status' => $this->status ?? null,
             'variant_groups' => ProductVariantRelationResourceCollection::collection($this->variants ?? null),
             'categories' => ProductCategoryResourceCollection::collection($this->categories ?? null),
-            'attribute_id' => AttributeRelationResourceCollection::collection(app()
-                ->make(AttributeInterface::class)
+            'attribute_id' => AttributeRelationResourceCollection::collection(resolve(AttributeInterface::class)
                 ->attributes()),
-            'category_id' => CategoryCreateResourceCollection::collection(app()
-                ->make(CategoryInterface::class)
+            'category_id' => CategoryCreateResourceCollection::collection(resolve(CategoryInterface::class)
                 ->mainCategoriesWithParents(['id', 'title', 'slug', 'path'])),
-            'brand_id' => BrandResourceCollection::collection(app()
-                ->make(BrandInterface::class)
+            'brand_id' => BrandResourceCollection::collection(resolve(BrandInterface::class)
                 ->brands()),
             'status_type' => EnumerationHelper::enumerationToArray(ProductStatusEnumeration::class)
         ];

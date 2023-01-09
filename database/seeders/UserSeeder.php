@@ -17,8 +17,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = app()
-            ->make(UserInterface::class)
+        $user = resolve(UserInterface::class)
             ->userUpdateOrCreate(
                 [
                     'name' => 'Admin',

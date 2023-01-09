@@ -31,8 +31,7 @@ class RoleSeeder extends Seeder
      */
     public function firstOrCreate(array $columns): void
     {
-        app()
-            ->make(RoleInterface::class)
+        resolve(RoleInterface::class)
             ->roleFirstOrCreate($columns);
         $this->givePermissionByRoleName(UserRoleEnumeration::ADMINISTRATOR_ROLE);
     }
@@ -44,11 +43,9 @@ class RoleSeeder extends Seeder
      */
     public function givePermissionByRoleName($roleName): void
     {
-        app()
-            ->make(RoleInterface::class)
+        resolve(RoleInterface::class)
             ->roleByName($roleName)
-            ->givePermissionTo(app()
-                ->make(PermissionInterface::class)
+            ->givePermissionTo(resolve(PermissionInterface::class)
                 ->permissions()
                 ->pluck('name', 'id'));
     }

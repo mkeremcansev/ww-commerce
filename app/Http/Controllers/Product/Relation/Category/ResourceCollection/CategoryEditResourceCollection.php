@@ -21,8 +21,7 @@ class CategoryEditResourceCollection extends JsonResource
             'slug' => $this->slug ?? null,
             'path' => asset($this->path ?? null),
             'category_id' => $this->category_id ?? null,
-            'categories' => CategoryCreateResourceCollection::collection(app()
-                ->make(CategoryInterface::class)
+            'categories' => CategoryCreateResourceCollection::collection(resolve(CategoryInterface::class)
                 ->mainCategoriesWithParents(['id', 'title', 'slug', 'path']))
         ];
     }

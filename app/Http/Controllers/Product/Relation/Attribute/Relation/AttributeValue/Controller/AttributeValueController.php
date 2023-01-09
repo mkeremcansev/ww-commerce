@@ -44,8 +44,7 @@ class AttributeValueController extends Controller
     public function create(): array
     {
         return [
-            'attribute_id' => AttributeResourceCollection::collection(app()
-                ->make(AttributeInterface::class)
+            'attribute_id' => AttributeResourceCollection::collection(resolve(AttributeInterface::class)
                 ->attributes())
         ];
     }

@@ -20,8 +20,7 @@ class RoleEditResourceCollection extends JsonResource
             'id' => $this->id ?? null,
             'name' => $this->name ?? null,
             'permissions' => PermissionRelationResourceCollection::collection($this->permissions ?? null),
-            'permission_id' => PermissionRelationResourceCollection::collection(app()
-                ->make(PermissionInterface::class)
+            'permission_id' => PermissionRelationResourceCollection::collection(resolve(PermissionInterface::class)
                 ->permissions())
         ];
     }

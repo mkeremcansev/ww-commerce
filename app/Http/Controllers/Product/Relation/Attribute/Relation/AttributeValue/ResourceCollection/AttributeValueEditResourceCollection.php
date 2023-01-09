@@ -22,8 +22,7 @@ class AttributeValueEditResourceCollection extends JsonResource
             'code' => $this->code ?? null,
             'path' => asset($this->path ?? null),
             'attribute_id' => $this->attribute_id ?? null,
-            'attributes' => AttributeResourceCollection::collection(app()
-            ->make(AttributeValueInterface::class)
+            'attributes' => AttributeResourceCollection::collection(resolve(AttributeValueInterface::class)
             ->attributeValues()),
         ];
     }

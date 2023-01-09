@@ -126,8 +126,7 @@ class ProductRepository implements ProductInterface
         foreach ($variant['attributes'] as $attribute) {
             $stock = $variant['stock'];
             $price = $variant['price'];
-            $sku .= app()
-                    ->make(AttributeValueInterface::class)
+            $sku .= resolve(AttributeValueInterface::class)
                     ->attributeValueById($attribute['attribute_value_id'])->code . '-';
             $product->attributes()->attach($attribute['attribute_id'], ['attribute_value_id' => $attribute['attribute_value_id']]);
         }
