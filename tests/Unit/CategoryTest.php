@@ -2,12 +2,12 @@
 
 namespace Tests\Unit;
 
-use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
+use App\Http\Controllers\Product\Relation\Category\Model\Category;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
 
-class BrandTest extends TestCase
+class CategoryTest extends TestCase
 {
     use WithFaker;
 
@@ -19,51 +19,51 @@ class BrandTest extends TestCase
     public function __construct(?string $name = null, array $data = [], string $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-        $this->model = resolve(Brand::class);
+        $this->model = resolve(Category::class);
     }
 
     /**
      * @return void
      */
-    public function test_can_index_brand(): void
+    public function test_can_index_category(): void
     {
-        $this->assertInstanceOf(Collection::class, $this->post(route('brand.index'))->getOriginalContent());
+        $this->assertInstanceOf(Collection::class, $this->post(route('category.index'))->getOriginalContent());
     }
 
     /**
      * @return void
      */
-    public function test_can_create_brand(): void
+    public function test_can_create_category(): void
     {
-        $this->assertTrue(true);
+        $this->assertEquals(200, $this->get(route('category.create'))->getStatusCode());
     }
 
     /**
      * @return void
      */
-    public function test_can_store_brand(): void
+    public function test_can_store_category(): void
     {
-        $brand = $this->post(route('brand.store'), [
+        $category = $this->post(route('category.store'), [
             'title' => $this->faker->name,
             'path' => $this->faker->imageUrl(),
         ])->assertStatus(200)->getOriginalContent();
-        self::$id = $brand['data']['id'];
+        self::$id = $category['data']['id'];
     }
 
     /**
      * @return void
      */
-    public function test_can_edit_brand(): void
+    public function test_can_edit_category(): void
     {
-        $this->get(route('brand.edit', self::$id))->assertStatus(200);
+        $this->get(route('category.edit', self::$id))->assertStatus(200);
     }
 
     /**
      * @return void
      */
-    public function test_can_update_brand(): void
+    public function test_can_update_category(): void
     {
-        $this->patch(route('brand.update', self::$id), [
+        $this->patch(route('category.update', self::$id), [
             'title' => $this->faker->name,
             'path' => $this->faker->imageUrl(),
         ])->assertStatus(200);
@@ -72,9 +72,9 @@ class BrandTest extends TestCase
     /**
      * @return void
      */
-    public function test_can_destroy_brand(): void
+    public function test_can_destroy_category(): void
     {
-        $this->delete(route('brand.destroy', self::$id))->assertStatus(200);
+        $this->delete(route('category.destroy', self::$id))->assertStatus(200);
     }
 
     /**
