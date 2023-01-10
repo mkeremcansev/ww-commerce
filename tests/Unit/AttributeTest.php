@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
 
@@ -42,7 +41,7 @@ class AttributeTest extends TestCase
     public function test_can_store_attribute(): void
     {
         $attribute = $this->post(route('attribute.store'), [
-            'title' => $this->faker->name
+            'title' => $this->faker->colorName
         ])->assertStatus(200)->getOriginalContent();
         self::$id = $attribute['data']['id'];
     }
@@ -61,7 +60,7 @@ class AttributeTest extends TestCase
     public function test_can_update_attribute(): void
     {
         $this->patch(route('attribute.update', self::$id), [
-            'title' => $this->faker->name
+            'title' => $this->faker->colorName
         ])->assertStatus(200);
     }
 

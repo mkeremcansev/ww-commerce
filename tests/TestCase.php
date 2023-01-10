@@ -19,9 +19,19 @@ abstract class TestCase extends BaseTestCase
     public static int $id;
 
     /**
+     * @var int $parent_id
+     */
+    public static int $parent_id;
+
+    /**
      * @var Model $model
      */
     public Model $model;
+
+    /**
+     * @var Model $parent_model
+     */
+    public Model $parent_model;
 
     /**
      * @var Application|Model
