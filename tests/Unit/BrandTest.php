@@ -9,8 +9,6 @@ use Tests\TestCase;
 
 class BrandTest extends TestCase
 {
-    use WithFaker;
-
     /**
      * @param string|null $name
      * @param array $data

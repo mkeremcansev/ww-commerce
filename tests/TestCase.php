@@ -4,12 +4,14 @@ namespace Tests;
 
 use App\Http\Controllers\User\Enumeration\UserRoleEnumeration;
 use App\Http\Controllers\User\Model\User;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Foundation\Testing\WithFaker;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication, WithFaker;
 
     /**
      * @var int $id
@@ -21,7 +23,10 @@ abstract class TestCase extends BaseTestCase
      */
     public Model $model;
 
-    public Model $user;
+    /**
+     * @var Application|Model
+     */
+    public Model|Application $user;
 
     /**
      * @return void
