@@ -4,11 +4,8 @@ namespace Tests;
 
 use App\Http\Controllers\User\Enumeration\UserRoleEnumeration;
 use App\Http\Controllers\User\Model\User;
-use App\Http\Middleware\Authenticate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Spatie\Permission\Middlewares\PermissionMiddleware;
-use Spatie\Permission\Middlewares\RoleMiddleware;
 
 abstract class TestCase extends BaseTestCase
 {
