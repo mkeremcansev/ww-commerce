@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\User\Relation\Role\Controller;
 
-use App\Exceptions\ResponseHandler;
 use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\Relation\Permission\Contract\PermissionInterface;
@@ -13,6 +12,7 @@ use App\Http\Controllers\User\Relation\Role\Request\RoleUpdateRequest;
 use App\Http\Controllers\User\Relation\Role\ResourceCollection\RoleEditResourceCollection;
 use App\Http\Controllers\User\Relation\Role\ResourceCollection\RoleResourceCollection;
 use App\Http\Controllers\User\Relation\Role\Service\RoleService;
+use App\Response\ResponseHandler;
 use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\JsonResponse;

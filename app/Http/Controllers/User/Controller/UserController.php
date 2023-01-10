@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\User\Controller;
 
-use App\Exceptions\ResponseHandler;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\Request\UserAuthorizeRequest;
 use App\Http\Controllers\User\Request\UserUpdateRequest;
 use App\Http\Controllers\User\ResourceCollection\UserEditResourceCollection;
 use App\Http\Controllers\User\Service\UserService;
+use App\Response\ResponseHandler;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Http\JsonResponse;
 

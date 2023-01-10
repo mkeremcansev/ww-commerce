@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Product\Relation\Category\Controller;
 
-use App\Exceptions\ResponseHandler;
 use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Product\Relation\Category\Request\CategoryIndexRequest;
@@ -12,6 +11,7 @@ use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryCr
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryEditResourceCollection;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryResourceCollection;
 use App\Http\Controllers\Product\Relation\Category\Service\CategoryService;
+use App\Response\ResponseHandler;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

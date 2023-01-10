@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions;
+namespace App\Response;
 
 use Illuminate\Http\JsonResponse;
 

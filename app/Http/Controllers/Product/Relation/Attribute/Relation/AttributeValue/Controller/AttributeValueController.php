@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Controller;
 
-use App\Exceptions\ResponseHandler;
 use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
@@ -13,6 +12,7 @@ use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Reso
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\ResourceCollection\AttributeValueResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Service\AttributeValueService;
 use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeResourceCollection;
+use App\Response\ResponseHandler;
 use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\JsonResponse;

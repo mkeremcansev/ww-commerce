@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Product\Relation\Brand\Controller;
 
-use App\Exceptions\ResponseHandler;
 use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Product\Relation\Brand\Request\BrandIndexRequest;
@@ -10,6 +9,7 @@ use App\Http\Controllers\Product\Relation\Brand\Request\BrandStoreRequest;
 use App\Http\Controllers\Product\Relation\Brand\Request\BrandUpdateRequest;
 use App\Http\Controllers\Product\Relation\Brand\ResourceCollection\BrandResourceCollection;
 use App\Http\Controllers\Product\Relation\Brand\Service\BrandService;
+use App\Response\ResponseHandler;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

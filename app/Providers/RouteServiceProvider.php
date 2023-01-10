@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Exceptions\ResponseHandler;
 use App\Http\Enumeration\RouteGroupThrottleEnumeration;
+use App\Response\ResponseHandler;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;

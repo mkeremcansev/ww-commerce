@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Product\Relation\Attribute\Controller;
 
-use App\Exceptions\ResponseHandler;
 use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Product\Relation\Attribute\Request\AttributeIndexRequest;
@@ -11,6 +10,7 @@ use App\Http\Controllers\Product\Relation\Attribute\Request\AttributeUpdateReque
 use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeEditResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\Service\AttributeService;
+use App\Response\ResponseHandler;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
