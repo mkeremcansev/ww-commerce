@@ -14,6 +14,10 @@ Run the database migrations (**Set the database connection in .env before migrat
 
     php artisan fresh:seed
 
+Run the UnitTest for the application
+
+    php artisan test
+
 Start the local development server
 
     php artisan serve
