@@ -130,7 +130,7 @@ class ProductRepository implements ProductInterface
                     ->attributeValueById($attribute['attribute_value_id'])->code . '-';
             $product->attributes()->attach($attribute['attribute_id'], ['attribute_value_id' => $attribute['attribute_value_id']]);
         }
-        return array($sku, $stock, $price);
+        return [$sku, $stock, $price];
     }
 
     /**
