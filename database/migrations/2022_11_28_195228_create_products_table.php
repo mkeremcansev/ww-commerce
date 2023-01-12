@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('content');
             $table->decimal('price', 9);
             $table->tinyInteger('status')->default(ProductStatusEnumeration::ACTIVE);
-            $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('brand_id')->constrained();
             $table->softDeletes();
             $table->timestamps();
         });

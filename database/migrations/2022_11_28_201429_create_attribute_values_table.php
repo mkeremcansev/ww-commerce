@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('code');
             $table->string('path');
-            $table->foreignId('attribute_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('attribute_id')->constrained();
             $table->softDeletes();
             $table->timestamps();
         });

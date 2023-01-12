@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('path');
-            $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->nullable()->constrained();
             $table->softDeletes();
             $table->timestamps();
         });
