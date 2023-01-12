@@ -11,7 +11,7 @@ class ResponseHandler
      */
     public static function tooManyRequests(): JsonResponse
     {
-        return self::result(429, $message ?? __('words.tooManyRequests'), $parameters);
+        return self::result(429, $message ?? __('words.tooManyRequests'));
     }
 
     /**
@@ -69,7 +69,7 @@ class ResponseHandler
      * @param null $message
      * @return JsonResponse
      */
-    public static function success(array $parameters = [], $message = null):JsonResponse
+    public static function success(array $parameters = [], $message = null): JsonResponse
     {
         return self::result(200, $message ?? __(''), $parameters);
     }
@@ -101,7 +101,7 @@ class ResponseHandler
      */
     public static function notFound($message = null, array $parameters = []): JsonResponse
     {
-        return self::result(404, $message ??  __('words.notFound'), $parameters);
+        return self::result(404, $message ?? __('words.notFound'), $parameters);
     }
 
     /**

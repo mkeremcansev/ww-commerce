@@ -24,6 +24,7 @@ class RoleIndexRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id' => 'nullable|integer',
             'name' => 'nullable'
         ];
     }
