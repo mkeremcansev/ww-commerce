@@ -31,7 +31,7 @@ class FreshAndSeederCommand extends Command
      */
     public function handle(): void
     {
-        $this->action($this->getChoiceEmail(), $this->getSecretPassword());
+        $this->action($this->getAskEmail(), $this->getSecretPassword());
     }
 
     /**
@@ -39,7 +39,7 @@ class FreshAndSeederCommand extends Command
      */
     public function freshAndSeed(): void
     {
-        Artisan::call('migrate:fresh --seed');
+        $this->callArtisanCommand('migrate:fresh --seed');
         $this->info(__('words.databaseMigratedAndSeeded'));
     }
 
@@ -56,14 +56,11 @@ class FreshAndSeederCommand extends Command
     }
 
     /**
-     * @return array|string
+     * @return mixed
      */
-    public function getChoiceEmail(): string|array
+    public function getAskEmail(): mixed
     {
-        return $this->choice(__('words.whichUserWillYouLogInWith'), resolve(UserInterface::class)
-            ->usersByRoleName([UserRoleEnumeration::ADMINISTRATOR_ROLE])
-            ->pluck('email')
-            ->toArray());
+        return $this->ask(__('words.whichUserWillYouLogInWith'));
     }
 
     /**
@@ -72,5 +69,14 @@ class FreshAndSeederCommand extends Command
     public function getSecretPassword(): mixed
     {
         return $this->secret(__('words.enterPassword'));
+    }
+
+    /**
+     * @param string $command
+     * @return int
+     */
+    public function callArtisanCommand(string $command): int
+    {
+        return Artisan::call($command);
     }
 }

@@ -17,5 +17,5 @@ interface PermissionInterface
      * @param array $columns
      * @return Permission
      */
-    public function permissionFirstOrCreate(array $columns): Permission;
+    public function firstOrCreate(array $columns): Permission;
 }

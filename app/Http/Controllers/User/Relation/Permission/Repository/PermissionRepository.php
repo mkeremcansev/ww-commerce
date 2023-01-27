@@ -32,7 +32,7 @@ class PermissionRepository implements PermissionInterface
      * @param array $columns
      * @return Permission
      */
-    public function permissionFirstOrCreate(array $columns): Permission
+    public function firstOrCreate(array $columns): Permission
     {
         return $this->model->firstOrCreate($columns);
     }
