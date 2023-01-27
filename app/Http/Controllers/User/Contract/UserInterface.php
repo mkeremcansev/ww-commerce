@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Contract;
 
 use App\Http\Controllers\User\Model\User;
+use Illuminate\Support\Collection;
 
 interface UserInterface
 {
@@ -38,4 +39,10 @@ interface UserInterface
      * @return bool
      */
     public function destroy($id): bool;
+
+    /**
+     * @param array $roleNames
+     * @return Collection|array
+     */
+    public function usersByRoleName(array $roleNames): Collection|array;
 }

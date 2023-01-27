@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Repository;
 
 use App\Http\Controllers\User\Contract\UserInterface;
 use App\Http\Controllers\User\Model\User;
+use Illuminate\Support\Collection;
 
 class UserRepository implements UserInterface
 {
@@ -69,5 +70,16 @@ class UserRepository implements UserInterface
         $user = $this->userById($id);
 
         return $user && $user->delete();
+    }
+
+    /**
+     * @param array $roleNames
+     * @return Collection|array
+     */
+    public function usersByRoleName(array $roleNames): Collection|array
+    {
+        return $this->user
+            ->role($roleNames)
+            ->get();
     }
 }
