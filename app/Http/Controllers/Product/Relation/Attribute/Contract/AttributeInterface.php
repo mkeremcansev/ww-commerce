@@ -36,4 +36,10 @@ interface AttributeInterface
      * @return bool
      */
     public function destroy($id): bool;
+
+    /**
+     * @param $title
+     * @return Attribute
+     */
+    public function firstOrCreate($title): Attribute;
 }

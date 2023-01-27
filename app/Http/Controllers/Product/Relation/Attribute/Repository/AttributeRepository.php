@@ -73,4 +73,15 @@ class AttributeRepository implements AttributeInterface
 
         return $attribute && $attribute->delete();
     }
+
+    /**
+     * @param $title
+     * @return Attribute
+     */
+    public function firstOrCreate($title): Attribute
+    {
+        return $this->model->firstOrCreate([
+            'title' => $title
+        ]);
+    }
 }
