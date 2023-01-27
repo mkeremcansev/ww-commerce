@@ -49,4 +49,13 @@ interface CategoryInterface
      * @return bool
      */
     public function destroy($id): bool;
+
+    /**
+     * @param $title
+     * @param $slug
+     * @param $path
+     * @param $category_id
+     * @return Category
+     */
+    public function firstOrCreate($title, $slug, $path, $category_id): Category;
 }

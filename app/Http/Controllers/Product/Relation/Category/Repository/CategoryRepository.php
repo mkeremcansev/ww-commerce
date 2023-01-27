@@ -103,4 +103,21 @@ class CategoryRepository implements CategoryInterface
 
         return $category && $category->delete();
     }
+
+    /**
+     * @param $title
+     * @param $slug
+     * @param $path
+     * @param $category_id
+     * @return Category
+     */
+    public function firstOrCreate($title, $slug, $path, $category_id): Category
+    {
+        return $this->model->firstOrCreate([
+            'title' => $title,
+            'slug' => $slug,
+            'path' => $path,
+            'category_id' => $category_id
+        ]);
+    }
 }
