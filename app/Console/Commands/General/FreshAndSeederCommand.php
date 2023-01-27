@@ -4,9 +4,9 @@ namespace App\Console\Commands\General;
 
 use App\Http\Controllers\User\Contract\UserInterface;
 use App\Http\Controllers\User\Enumeration\UserRoleEnumeration;
+use App\Http\Controllers\User\Service\UserService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Auth;
 
 class FreshAndSeederCommand extends Command
 {
@@ -50,7 +50,7 @@ class FreshAndSeederCommand extends Command
      */
     public function action(array|string $email, mixed $password): void
     {
-        Auth::attempt(['email' => $email, 'password' => $password])
+        resolve(UserService::class)->user($email, $password)
             ? $this->freshAndSeed()
             : $this->error(__('words.invalidAuthorizationInformation'));
     }
