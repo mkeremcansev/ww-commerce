@@ -1,53 +1,42 @@
 <?php
 
-namespace App\Helpers;
-
-
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;
-use Illuminate\Contracts\Container\BindingResolutionException;
-use stdClass;
 
-class GeneralHelper
-{
-    /**
-     * @param $id
-     * @param $sku
-     * @return string
-     */
-    public static function skuGenerator($id, $sku): string
-    {
-        return rtrim($id . '-' . $sku, '-');
-    }
-
+if (!function_exists('skuTitleGenerator')){
     /**
      * @param $title
      * @param $sku
      * @return string
      */
-    public static function skuTitleGenerator($title, $sku): string
+    function skuTitleGenerator($title, $sku): string
     {
         return $title . ' ' . rtrim($sku, '-');
     }
+}
 
+
+if (!function_exists('skuGenerator')){
     /**
+     * @param $id
      * @param $sku
-     * @return string[]
+     * @return string
      */
-    public static function skuSeparator($sku): array
+    function skuGenerator($id, $sku): string
     {
-        return explode('-', $sku);
+        return rtrim($id . '-' . $sku, '-');
     }
+}
 
+if(!function_exists('skuFormatter')){
     /**
      * @param $sku
      * @param int $stock
-     * @param null $price
+     * @param $price
      * @return array
-     * @throws BindingResolutionException
      */
-    public static function skuFormatter($sku, int $stock, $price = null): array
+    function skuFormatter($sku, int $stock, $price = null): array
     {
-        $separator = self::skuSeparator($sku);
+        $separator = skuSeparator($sku);
         $variants = [];
         if (count($separator) > 1) {
             unset($separator[0]);
@@ -74,3 +63,14 @@ class GeneralHelper
         return $variants;
     }
 }
+if (!function_exists('skuSeparator')){
+    /**
+     * @param $sku
+     * @return string[]
+     */
+    function skuSeparator($sku): array
+    {
+        return explode('-', $sku);
+    }
+}
+

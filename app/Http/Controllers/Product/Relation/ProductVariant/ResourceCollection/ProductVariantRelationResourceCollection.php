@@ -11,10 +11,9 @@ class ProductVariantRelationResourceCollection extends JsonResource
     /**
      * @param $request
      * @return array
-     * @throws BindingResolutionException
      */
     public function toArray($request): array
     {
-        return GeneralHelper::skuFormatter($this->sku, $this->stock, $this->price);
+        return skuFormatter($this->sku, $this->stock, $this->price);
     }
 }

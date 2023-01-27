@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Product\Repository;
 
-use App\Helpers\GeneralHelper;
 use App\Http\Controllers\Product\Contract\ProductInterface;
 use App\Http\Controllers\Product\Model\Product;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;
@@ -105,8 +104,8 @@ class ProductRepository implements ProductInterface
     public function extractedVariant($product, ?string $sku, $stock, $price): void
     {
         $product->variants()->create([
-            'title' => GeneralHelper::skuTitleGenerator($product->title, $sku),
-            'sku' => GeneralHelper::skuGenerator($product->id, $sku),
+            'title' => skuTitleGenerator($product->title, $sku),
+            'sku' => skuGenerator($product->id, $sku),
             'stock' => $stock,
             'price' => $price,
         ]);

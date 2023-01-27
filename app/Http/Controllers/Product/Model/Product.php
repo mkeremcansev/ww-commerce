@@ -38,7 +38,7 @@ class Product extends Model
      */
     public function attributes(): BelongsToMany
     {
-        return $this->belongsToMany(Attribute::class, ProductAttribute::class)->distinct();
+        return $this->belongsToMany(Attribute::class, ProductAttribute::class)->withTimestamps()->distinct();
     }
 
     /**
