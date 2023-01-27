@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
-            AttributeAndAttributeValueSeeder::class
+            AttributeAndAttributeValueSeeder::class,
+            BrandSeeder::class,
         ]);
     }
 }

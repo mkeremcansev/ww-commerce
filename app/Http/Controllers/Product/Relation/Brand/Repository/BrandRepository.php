@@ -84,4 +84,20 @@ class BrandRepository implements BrandInterface
 
         return $brand && $brand->delete();
     }
+
+    /**
+     * @param $title
+     * @param $slug
+     * @param $path
+     * @return Brand
+     */
+    public function firstOrCreate($title, $slug, $path): Brand
+    {
+        return $this->model
+            ->firstOrCreate([
+                'title' => $title,
+                'slug' => $slug,
+                'path' => $path,
+            ]);
+    }
 }

@@ -43,4 +43,12 @@ interface BrandInterface
      * @return bool
      */
     public function destroy($id): bool;
+
+    /**
+     * @param $title
+     * @param $slug
+     * @param $path
+     * @return Brand
+     */
+    public function firstOrCreate($title, $slug, $path): Brand;
 }
