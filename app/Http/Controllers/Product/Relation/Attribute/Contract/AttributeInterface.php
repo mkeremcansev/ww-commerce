@@ -14,9 +14,10 @@ interface AttributeInterface
 
     /**
      * @param array $columns
+     * @param array $relation
      * @return mixed
      */
-    public function attributes(array $columns = []): mixed;
+    public function attributes(array $columns = [], array $relation = []): mixed;
 
     /**
      * @param $title

@@ -39,7 +39,7 @@ class ProductController extends Controller
     {
         return [
             'attribute_id' => AttributeRelationResourceCollection::collection(resolve(AttributeInterface::class)
-                ->attributes()),
+                ->attributes([], ['values'])),
             'category_id' => CategoryCreateResourceCollection::collection(resolve(CategoryInterface::class)
                 ->mainCategoriesWithParents(['id', 'title', 'slug', 'path'])),
             'brand_id' => BrandResourceCollection::collection(resolve(BrandInterface::class)

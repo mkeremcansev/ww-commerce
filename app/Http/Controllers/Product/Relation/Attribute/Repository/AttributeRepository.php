@@ -27,14 +27,17 @@ class AttributeRepository implements AttributeInterface
 
     /**
      * @param array $columns
+     * @param array $relation
      * @return mixed
      */
-    public function attributes(array $columns = []): mixed
+    public function attributes(array $columns = [], array $relation = []): mixed
     {
         return $this->model
             ->when(count($columns),
                 fn($eloquent) => $eloquent->select($columns),
-                fn($eloquent) => $eloquent->get()
+                fn($eloquent) => $eloquent->when(count($relation),
+                    fn($eloquent) => $eloquent->with($relation)
+                )->get()
             );
     }
 
