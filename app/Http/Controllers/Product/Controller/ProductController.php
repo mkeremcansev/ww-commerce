@@ -118,4 +118,17 @@ class ProductController extends Controller
             ? ResponseHandler::update(['id' => $product->id])
             : ResponseHandler::recordNotFound();
     }
+
+    /**
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function destroy(int $id): JsonResponse
+    {
+        $product = $this->service->destroy($id);
+
+        return $product
+            ? ResponseHandler::destroy(['id' => $id])
+            : ResponseHandler::recordNotFound();
+    }
 }

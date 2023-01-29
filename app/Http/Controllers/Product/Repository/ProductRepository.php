@@ -171,7 +171,7 @@ class ProductRepository implements ProductInterface
                     'brand_id' => $brandId,
                     'status' => $status,
                 ]);
-                $this->attributesAndCategoriesAndVariantsDetach($product);
+                $this->destroyProductRelationalData($product);
                 $this->extracted($variants, $product, $categoryId);
 
                 return $product;
@@ -183,12 +183,30 @@ class ProductRepository implements ProductInterface
 
     /**
      * @param mixed $product
+     * @param bool $image
      * @return void
      */
-    public function attributesAndCategoriesAndVariantsDetach(mixed $product): void
+    public function destroyProductRelationalData(mixed $product, bool $image = false): void
     {
         $product->categories()->detach();
         $product->attributes()->detach();
         $product->variants()->forceDelete();
+        $image ? $product->images()->forceDelete() : null;
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool
+    {
+        $product = $this->productById($id);
+        if ($product) {
+            $this->destroyProductRelationalData($product, true);
+
+            return $product->delete();
+        }
+
+        return false;
     }
 }

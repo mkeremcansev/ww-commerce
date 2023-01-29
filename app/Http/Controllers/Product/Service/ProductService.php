@@ -64,4 +64,13 @@ class ProductService
     {
         return $this->repository->update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants);
     }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id): bool
+    {
+        return $this->repository->destroy($id);
+    }
 }
