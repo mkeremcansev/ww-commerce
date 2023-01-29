@@ -183,15 +183,13 @@ class ProductRepository implements ProductInterface
 
     /**
      * @param mixed $product
-     * @param bool $image
      * @return void
      */
-    public function destroyProductRelationalData(mixed $product, bool $image = false): void
+    public function destroyProductRelationalData(mixed $product): void
     {
         $product->categories()->detach();
         $product->attributes()->detach();
-        $product->variants()->forceDelete();
-        $image ? $product->images()->forceDelete() : null;
+        $product->variants()->delete();
     }
 
     /**
@@ -202,11 +200,21 @@ class ProductRepository implements ProductInterface
     {
         $product = $this->productById($id);
         if ($product) {
-            $this->destroyProductRelationalData($product, true);
+            $this->destroyProductRelationalData($product);
+            $this->destroyProductImages($product);
 
             return $product->delete();
         }
 
         return false;
+    }
+
+    /**
+     * @param $product
+     * @return void
+     */
+    public function destroyProductImages($product): void
+    {
+        $product->images()->delete();
     }
 }

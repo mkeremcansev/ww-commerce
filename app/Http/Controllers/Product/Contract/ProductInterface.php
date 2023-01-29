@@ -83,14 +83,19 @@ interface ProductInterface
 
     /**
      * @param mixed $product
-     * @param bool $image
      * @return void
      */
-    public function destroyProductRelationalData(mixed $product, bool $image = false): void;
+    public function destroyProductRelationalData(mixed $product): void;
 
     /**
      * @param $id
      * @return bool
      */
     public function destroy($id): bool;
+
+    /**
+     * @param $product
+     * @return void
+     */
+    public function destroyProductImages($product): void;
 }
