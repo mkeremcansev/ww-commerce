@@ -37,41 +37,19 @@ if (!function_exists('skuFormatter')) {
      */
     function skuFormatter($sku, int $stock, $price = null): array
     {
-        $separator = skuSeparator($sku);
-        $variants = [];
-        if (count($separator) > 1) {
-            unset($separator[0]);
-            foreach ($separator as $value) {
-                $variant = resolve(AttributeValueInterface::class)
-                    ->attributeValueByCode($value);
-                if ($variant) {
-                    $variants[] = [
-                        'stock' => $stock,
-                        'price' => (float)$price,
-                        'attributes' => [
-                            [
-                                'attribute_id' => $variant->attribute_id,
-                                'attribute_value_id' => $variant->id,
-                            ],
-                        ]
-                    ];
-                }
-            }
-
-            return $variants;
-        }
-
-        return $variants;
-    }
-}
-if (!function_exists('skuSeparator')) {
-    /**
-     * @param $sku
-     * @return string[]
-     */
-    function skuSeparator($sku): array
-    {
-        return explode('-', $sku);
+        $explodedSku = explode('-', $sku);
+        $attributeValues = resolve(AttributeValueInterface::class)
+            ->attributeValuesByCodes($explodedSku);
+        return [
+            'stock' => $stock,
+            'price' => (float)$price,
+            'attributes' => $attributeValues->map(function ($attributeValue) {
+                return [
+                    'attribute_id' => $attributeValue->attribute_id,
+                    'attribute_value_id' => $attributeValue->id,
+                ];
+            })->toArray()
+        ];
     }
 }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValu
 
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Model\AttributeValue;
+use Illuminate\Support\Collection;
 
 class AttributeValueRepository implements AttributeValueInterface
 {
@@ -31,6 +32,17 @@ class AttributeValueRepository implements AttributeValueInterface
         return $this->model
             ->whereCode($code)
             ->first();
+    }
+
+    /**
+     * @param array $codes
+     * @return Collection|null
+     */
+    public function attributeValuesByCodes(array $codes): ?Collection
+    {
+        return $this->model
+            ->whereIn('code', $codes)
+            ->get();
     }
 
     /**

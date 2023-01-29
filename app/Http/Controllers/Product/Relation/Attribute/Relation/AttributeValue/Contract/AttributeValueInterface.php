@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Contract;
 
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Model\AttributeValue;
+use Illuminate\Support\Collection;
 
 interface AttributeValueInterface
 {
@@ -17,6 +18,12 @@ interface AttributeValueInterface
      * @return AttributeValue|null
      */
     public function attributeValueByCode(string $code): ?AttributeValue;
+
+    /**
+     * @param array $codes
+     * @return Collection|null
+     */
+    public function attributeValuesByCodes(array $codes): ?Collection;
 
     /**
      * @param array $columns
