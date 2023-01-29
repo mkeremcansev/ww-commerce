@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;
 
-if (!function_exists('skuTitleGenerator')){
+if (!function_exists('skuTitleGenerator')) {
     /**
      * @param $title
      * @param $sku
@@ -15,7 +16,7 @@ if (!function_exists('skuTitleGenerator')){
 }
 
 
-if (!function_exists('skuGenerator')){
+if (!function_exists('skuGenerator')) {
     /**
      * @param $id
      * @param $sku
@@ -27,7 +28,7 @@ if (!function_exists('skuGenerator')){
     }
 }
 
-if(!function_exists('skuFormatter')){
+if (!function_exists('skuFormatter')) {
     /**
      * @param $sku
      * @param int $stock
@@ -63,7 +64,7 @@ if(!function_exists('skuFormatter')){
         return $variants;
     }
 }
-if (!function_exists('skuSeparator')){
+if (!function_exists('skuSeparator')) {
     /**
      * @param $sku
      * @return string[]
@@ -74,7 +75,41 @@ if (!function_exists('skuSeparator')){
     }
 }
 
-function variantCombination(){
+if (!function_exists('variantCombination')) {
+    /**
+     * @return array
+     */
+    function variantCombination(): array
+    {
+        $attributes = resolve(AttributeInterface::class)->attributes([], ['values']);
+        $combinations = [];
+        foreach ($attributes as $attribute) {
+            if (empty($combinations)) {
+                foreach ($attribute->values as $value) {
+                    $combinations[] = [['attribute_id' => $attribute->id, 'attribute_value_id' => $value->id]];
+                }
+            } else {
+                $newCombinations = [];
+                foreach ($combinations as $combination) {
+                    foreach ($attribute->values as $value) {
+                        $newCombination = $combination;
+                        $newCombination[] = ['attribute_id' => $attribute->id, 'attribute_value_id' => $value->id];
+                        $newCombinations[] = $newCombination;
+                    }
+                }
+                $combinations = $newCombinations;
+            }
+        }
+        $variants = [];
+        foreach ($combinations as $combination) {
+            $variants[] = [
+                'stock' => rand(1, 100),
+                'price' => (float)rand(100, 1000),
+                'attributes' => $combination,
+            ];
+        }
 
+        return $variants;
+    }
 }
 
