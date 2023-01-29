@@ -12,6 +12,7 @@ use App\Http\Controllers\Product\Relation\Brand\ResourceCollection\BrandResource
 use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryCreateResourceCollection;
 use App\Http\Controllers\Product\Request\ProductStoreRequest;
+use App\Http\Controllers\Product\Request\ProductUpdateRequest;
 use App\Http\Controllers\Product\ResourceCollection\ProductEditResourceCollection;
 use App\Http\Controllers\Product\ResourceCollection\ProductResourceCollection;
 use App\Http\Controllers\Product\Service\ProductService;
@@ -91,6 +92,30 @@ class ProductController extends Controller
 
         return $product
             ? new ProductEditResourceCollection($this->service->edit($id))
+            : ResponseHandler::recordNotFound();
+    }
+
+    /**
+     * @param int $id
+     * @param ProductUpdateRequest $request
+     * @return JsonResponse
+     */
+    public function update(int $id, ProductUpdateRequest $request): JsonResponse
+    {
+        $product = $this->service->update(
+            $id,
+            $request->title,
+            $this->str::slug($request->title),
+            $request->price,
+            $request->content,
+            $request->category_id,
+            $request->brand_id,
+            $request->status,
+            $request->variants
+        );
+
+        return $product
+            ? ResponseHandler::update(['id' => $product->id])
             : ResponseHandler::recordNotFound();
     }
 }

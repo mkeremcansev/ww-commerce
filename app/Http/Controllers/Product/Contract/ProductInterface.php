@@ -66,4 +66,24 @@ interface ProductInterface
      * @return void
      */
     public function extracted($variants, $product, $categoryId): void;
+
+    /**
+     * @param $id
+     * @param $title
+     * @param $slug
+     * @param $price
+     * @param $content
+     * @param $categoryId
+     * @param $brandId
+     * @param $status
+     * @param $variants
+     * @return mixed
+     */
+    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants): mixed;
+
+    /**
+     * @param mixed $product
+     * @return void
+     */
+    public function attributesAndCategoriesAndVariantsDetach(mixed $product): void;
 }

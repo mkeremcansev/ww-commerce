@@ -129,6 +129,7 @@ class ProductRepository implements ProductInterface
                     ->attributeValueById($attribute['attribute_value_id'])->code . '-';
             $product->attributes()->attach($attribute['attribute_id'], ['attribute_value_id' => $attribute['attribute_value_id']]);
         }
+
         return [$sku, $stock, $price];
     }
 
@@ -143,5 +144,51 @@ class ProductRepository implements ProductInterface
     {
         $this->extractedProductInVariants($variants, $product);
         $this->attachCategories($product, $categoryId);
+    }
+
+    /**
+     * @param $id
+     * @param $title
+     * @param $slug
+     * @param $price
+     * @param $content
+     * @param $categoryId
+     * @param $brandId
+     * @param $status
+     * @param $variants
+     * @return mixed
+     */
+    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants): mixed
+    {
+        return DB::transaction(function () use ($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants) {
+            $product = $this->productById($id);
+            if ($product) {
+                $product->update([
+                    'title' => $title,
+                    'slug' => $slug,
+                    'price' => $price,
+                    'content' => $content,
+                    'brand_id' => $brandId,
+                    'status' => $status,
+                ]);
+                $this->attributesAndCategoriesAndVariantsDetach($product);
+                $this->extracted($variants, $product, $categoryId);
+
+                return $product;
+            }
+
+            return false;
+        });
+    }
+
+    /**
+     * @param mixed $product
+     * @return void
+     */
+    public function attributesAndCategoriesAndVariantsDetach(mixed $product): void
+    {
+        $product->categories()->detach();
+        $product->attributes()->detach();
+        $product->variants()->forceDelete();
     }
 }

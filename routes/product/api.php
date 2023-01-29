@@ -9,6 +9,7 @@ Route::name(RouteGroupNameEnumeration::PRODUCT_GROUP)->prefix(RouteGroupPathEnum
     Route::controller(ProductController::class)->group(function (){
         Route::get('/create', 'create')->name('create')->middleware(['auth:sanctum', 'permission:product.create']);
         Route::post('/store', 'store')->name('store')->middleware(['auth:sanctum', 'permission:product.store']);
+        Route::patch('/{id}', 'update')->name('update')->middleware(['auth:sanctum', 'permission:product.update']);
         Route::get('/{id}/edit', 'edit')->name('edit')->middleware(['auth:sanctum', 'permission:product.edit']);
         Route::get('/{slug}', 'show')->name('show');
     });
