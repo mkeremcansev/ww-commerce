@@ -15,6 +15,14 @@ class ProductService
     }
 
     /**
+     * @return mixed
+     */
+    public function index(): mixed
+    {
+        return $this->repository->products(['id', 'title', 'price', 'status']);
+    }
+
+    /**
      * @param string $slug
      * @return mixed
      */

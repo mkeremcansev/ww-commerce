@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\DB;
 class ProductRepository implements ProductInterface
 {
     /**
-     * @param Product $product
+     * @param Product $model
      */
-    public function __construct(public Product $product)
+    public function __construct(public Product $model)
     {
     }
 
@@ -23,7 +23,7 @@ class ProductRepository implements ProductInterface
      */
     public function productBySlug(string $slug): mixed
     {
-        return $this->product
+        return $this->model
             ->active()
             ->with(['attributes' => ['values'], 'brand', 'categories', 'images'])
             ->whereSlug($slug)
@@ -36,7 +36,7 @@ class ProductRepository implements ProductInterface
      */
     public function productById($id): mixed
     {
-        return $this->product
+        return $this->model
             ->with('variants')
             ->whereId($id)
             ->first();
@@ -56,7 +56,7 @@ class ProductRepository implements ProductInterface
     public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants): mixed
     {
         return DB::transaction(function () use ($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants) {
-            $product = $this->product->create([
+            $product = $this->model->create([
                 'title' => $title,
                 'slug' => $slug,
                 'price' => $price,
@@ -216,5 +216,18 @@ class ProductRepository implements ProductInterface
     public function destroyProductImages($product): void
     {
         $product->images()->delete();
+    }
+
+    /**
+     * @param array $columns
+     * @return mixed
+     */
+    public function products(array $columns = []): mixed
+    {
+        return $this->model
+            ->when(count($columns),
+                fn($eloquent) => $eloquent->select($columns),
+                fn($eloquent) => $eloquent->get()
+            );
     }
 }

@@ -98,4 +98,10 @@ interface ProductInterface
      * @return void
      */
     public function destroyProductImages($product): void;
+
+    /**
+     * @param array $columns
+     * @return mixed
+     */
+    public function products(array $columns = []): mixed;
 }
