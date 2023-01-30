@@ -77,7 +77,7 @@ class CategoryTest extends TestCase
     /**
      * @return void
      */
-    public function test_can_force_brand(): void
+    public function test_can_force_category(): void
     {
         $this->assertTrue($this->model->find(self::$id)->forceDelete());
     }

@@ -25,6 +25,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Str;
+use ReflectionException;
 
 class ProductController extends Controller
 {
@@ -51,7 +52,7 @@ class ProductController extends Controller
     /**
      * @return array
      * @throws BindingResolutionException
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function create(): array
     {

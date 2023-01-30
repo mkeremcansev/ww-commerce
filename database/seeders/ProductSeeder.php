@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
             'microphone',
             1999.99,
             'Microphone description',
-            resolve(CategoryInterface::class)->categories()->pluck('id'),
+            resolve(CategoryInterface::class)->categories()->pluck('id')->toArray(),
             resolve(BrandInterface::class)->brands()->first()->id,
             ProductStatusEnumeration::ACTIVE,
             variantCombination()
