@@ -2,11 +2,14 @@
 
 namespace App\Console\Commands\General;
 
+use App\Console\Commands\General\Enumeration\FreshAndSeedCommandEnumeration;
+use App\Helpers\EnumerationHelper;
 use App\Http\Controllers\User\Contract\UserInterface;
 use App\Http\Controllers\User\Enumeration\UserRoleEnumeration;
 use App\Http\Controllers\User\Service\UserService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use ReflectionException;
 
 class FreshAndSeederCommand extends Command
 {
@@ -28,10 +31,14 @@ class FreshAndSeederCommand extends Command
      * Execute the console command.
      *
      * @return void
+     * @throws ReflectionException
      */
     public function handle(): void
     {
-        $this->action($this->getAskEmail(), $this->getSecretPassword());
+        $this->action($this->choice(
+            __('words.areYouSureWantToResetTheDatabase'),
+            EnumerationHelper::enumerationToArray(FreshAndSeedCommandEnumeration::class)
+        ));
     }
 
     /**
@@ -44,31 +51,14 @@ class FreshAndSeederCommand extends Command
     }
 
     /**
-     * @param array|string $email
-     * @param mixed $password
-     * @return void
+     * @param $result
      */
-    public function action(array|string $email, mixed $password): void
+    public function action($result)
     {
-        resolve(UserService::class)->user($email, $password)
-            ? $this->freshAndSeed()
-            : $this->error(__('words.invalidAuthorizationInformation'));
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAskEmail(): mixed
-    {
-        return $this->ask(__('words.whichUserWillYouLogInWith'));
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSecretPassword(): mixed
-    {
-        return $this->secret(__('words.enterPassword'));
+        match ($result) {
+            FreshAndSeedCommandEnumeration::YES => $this->freshAndSeed(),
+            FreshAndSeedCommandEnumeration::NO => $this->info(__('words.databaseNotFreshedAndSeeded')),
+        };
     }
 
     /**

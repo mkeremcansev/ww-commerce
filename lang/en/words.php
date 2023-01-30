@@ -14,4 +14,6 @@ return [
     'whichUserWillYouLogInWith' => 'Which user will you log in with?',
     'enterPassword' => 'Enter password',
     'databaseMigratedAndSeeded' => 'Database migrated and seeded.',
+    'areYouSureWantToResetTheDatabase' => 'Are you sure you want to reset the database? (y/n)',
+    'databaseNotFreshedAndSeeded' => 'Database not freshed and seeded.'
 ];
