@@ -4,9 +4,6 @@ namespace App\Console\Commands\General;
 
 use App\Console\Commands\General\Enumeration\FreshAndSeedCommandEnumeration;
 use App\Helpers\EnumerationHelper;
-use App\Http\Controllers\User\Contract\UserInterface;
-use App\Http\Controllers\User\Enumeration\UserRoleEnumeration;
-use App\Http\Controllers\User\Service\UserService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use ReflectionException;
