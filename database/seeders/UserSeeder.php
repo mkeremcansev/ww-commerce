@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Http\Controllers\User\Contract\UserInterface;
 use App\Http\Controllers\User\Enumeration\UserRoleEnumeration;
-use Illuminate\Contracts\Container\BindingResolutionException;
+use App\Http\Controllers\User\Relation\Permission\Contract\PermissionInterface;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -13,18 +13,37 @@ class UserSeeder extends Seeder
      * Run the database seeds.
      *
      * @return void
-     * @throws BindingResolutionException
      */
     public function run(): void
     {
-        $user = resolve(UserInterface::class)
-            ->userUpdateOrCreate(
-                [
-                    'name' => 'Admin',
-                    'email' => 'admin@ww-commerce.com',
-                    'password' => bcrypt('password'),
-                ]
-            );
+        $this->firstOrCreate('Admin', 'admin@ww-commerce.com', 'password');
+    }
+
+    /**
+     * @param string $name
+     * @param string $email
+     * @param string $password
+     * @return void
+     */
+    public function firstOrCreate(string $name, string $email, string $password): void
+    {
+        $this->assignRoleAndAssignPermissions(resolve(UserInterface::class)
+            ->userUpdateOrCreate([
+                'name' => $name,
+                'email' => $email,
+                'password' => bcrypt($password),
+            ]));
+    }
+
+    /**
+     * @param $user
+     * @return void
+     */
+    public function assignRoleAndAssignPermissions($user): void
+    {
         $user->assignRole(UserRoleEnumeration::ADMINISTRATOR_ROLE);
+        $user->givePermissionTo(resolve(PermissionInterface::class)
+            ->permissions()
+            ->pluck('name', 'id'));
     }
 }
