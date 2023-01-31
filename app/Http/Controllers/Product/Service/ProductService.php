@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Product\Service;
 
 use App\Http\Controllers\Product\Contract\ProductInterface;
-use App\Http\Controllers\Product\ResourceCollection\ProductResourceCollection;
 
 class ProductService
 {
