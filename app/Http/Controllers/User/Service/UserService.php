@@ -88,4 +88,20 @@ class UserService
     {
         return $this->repository->destroy($id);
     }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function permissionGroupsWithRoleName($request): mixed
+    {
+        return $request->user()
+            ->getPermissionsViaRoles()
+            ->groupBy('group_name')
+            ->map(function ($permission) {
+                return $permission->map(function ($permission) {
+                    return $permission->only(['id', 'name']);
+                });
+            });
+    }
 }

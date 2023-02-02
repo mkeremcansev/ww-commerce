@@ -29,7 +29,10 @@ class UserController extends Controller
         $token = $this->service->authorization($request->email, $request->password);
 
         return $token
-            ? ResponseHandler::authorize(['token' => $token])
+            ? ResponseHandler::authorize([
+                'token' => $token,
+                'permissions' => $this->service->permissionGroupsWithRoleName($request)
+            ])
             : ResponseHandler::invalidAuthorizationInformation();
     }
 
