@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Http\Controllers\User\Contract\UserInterface;
 use App\Http\Controllers\User\Enumeration\UserRoleEnumeration;
-use App\Http\Controllers\User\Relation\Permission\Contract\PermissionInterface;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -42,8 +41,5 @@ class UserSeeder extends Seeder
     public function assignRoleAndAssignPermissions($user): void
     {
         $user->assignRole(UserRoleEnumeration::ADMINISTRATOR_ROLE);
-        $user->givePermissionTo(resolve(PermissionInterface::class)
-            ->permissions()
-            ->pluck('name', 'id'));
     }
 }
