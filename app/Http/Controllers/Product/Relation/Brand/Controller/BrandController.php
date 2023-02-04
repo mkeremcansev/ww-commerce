@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Product\Relation\Brand\Controller;
 
 use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Product\Relation\Brand\Collection\BrandIndexCollection;
 use App\Http\Controllers\Product\Relation\Brand\Request\BrandIndexRequest;
 use App\Http\Controllers\Product\Relation\Brand\Request\BrandStoreRequest;
 use App\Http\Controllers\Product\Relation\Brand\Request\BrandUpdateRequest;
+use App\Http\Controllers\Product\Relation\Brand\Resource\BrandIndexResource;
 use App\Http\Controllers\Product\Relation\Brand\ResourceCollection\BrandResourceCollection;
 use App\Http\Controllers\Product\Relation\Brand\Service\BrandService;
 use App\Response\ResponseHandler;
@@ -26,15 +28,12 @@ class BrandController extends Controller
     }
 
     /**
-     * @param BrandIndexRequest $request
-     * @return AnonymousResourceCollection
+     * @return BrandIndexResource
      * @throws Exception
      */
-    public function index(BrandIndexRequest $request): AnonymousResourceCollection
+    public function index(): BrandIndexResource
     {
-        return BrandResourceCollection::collection(
-            DatatableHelper::datatable($request, $this->service->index())
-        );
+        return new BrandIndexResource($this->service->index());
     }
 
     /**

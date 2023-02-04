@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Product\Relation\Brand\Service;
 
+use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Yajra\DataTables\DataTables;
 
 class BrandService
 {
@@ -16,10 +20,11 @@ class BrandService
 
     /**
      * @return mixed
+     * @throws Exception
      */
     public function index(): mixed
     {
-        return $this->repository->brands(['id', 'title', 'slug', 'path']);
+        return DatatableHelper::datatable($this->repository->brands(['id', 'title', 'slug', 'path']));
     }
 
     /**
