@@ -23,7 +23,7 @@ class UserService
      */
     public function authorization($email, $password): bool|string
     {
-        $user = $this->user($email, $password);
+        $user = $this->attemptUser($email, $password);
 
         return $user ? $this->createToken($user) : false;
     }
@@ -43,7 +43,7 @@ class UserService
      * @param $password
      * @return User|false
      */
-    public function user($email, $password): User|bool
+    public function attemptUser($email, $password): User|bool
     {
         return $this->attempt($email, $password)
             ? $this->repository->userByEmail($email)
@@ -103,5 +103,14 @@ class UserService
                     return $permission->only(['id', 'name']);
                 });
             });
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function user($request): mixed
+    {
+        return $request->user()->only(['id', 'name', 'email']);
     }
 }
