@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\User\Relation\Role\Service;
 
+use App\Helpers\DatatableHelper;
 use App\Http\Controllers\User\Relation\Role\Contract\RoleInterface;
+use Exception;
 use Spatie\Permission\Models\Role;
 
 class RoleService
@@ -16,10 +18,11 @@ class RoleService
 
     /**
      * @return mixed
+     * @throws Exception
      */
     public function index(): mixed
     {
-        return $this->repository->roles(['id', 'name']);
+        return DatatableHelper::datatable($this->repository->roles(['id', 'name']));
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Http\Controllers\User\Relation\Permission\ResourceCollection\PermissionR
 use App\Http\Controllers\User\Relation\Role\Request\RoleIndexRequest;
 use App\Http\Controllers\User\Relation\Role\Request\RoleStoreRequest;
 use App\Http\Controllers\User\Relation\Role\Request\RoleUpdateRequest;
+use App\Http\Controllers\User\Relation\Role\Resource\RoleIndexResource;
 use App\Http\Controllers\User\Relation\Role\ResourceCollection\RoleEditResourceCollection;
 use App\Http\Controllers\User\Relation\Role\ResourceCollection\RoleResourceCollection;
 use App\Http\Controllers\User\Relation\Role\Service\RoleService;
@@ -28,13 +29,12 @@ class RoleController extends Controller
     }
 
     /**
-     * @param RoleIndexRequest $request
-     * @return AnonymousResourceCollection
+     * @return RoleIndexResource
      * @throws Exception
      */
-    public function index(RoleIndexRequest $request): AnonymousResourceCollection
+    public function index(): RoleIndexResource
     {
-        return RoleResourceCollection::collection(DatatableHelper::datatable($request, $this->service->index()));
+        return new RoleIndexResource($this->service->index());
     }
 
     /**
