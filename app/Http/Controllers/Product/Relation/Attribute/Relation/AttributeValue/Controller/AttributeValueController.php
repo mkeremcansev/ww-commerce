@@ -8,6 +8,7 @@ use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Request\AttributeValueIndexRequest;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Request\AttributeValueStoreRequest;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Request\AttributeValueUpdateRequest;
+use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Resource\AttributeValueIndexResource;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\ResourceCollection\AttributeValueEditResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\ResourceCollection\AttributeValueResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Service\AttributeValueService;
@@ -28,13 +29,12 @@ class AttributeValueController extends Controller
     }
 
     /**
-     * @param AttributeValueIndexRequest $request
-     * @return AnonymousResourceCollection
+     * @return AttributeValueIndexResource
      * @throws Exception
      */
-    public function index(AttributeValueIndexRequest $request): AnonymousResourceCollection
+    public function index(): AttributeValueIndexResource
     {
-        return AttributeValueResourceCollection::collection(DatatableHelper::datatable($request, $this->service->index()));
+        return new AttributeValueIndexResource($this->service->index());
     }
 
     /**
