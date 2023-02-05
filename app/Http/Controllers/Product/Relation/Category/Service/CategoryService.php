@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Product\Relation\Category\Service;
 
+use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
 use App\Http\Controllers\Product\Relation\Category\Model\Category;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 
 class CategoryService
@@ -17,10 +19,11 @@ class CategoryService
 
     /**
      * @return mixed
+     * @throws Exception
      */
     public function index(): mixed
     {
-        return $this->repository->categories(['id', 'title', 'slug', 'path']);
+        return DatatableHelper::datatable($this->repository->categories(['id', 'title', 'slug', 'path']));
     }
 
     /**

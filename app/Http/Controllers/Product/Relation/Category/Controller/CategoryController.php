@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers\Product\Relation\Category\Controller;
 
-use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Product\Relation\Category\Request\CategoryIndexRequest;
 use App\Http\Controllers\Product\Relation\Category\Request\CategoryStoreRequest;
 use App\Http\Controllers\Product\Relation\Category\Request\CategoryUpdateRequest;
+use App\Http\Controllers\Product\Relation\Category\Resource\CategoryIndexResource;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryCreateResourceCollection;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryEditResourceCollection;
-use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryResourceCollection;
 use App\Http\Controllers\Product\Relation\Category\Service\CategoryService;
 use App\Response\ResponseHandler;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -28,13 +25,12 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param CategoryIndexRequest $request
-     * @return AnonymousResourceCollection
+     * @return CategoryIndexResource
      * @throws Exception
      */
-    public function index(CategoryIndexRequest $request): AnonymousResourceCollection
+    public function index(): CategoryIndexResource
     {
-        return CategoryResourceCollection::collection(DatatableHelper::datatable($request, $this->service->index()));
+        return new CategoryIndexResource($this->service->index());
     }
 
     /**
