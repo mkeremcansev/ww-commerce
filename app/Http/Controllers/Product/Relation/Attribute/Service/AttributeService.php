@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Product\Relation\Attribute\Service;
 
+use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
 use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
+use Exception;
 
 class AttributeService
 {
@@ -16,10 +18,11 @@ class AttributeService
 
     /**
      * @return mixed
+     * @throws Exception
      */
     public function index(): mixed
     {
-        return $this->repository->attributes(['id', 'title']);
+        return DatatableHelper::datatable($this->repository->attributes(['id', 'title']));
     }
 
     /**

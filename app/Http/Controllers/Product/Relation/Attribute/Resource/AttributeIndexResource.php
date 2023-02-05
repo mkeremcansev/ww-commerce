@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Product\Relation\Category\Resource;
+namespace App\Http\Controllers\Product\Relation\Attribute\Resource;
 
-use App\Http\Controllers\Product\Relation\Category\Collection\CategoryIndexCollection;
+use App\Http\Controllers\Product\Relation\Attribute\Collection\AttributeIndexCollection;
 use App\Traits\DatatableCollectionTrait;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryIndexResource extends JsonResource
+class AttributeIndexResource extends JsonResource
 {
     use DatatableCollectionTrait;
 
@@ -17,7 +17,7 @@ class CategoryIndexResource extends JsonResource
     public function toArray($request): array
     {
         return [
-                'data' => CategoryIndexCollection::collection($this->data ?? null)
+                'data' => AttributeIndexCollection::collection($this->data ?? null)
             ]
             +
             $this->datatables($this);

@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers\Product\Relation\Attribute\Controller;
 
-use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Product\Relation\Attribute\Request\AttributeIndexRequest;
 use App\Http\Controllers\Product\Relation\Attribute\Request\AttributeStoreRequest;
 use App\Http\Controllers\Product\Relation\Attribute\Request\AttributeUpdateRequest;
+use App\Http\Controllers\Product\Relation\Attribute\Resource\AttributeIndexResource;
 use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeEditResourceCollection;
-use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\Service\AttributeService;
 use App\Response\ResponseHandler;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class AttributeController extends Controller
 {
@@ -25,13 +22,12 @@ class AttributeController extends Controller
     }
 
     /**
-     * @param AttributeIndexRequest $request
-     * @return AnonymousResourceCollection
+     * @return AttributeIndexResource
      * @throws Exception
      */
-    public function index(AttributeIndexRequest $request): AnonymousResourceCollection
+    public function index(): AttributeIndexResource
     {
-        return AttributeResourceCollection::collection(DatatableHelper::datatable($request, $this->service->index($request)));
+        return new AttributeIndexResource($this->service->index());
     }
 
     /**
