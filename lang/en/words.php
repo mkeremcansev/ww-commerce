@@ -15,5 +15,7 @@ return [
     'enterPassword' => 'Enter password',
     'databaseMigratedAndSeeded' => 'Database migrated and seeded.',
     'areYouSureWantToResetTheDatabase' => 'Are you sure you want to reset the database? (y/n)',
-    'databaseNotFreshedAndSeeded' => 'Database not freshed and seeded.'
+    'databaseNotFreshedAndSeeded' => 'Database not freshed and seeded.',
+    'actionSuccessfully' => 'Action successfully.',
+    'imagesUploadedSuccessfully' => 'Images uploaded successfully.'
 ];

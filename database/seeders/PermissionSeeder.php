@@ -79,6 +79,15 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.edit', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.destroy', 'guard_name' => 'web']);
+
+        //Media permissions
+        $this->firstOrCreate(['group_name' => 'Media', 'name' => 'media.index', 'guard_name' => 'web']);
+
+        //Image permissions
+        $this->firstOrCreate(['group_name' => 'Image', 'name' => 'image.index', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Image', 'name' => 'image.upload', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Image', 'name' => 'image.destroy', 'guard_name' => 'web']);
+
     }
 
     /**

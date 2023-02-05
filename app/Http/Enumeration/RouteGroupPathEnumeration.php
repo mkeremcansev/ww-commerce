@@ -11,4 +11,5 @@ abstract class RouteGroupPathEnumeration
     const ATTRIBUTE_GROUP = 'attribute/';
     const ATTRIBUTE_VALUE_GROUP = 'attribute/value/';
     const ROLE_GROUP = 'role/';
+    const IMAGE_GROUP = 'image/';
 }

@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers\Product\Relation\Brand\Controller;
 
-use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Product\Relation\Brand\Collection\BrandIndexCollection;
-use App\Http\Controllers\Product\Relation\Brand\Request\BrandIndexRequest;
 use App\Http\Controllers\Product\Relation\Brand\Request\BrandStoreRequest;
 use App\Http\Controllers\Product\Relation\Brand\Request\BrandUpdateRequest;
 use App\Http\Controllers\Product\Relation\Brand\Resource\BrandIndexResource;
@@ -14,7 +11,6 @@ use App\Http\Controllers\Product\Relation\Brand\Service\BrandService;
 use App\Response\ResponseHandler;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Str;
 
 class BrandController extends Controller

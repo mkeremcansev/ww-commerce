@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Product\Controller;
 
-use App\Helpers\DatatableHelper;
 use App\Helpers\EnumerationHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
@@ -12,19 +11,16 @@ use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Controllers\Product\Relation\Brand\ResourceCollection\BrandResourceCollection;
 use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
 use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryCreateResourceCollection;
-use App\Http\Controllers\Product\Request\ProductIndexRequest;
 use App\Http\Controllers\Product\Request\ProductStoreRequest;
 use App\Http\Controllers\Product\Request\ProductUpdateRequest;
 use App\Http\Controllers\Product\Resource\ProductIndexResource;
 use App\Http\Controllers\Product\ResourceCollection\ProductEditResourceCollection;
-use App\Http\Controllers\Product\ResourceCollection\ProductIndexResourceCollection;
 use App\Http\Controllers\Product\ResourceCollection\ProductResourceCollection;
 use App\Http\Controllers\Product\Service\ProductService;
 use App\Response\ResponseHandler;
 use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Str;
 use ReflectionException;
 
