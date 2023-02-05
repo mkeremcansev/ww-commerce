@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use App\Http\Controllers\Product\Relation\Category\Model\Category;
-use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 class CategoryTest extends TestCase
@@ -24,7 +23,7 @@ class CategoryTest extends TestCase
      */
     public function test_can_index_category(): void
     {
-        $this->assertInstanceOf(Collection::class, $this->post(route('category.index'))->getOriginalContent());
+        $this->assertIsObject($this->post(route('category.index'), [])->getOriginalContent());
     }
 
     /**

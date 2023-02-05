@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
-use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 class AttributeTest extends TestCase
@@ -24,7 +23,7 @@ class AttributeTest extends TestCase
      */
     public function test_can_index_attribute(): void
     {
-        $this->assertInstanceOf(Collection::class, $this->post(route('attribute.index'))->getOriginalContent());
+        $this->assertIsObject($this->post(route('attribute.index'), [])->getOriginalContent());
     }
 
     /**

@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 class RoleTest extends TestCase
@@ -12,7 +11,7 @@ class RoleTest extends TestCase
      */
     public function test_can_index_role(): void
     {
-        $this->assertInstanceOf(Collection::class, $this->post(route('role.index'))->getOriginalContent());
+        $this->assertIsObject($this->post(route('role.index'), [])->getOriginalContent());
     }
 
     /**

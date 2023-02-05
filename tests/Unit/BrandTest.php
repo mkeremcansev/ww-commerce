@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
-use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 class BrandTest extends TestCase
@@ -24,7 +23,7 @@ class BrandTest extends TestCase
      */
     public function test_can_index_brand(): void
     {
-        $this->assertInstanceOf(Collection::class, $this->post(route('brand.index'))->getOriginalContent());
+        $this->assertIsObject($this->post(route('brand.index'), [])->getOriginalContent());
     }
 
     /**

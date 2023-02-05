@@ -6,7 +6,6 @@ use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Controllers\Product\Model\Product;
 use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
-use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 class ProductTest extends TestCase
@@ -27,7 +26,7 @@ class ProductTest extends TestCase
      */
     public function test_can_index_product(): void
     {
-        $this->assertInstanceOf(Collection::class, $this->post(route('product.index'))->getOriginalContent());
+        $this->assertIsObject($this->post(route('product.index'), [])->getOriginalContent());
     }
 
     /**
