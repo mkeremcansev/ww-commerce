@@ -15,6 +15,7 @@ use App\Http\Controllers\Product\Relation\Category\ResourceCollection\CategoryCr
 use App\Http\Controllers\Product\Request\ProductIndexRequest;
 use App\Http\Controllers\Product\Request\ProductStoreRequest;
 use App\Http\Controllers\Product\Request\ProductUpdateRequest;
+use App\Http\Controllers\Product\Resource\ProductIndexResource;
 use App\Http\Controllers\Product\ResourceCollection\ProductEditResourceCollection;
 use App\Http\Controllers\Product\ResourceCollection\ProductIndexResourceCollection;
 use App\Http\Controllers\Product\ResourceCollection\ProductResourceCollection;
@@ -38,15 +39,12 @@ class ProductController extends Controller
     }
 
     /**
-     * @param ProductIndexRequest $request
-     * @return AnonymousResourceCollection
+     * @return ProductIndexResource
      * @throws Exception
      */
-    public function index(ProductIndexRequest $request): AnonymousResourceCollection
+    public function index(): ProductIndexResource
     {
-        return ProductIndexResourceCollection::collection(
-            DatatableHelper::datatable($request, $this->service->index())
-        );
+        return new ProductIndexResource($this->service->index());
     }
 
     /**

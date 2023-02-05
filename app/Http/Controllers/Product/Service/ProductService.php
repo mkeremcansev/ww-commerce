@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Product\Service;
 
+use App\Helpers\DatatableHelper;
 use App\Http\Controllers\Product\Contract\ProductInterface;
+use Exception;
 
 class ProductService
 {
@@ -15,10 +17,11 @@ class ProductService
 
     /**
      * @return mixed
+     * @throws Exception
      */
     public function index(): mixed
     {
-        return $this->repository->products(['id', 'title', 'price', 'status']);
+        return DatatableHelper::datatable($this->repository->products(['id', 'title', 'price', 'status']));
     }
 
     /**
