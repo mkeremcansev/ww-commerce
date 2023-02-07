@@ -36,4 +36,22 @@ class ImageService
             $this->fileHelper::upload($file, ImagePathEnumeration::IMAGE_PATH);
         }
     }
+
+    /**
+     * @param $path
+     * @return bool
+     */
+    public function destroy($path): bool
+    {
+        return $this->file::delete(public_path(ImagePathEnumeration::IMAGE_PATH) . $this->pathReplace($path));
+    }
+
+    /**
+     * @param $path
+     * @return array|string
+     */
+    public function pathReplace($path): array|string
+    {
+        return str_replace('/', '', str_replace(asset(ImagePathEnumeration::IMAGE_PATH), '', $path));
+    }
 }

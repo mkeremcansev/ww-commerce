@@ -13,7 +13,7 @@ class FileHelper
     {
         $file->move(
             public_path($path),
-            date('d-m-Y-H-i-s') . rand(1, 99999) . '.' . $file->extension()
+            pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . date('d-m-Y-H-i-s') . rand(1, 99999) . '.' . $file->extension()
         );
     }
 }

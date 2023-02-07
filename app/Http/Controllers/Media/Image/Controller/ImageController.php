@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Media\Image\Controller;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Media\Image\Request\ImageDestroyRequest;
 use App\Http\Controllers\Media\Image\Request\ImageUploadRequest;
 use App\Http\Controllers\Media\Image\Service\ImageService;
 use App\Response\ResponseHandler;
@@ -33,6 +34,18 @@ class ImageController extends Controller
     {
         $this->service->upload($request->file('files'));
 
+        return ResponseHandler::success();
+    }
+
+    /**
+     * @param ImageDestroyRequest $request
+     * @return JsonResponse
+     */
+    public function destroy(ImageDestroyRequest $request): JsonResponse
+    {
+        foreach ($request->paths as $path) {
+            $this->service->destroy($path);
+        }
         return ResponseHandler::success();
     }
 }

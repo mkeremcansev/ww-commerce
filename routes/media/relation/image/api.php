@@ -9,5 +9,6 @@ Route::name(RouteGroupNameEnumeration::IMAGE_GROUP)->prefix(RouteGroupPathEnumer
     Route::controller(ImageController::class)->group(function () {
         Route::get('/', 'index')->name('index')->middleware(['auth:sanctum', 'permission:image.index']);
         Route::post('/upload', 'upload')->name('upload')->middleware(['auth:sanctum', 'permission:image.upload']);
+        Route::post('/destroy', 'destroy')->name('destroy')->middleware(['auth:sanctum', 'permission:image.destroy']);
     });
 });
