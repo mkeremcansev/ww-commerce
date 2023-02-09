@@ -16,7 +16,7 @@ class CategoryCreateResourceCollection extends JsonResource
             'id' => $this->id ?? null,
             'title' => $this->title ?? null,
             'slug' => $this->slug ?? null,
-            'path' => asset($this->path ?? null),
+            'parent_id' => $this->parent_id ?? null,
             'parents' => self::collection($this->parents)
         ];
     }

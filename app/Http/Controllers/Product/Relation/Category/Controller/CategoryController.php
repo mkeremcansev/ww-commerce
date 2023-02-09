@@ -12,6 +12,7 @@ use App\Http\Controllers\Product\Relation\Category\Service\CategoryService;
 use App\Response\ResponseHandler;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -34,13 +35,11 @@ class CategoryController extends Controller
     }
 
     /**
-     * @return array
+     * @return AnonymousResourceCollection
      */
-    public function create(): array
+    public function create(): AnonymousResourceCollection
     {
-        return [
-            'category_id' => CategoryCreateResourceCollection::collection($this->service->create())
-        ];
+        return CategoryCreateResourceCollection::collection($this->service->create());
     }
 
     /**
