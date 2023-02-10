@@ -38,15 +38,13 @@ class AttributeValueController extends Controller
     }
 
     /**
-     * @return array
+     * @return AnonymousResourceCollection
      * @throws BindingResolutionException
      */
-    public function create(): array
+    public function create(): AnonymousResourceCollection
     {
-        return [
-            'attribute_id' => AttributeResourceCollection::collection(resolve(AttributeInterface::class)
-                ->attributes())
-        ];
+        return AttributeResourceCollection::collection(resolve(AttributeInterface::class)
+            ->attributes());
     }
 
     /**
