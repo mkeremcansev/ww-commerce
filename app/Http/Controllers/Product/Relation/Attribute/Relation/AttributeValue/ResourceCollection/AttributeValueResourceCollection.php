@@ -16,7 +16,8 @@ class AttributeValueResourceCollection extends JsonResource
             'id' => $this->id ?? null,
             'title' => $this->title ?? null,
             'code' => $this->code ?? null,
-            'path' => asset($this->path ?? null)
+            'path' => asset($this->path ?? null),
+            'attribute_id' => $this->attribute_id ?? null,
         ];
     }
 }
