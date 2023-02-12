@@ -75,7 +75,8 @@ class ProductController extends Controller
             $request->category_id,
             $request->brand_id,
             $request->status,
-            $request->variants
+            $request->variants,
+            $request->stock
         );
 
         return ResponseHandler::store(['id' => $product->id]);
@@ -123,7 +124,8 @@ class ProductController extends Controller
             $request->category_id,
             $request->brand_id,
             $request->status,
-            $request->variants
+            $request->variants,
+            $request->stock
         );
 
         return $product

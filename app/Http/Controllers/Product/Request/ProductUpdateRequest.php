@@ -27,6 +27,7 @@ class ProductUpdateRequest extends FormRequest
             'title' => 'required|max:255',
             'content' => 'required',
             'price' => 'required|numeric|max:9999999.99',
+            'stock' => 'nullable|numeric',
             'status' => 'required|boolean',
             'brand_id' => 'required|integer|exists:brands,id',
             'category_id' => 'required|array',

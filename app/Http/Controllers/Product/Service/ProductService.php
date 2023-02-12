@@ -42,11 +42,12 @@ class ProductService
      * @param $brandId
      * @param $status
      * @param $variants
+     * @param $stock
      * @return mixed
      */
-    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants): mixed
+    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock): mixed
     {
-        return $this->repository->store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants);
+        return $this->repository->store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock);
     }
 
     /**
@@ -68,11 +69,12 @@ class ProductService
      * @param $brandId
      * @param $status
      * @param $variants
+     * @param $stock
      * @return mixed
      */
-    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants): mixed
+    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock): mixed
     {
-        return $this->repository->update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants);
+        return $this->repository->update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock);
     }
 
     /**

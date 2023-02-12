@@ -51,11 +51,12 @@ class ProductRepository implements ProductInterface
      * @param $brandId
      * @param $status
      * @param $variants
+     * @param $stock
      * @return mixed
      */
-    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants): mixed
+    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock): mixed
     {
-        return DB::transaction(function () use ($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants) {
+        return DB::transaction(function () use ($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock) {
             $product = $this->model->create([
                 'title' => $title,
                 'slug' => $slug,
@@ -63,6 +64,7 @@ class ProductRepository implements ProductInterface
                 'content' => $content,
                 'brand_id' => $brandId,
                 'status' => $status,
+                'stock' => $stock
             ]);
             $this->extracted($variants, $product, $categoryId);
 
@@ -156,11 +158,12 @@ class ProductRepository implements ProductInterface
      * @param $brandId
      * @param $status
      * @param $variants
+     * @param $stock
      * @return mixed
      */
-    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants): mixed
+    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock): mixed
     {
-        return DB::transaction(function () use ($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants) {
+        return DB::transaction(function () use ($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock) {
             $product = $this->productById($id);
             if ($product) {
                 $product->update([
@@ -170,6 +173,7 @@ class ProductRepository implements ProductInterface
                     'content' => $content,
                     'brand_id' => $brandId,
                     'status' => $status,
+                    'stock' => $stock
                 ]);
                 $this->destroyProductRelationalData($product);
                 $this->extracted($variants, $product, $categoryId);

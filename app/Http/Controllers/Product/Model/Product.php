@@ -28,6 +28,7 @@ class Product extends Model
         'title',
         'slug',
         'price',
+        'stock',
         'content',
         'status',
         'brand_id'
