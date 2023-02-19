@@ -49,7 +49,8 @@ class ProductTest extends TestCase
             'category_id' => resolve(CategoryInterface::class)->categories()->pluck('id')->toArray(),
             'brand_id' => resolve(BrandInterface::class)->brands()->first()->id,
             'status' => ProductStatusEnumeration::ACTIVE,
-            'variants' => variantCombination()
+            'variants' => variantCombination(),
+            'stock' => rand(0, 3)
         ])->assertStatus(200)->getOriginalContent();
         self::$id = $product['data']['id'];
     }
@@ -74,7 +75,8 @@ class ProductTest extends TestCase
             'category_id' => resolve(CategoryInterface::class)->categories()->pluck('id')->toArray(),
             'brand_id' => resolve(BrandInterface::class)->brands()->first()->id,
             'status' => ProductStatusEnumeration::ACTIVE,
-            'variants' => variantCombination()
+            'variants' => variantCombination(),
+            'stock' => rand(0, 3)
         ])->assertStatus(200);
     }
 

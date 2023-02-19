@@ -51,7 +51,8 @@ class ProductSeeder extends Seeder
                 $categoryId,
                 $brandId,
                 $status,
-                $variants
+                $variants,
+                rand(0, 3)
             );
         }
     }
