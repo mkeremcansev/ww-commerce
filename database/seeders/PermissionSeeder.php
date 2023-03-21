@@ -16,6 +16,9 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
+        //Dashboard permissions
+        $this->firstOrCreate(['group_name' => 'Dashboard', 'name' => 'dashboard.index', 'guard_name' => 'web']);
+
         //User permissions
         $this->firstOrCreate(['group_name' => 'User', 'name' => 'user.index', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'User', 'name' => 'user.create', 'guard_name' => 'web']);
