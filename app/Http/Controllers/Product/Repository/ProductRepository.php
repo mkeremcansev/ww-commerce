@@ -37,7 +37,7 @@ class ProductRepository implements ProductInterface
     public function productById($id): mixed
     {
         return $this->model
-            ->with('variants')
+            ->with(['variants', 'categories'])
             ->whereId($id)
             ->first();
     }

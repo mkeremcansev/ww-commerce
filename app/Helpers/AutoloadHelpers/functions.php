@@ -44,10 +44,8 @@ if (!function_exists('skuFormatter')) {
             'stock' => $stock,
             'price' => (float)$price,
             'attributes' => $attributeValues->map(function ($attributeValue) {
-                return [
-                    'attribute_id' => $attributeValue->attribute_id,
-                    'attribute_value_id' => $attributeValue->id,
-                ];
+                $attributeValue->attribute_value_id = $attributeValue->id;
+                return $attributeValue;
             })->toArray()
         ];
     }

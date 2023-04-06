@@ -28,12 +28,14 @@ class ProductEditResourceCollection extends JsonResource
      */
     public function toArray($request): array
     {
+        self::withoutWrapping();
+
         return [
             'id' => $this->id ?? null,
             'title' => $this->title ?? null,
             'content' => $this->content ?? null,
             'price' => $this->price ?? null,
-            'brand' => new BrandResourceCollection($this->brand ?? null),
+            'brand' => $this->brand->id ?? null,
             'status' => $this->status ?? null,
             'variant_groups' => ProductVariantRelationResourceCollection::collection($this->variants ?? null),
             'categories' => ProductCategoryResourceCollection::collection($this->categories ?? null),
