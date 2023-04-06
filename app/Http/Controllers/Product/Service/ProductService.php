@@ -21,7 +21,7 @@ class ProductService
      */
     public function index(): mixed
     {
-        return DatatableHelper::datatable($this->repository->products(['id', 'title', 'price', 'status']));
+        return DatatableHelper::datatable($this->repository->products(['id', 'title', 'price', 'slug']));
     }
 
     /**

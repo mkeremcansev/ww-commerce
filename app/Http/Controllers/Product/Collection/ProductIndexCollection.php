@@ -15,8 +15,8 @@ class ProductIndexCollection extends JsonResource
         return [
             'id' => $this->id ?? null,
             'title' => $this->title ?? null,
-            'price' => $this->price ?? null,
-            'status' => $this->status ?? null,
+            'slug' => $this->slug ?? null,
+            'price' => $this->price ?? null
         ];
     }
 }
