@@ -39,6 +39,7 @@ class ProductEditResourceCollection extends JsonResource
             'status' => $this->status ?? null,
             'variant_groups' => ProductVariantRelationResourceCollection::collection($this->variants ?? null),
             'categories' => ProductCategoryResourceCollection::collection($this->categories ?? null),
+            'images' => ProductImageResourceCollection::collection($this->images ?? null),
             'attribute_id' => AttributeRelationResourceCollection::collection(resolve(AttributeInterface::class)
                 ->attributes([], ['values'])),
             'category_id' => CategoryCreateResourceCollection::collection(resolve(CategoryInterface::class)

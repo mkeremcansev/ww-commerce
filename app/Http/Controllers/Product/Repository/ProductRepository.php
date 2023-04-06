@@ -37,7 +37,7 @@ class ProductRepository implements ProductInterface
     public function productById($id): mixed
     {
         return $this->model
-            ->with(['variants', 'categories'])
+            ->with(['variants', 'categories', 'images'])
             ->whereId($id)
             ->first();
     }
@@ -54,9 +54,9 @@ class ProductRepository implements ProductInterface
      * @param $stock
      * @return mixed
      */
-    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock): mixed
+    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images): mixed
     {
-        return DB::transaction(function () use ($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock) {
+        return DB::transaction(function () use ($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images) {
             $product = $this->model->create([
                 'title' => $title,
                 'slug' => $slug,
@@ -66,6 +66,7 @@ class ProductRepository implements ProductInterface
                 'status' => $status,
                 'stock' => $stock
             ]);
+            $this->attachImage($product, $images);
             $this->extracted($variants, $product, $categoryId);
 
             return $product;
@@ -84,6 +85,16 @@ class ProductRepository implements ProductInterface
             list($sku, $stock, $price) = $this->extractedAttributes($variant, $product);
             $this->extractedVariant($product, $sku, $stock, $price);
         }
+    }
+
+    /**
+     * @param Product $product
+     * @param array $images
+     * @return void
+     */
+    public function attachImage(Product $product, array $images): void
+    {
+        $product->images()->createMany(imageKeyCreate($images));
     }
 
     /**
@@ -159,11 +170,12 @@ class ProductRepository implements ProductInterface
      * @param $status
      * @param $variants
      * @param $stock
+     * @param $images
      * @return mixed
      */
-    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock): mixed
+    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images): mixed
     {
-        return DB::transaction(function () use ($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock) {
+        return DB::transaction(function () use ($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images) {
             $product = $this->productById($id);
             if ($product) {
                 $product->update([
@@ -176,6 +188,7 @@ class ProductRepository implements ProductInterface
                     'stock' => $stock
                 ]);
                 $this->destroyProductRelationalData($product);
+                $this->attachImage($product, $images);
                 $this->extracted($variants, $product, $categoryId);
 
                 return $product;
@@ -194,6 +207,7 @@ class ProductRepository implements ProductInterface
         $product->categories()->detach();
         $product->attributes()->detach();
         $product->variants()->delete();
+        $product->images()->delete();
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Product\Contract;
 
+use App\Http\Controllers\Product\Model\Product;
+
 interface ProductInterface
 {
     /**
@@ -26,9 +28,10 @@ interface ProductInterface
      * @param $status
      * @param $variants
      * @param $stock
+     * @param $images
      * @return mixed
      */
-    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock): mixed;
+    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images): mixed;
 
     /**
      * @param $variants
@@ -36,6 +39,13 @@ interface ProductInterface
      * @return void
      */
     public function extractedProductInVariants($variants, $product): void;
+
+    /**
+     * @param Product $product
+     * @param array $images
+     * @return void
+     */
+    public function attachImage(Product $product, array $images): void;
 
     /**
      * @param $product
@@ -79,9 +89,10 @@ interface ProductInterface
      * @param $status
      * @param $variants
      * @param $stock
+     * @param $images
      * @return mixed
      */
-    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock): mixed;
+    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images): mixed;
 
     /**
      * @param mixed $product

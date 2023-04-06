@@ -25,7 +25,10 @@ class ProductSeeder extends Seeder
             resolve(CategoryInterface::class)->categories()->pluck('id')->toArray(),
             resolve(BrandInterface::class)->brands()->first()->id,
             ProductStatusEnumeration::ACTIVE,
-            variantCombination()
+            variantCombination(),
+            [
+                'https://cansev.dev/image.png'
+            ]
         );
     }
 
@@ -38,9 +41,10 @@ class ProductSeeder extends Seeder
      * @param $brandId
      * @param $status
      * @param $variants
+     * @param $images
      * @return void
      */
-    public function firstOrCreate($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants): void
+    public function firstOrCreate($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $images): void
     {
         if (!resolve(ProductInterface::class)->productBySlug($slug)) {
             resolve(ProductInterface::class)->store(
@@ -52,7 +56,8 @@ class ProductSeeder extends Seeder
                 $brandId,
                 $status,
                 $variants,
-                rand(0, 3)
+                rand(0, 3),
+                $images
             );
         }
     }
