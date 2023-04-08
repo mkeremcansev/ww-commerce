@@ -6,6 +6,7 @@ use App\Helpers\DatatableHelper;
 use App\Http\Controllers\User\Relation\Role\Contract\RoleInterface;
 use Exception;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class RoleService
 {
@@ -32,6 +33,8 @@ class RoleService
      */
     public function store($name, $permissionId): mixed
     {
+        $this->permissionCacheClear();
+
         return $this->repository->store($name, $permissionId);
     }
 
@@ -52,6 +55,8 @@ class RoleService
      */
     public function update($id, $name, $permissionId): bool
     {
+        $this->permissionCacheClear();
+
         return $this->repository->update($id, $name, $permissionId);
     }
 
@@ -62,5 +67,14 @@ class RoleService
     public function destroy($id): bool
     {
         return $this->repository->destroy($id);
+    }
+
+    /**
+     * @return void
+     */
+    public function permissionCacheClear(): void
+    {
+        resolve(PermissionRegistrar::class)
+            ->forgetCachedPermissions();
     }
 }
