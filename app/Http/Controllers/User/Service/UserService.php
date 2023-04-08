@@ -29,6 +29,17 @@ class UserService
     }
 
     /**
+     * @return bool
+     */
+    public function logout(): bool
+    {
+        $user = $this->auth::user();
+        $user?->tokens()->delete();
+
+        return true;
+    }
+
+    /**
      * @param $email
      * @param $password
      * @return bool

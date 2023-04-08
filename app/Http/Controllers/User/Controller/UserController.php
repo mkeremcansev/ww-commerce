@@ -38,6 +38,16 @@ class UserController extends Controller
     }
 
     /**
+     * @return JsonResponse
+     */
+    public function logout(): JsonResponse
+    {
+        return $this->service->logout()
+            ? ResponseHandler::success()
+            : ResponseHandler::invalidAuthorizationInformation();
+    }
+
+    /**
      * @param int $id
      * @return UserEditResourceCollection|JsonResponse
      */
