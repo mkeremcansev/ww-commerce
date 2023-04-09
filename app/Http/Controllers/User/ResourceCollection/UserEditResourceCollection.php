@@ -16,6 +16,8 @@ class UserEditResourceCollection extends JsonResource
      */
     public function toArray($request): array
     {
+        self::withoutWrapping();
+
         return [
             'id' => $this->id ?? null,
             'name' => $this->name ?? null,

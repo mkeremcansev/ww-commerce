@@ -5,9 +5,11 @@ namespace App\Http\Controllers\User\Controller;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\Request\UserAuthorizeRequest;
 use App\Http\Controllers\User\Request\UserUpdateRequest;
+use App\Http\Controllers\User\Resource\UserIndexResource;
 use App\Http\Controllers\User\ResourceCollection\UserEditResourceCollection;
 use App\Http\Controllers\User\Service\UserService;
 use App\Response\ResponseHandler;
+use Exception;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Http\JsonResponse;
 
@@ -18,6 +20,15 @@ class UserController extends Controller
      */
     public function __construct(public UserService $service)
     {
+    }
+
+    /**
+     * @return UserIndexResource
+     * @throws Exception
+     */
+    public function index(): UserIndexResource
+    {
+        return new UserIndexResource($this->service->index());
     }
 
     /**

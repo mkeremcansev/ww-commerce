@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\User\Service;
 
+use App\Helpers\DatatableHelper;
 use App\Http\Controllers\User\Contract\UserInterface;
 use App\Http\Controllers\User\Model\User;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 
 class UserService
@@ -14,6 +16,15 @@ class UserService
      */
     public function __construct(public UserInterface $repository, public Auth $auth)
     {
+    }
+
+    /**
+     * @return mixed
+     * @throws Exception
+     */
+    public function index(): mixed
+    {
+        return DatatableHelper::datatable($this->repository->users(['id', 'name', 'email']));
     }
 
     /**

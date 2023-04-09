@@ -45,4 +45,10 @@ interface UserInterface
      * @return Collection|array
      */
     public function usersByRoleName(array $roleNames): Collection|array;
+
+    /**
+     * @param array $columns
+     * @return mixed
+     */
+    public function users(array $columns = []): mixed;
 }

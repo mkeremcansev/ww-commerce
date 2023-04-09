@@ -82,4 +82,17 @@ class UserRepository implements UserInterface
             ->role($roleNames)
             ->get();
     }
+
+    /**
+     * @param array $columns
+     * @return mixed
+     */
+    public function users(array $columns = []): mixed
+    {
+        return $this->user
+            ->when(count($columns),
+                fn($eloquent) => $eloquent->select($columns),
+                fn($eloquent) => $eloquent->get()
+            );
+    }
 }
