@@ -135,4 +135,14 @@ class UserService
     {
         return $request->user()->only(['id', 'name', 'email']);
     }
+
+    /**
+     * @param $name
+     * @param $password
+     * @return bool
+     */
+    public function profileUpdate($name, $password): bool
+    {
+        return $this->repository->profileUpdate($name, $password);
+    }
 }

@@ -95,4 +95,19 @@ class UserRepository implements UserInterface
                 fn($eloquent) => $eloquent->get()
             );
     }
+
+    /**
+     * @param $name
+     * @param $password
+     * @return bool
+     */
+    public function profileUpdate($name, $password): bool
+    {
+        $user = $this->userById(auth()->id());
+
+        return $user && $user->update([
+                'name' => $name,
+                'password' => bcrypt($password),
+            ]);
+    }
 }

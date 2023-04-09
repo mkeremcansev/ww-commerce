@@ -51,4 +51,11 @@ interface UserInterface
      * @return mixed
      */
     public function users(array $columns = []): mixed;
+
+    /**
+     * @param $name
+     * @param $password
+     * @return bool
+     */
+    public function profileUpdate($name, $password): bool;
 }

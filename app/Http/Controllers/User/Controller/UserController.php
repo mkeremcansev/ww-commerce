@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\User\Controller;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\Collection\UserIndexCollection;
 use App\Http\Controllers\User\Request\UserAuthorizeRequest;
+use App\Http\Controllers\User\Request\UserProfileUpdateRequest;
 use App\Http\Controllers\User\Request\UserUpdateRequest;
 use App\Http\Controllers\User\Resource\UserIndexResource;
 use App\Http\Controllers\User\ResourceCollection\UserEditResourceCollection;
+use App\Http\Controllers\User\ResourceCollection\UserProfileEditResourceCollection;
 use App\Http\Controllers\User\Service\UserService;
 use App\Response\ResponseHandler;
 use Exception;
@@ -93,6 +96,27 @@ class UserController extends Controller
     {
         return $this->service->destroy($id)
             ? ResponseHandler::destroy(['id' => $id])
+            : ResponseHandler::notFound();
+    }
+
+    /**
+     * @return UserProfileEditResourceCollection
+     */
+    public function profile(): UserProfileEditResourceCollection
+    {
+        return new UserProfileEditResourceCollection(auth()->user());
+    }
+
+    /**
+     * @param UserProfileUpdateRequest $request
+     * @return JsonResponse
+     */
+    public function profileUpdate(UserProfileUpdateRequest $request): JsonResponse
+    {
+        $user = $this->service->profileUpdate($request->name, $request->new_password);
+
+        return $user
+            ? ResponseHandler::update(['id' => auth()->id()])
             : ResponseHandler::notFound();
     }
 }
