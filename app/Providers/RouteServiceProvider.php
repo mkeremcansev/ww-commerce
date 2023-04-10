@@ -39,6 +39,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/product/relation/attribute/api.php')) // Attribute router API's
                 ->group(base_path('routes/product/relation/attribute/relation/value/api.php')) // Attribute Value router API's
                 ->group(base_path('routes/product/relation/brand/api.php')) // Brand router API's
+                ->group(base_path('routes/product/relation/coupon/api.php')) // Coupon router API's
                 ->group(base_path('routes/user/api.php')) // User router API's
                 ->group(base_path('routes/user/relation/role/api.php')) // Role router API's
                 ->group(base_path('routes/media/relation/image/api.php')) // Image router API's

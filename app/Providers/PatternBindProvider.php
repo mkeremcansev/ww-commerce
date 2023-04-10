@@ -11,6 +11,8 @@ use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Controllers\Product\Relation\Brand\Repository\BrandRepository;
 use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
 use App\Http\Controllers\Product\Relation\Category\Repository\CategoryRepository;
+use App\Http\Controllers\Product\Relation\Coupon\Contract\CouponInterface;
+use App\Http\Controllers\Product\Relation\Coupon\Repository\CouponRepository;
 use App\Http\Controllers\Product\Repository\ProductRepository;
 use App\Http\Controllers\User\Contract\UserInterface;
 use App\Http\Controllers\User\Relation\Permission\Contract\PermissionInterface;
@@ -27,7 +29,7 @@ class PatternBindProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->bind(
             ProductInterface::class,
@@ -66,6 +68,11 @@ class PatternBindProvider extends ServiceProvider
         $this->app->bind(
             AttributeValueInterface::class,
             AttributeValueRepository::class
+        );
+
+        $this->app->bind(
+            CouponInterface::class,
+            CouponRepository::class
         );
     }
 

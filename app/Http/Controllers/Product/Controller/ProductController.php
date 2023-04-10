@@ -105,7 +105,7 @@ class ProductController extends Controller
         $product = $this->service->edit($id);
 
         return $product
-            ? new ProductEditResourceCollection($this->service->edit($id))
+            ? new ProductEditResourceCollection($product)
             : ResponseHandler::recordNotFound();
     }
 

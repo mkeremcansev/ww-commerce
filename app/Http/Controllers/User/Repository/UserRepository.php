@@ -8,7 +8,10 @@ use Illuminate\Support\Collection;
 
 class UserRepository implements UserInterface
 {
-    public function __construct(public User $user)
+    /**
+     * @param User $model
+     */
+    public function __construct(public User $model)
     {
     }
 
@@ -18,7 +21,7 @@ class UserRepository implements UserInterface
      */
     public function userUpdateOrCreate(array $columns): User
     {
-        return $this->user
+        return $this->model
             ->firstOrCreate($columns);
     }
 
@@ -28,7 +31,7 @@ class UserRepository implements UserInterface
      */
     public function userByEmail($email): ?User
     {
-        return $this->user
+        return $this->model
             ->whereEmail($email)
             ->first();
     }
@@ -39,7 +42,7 @@ class UserRepository implements UserInterface
      */
     public function userById($id): ?User
     {
-        return $this->user
+        return $this->model
             ->whereId($id)
             ->first();
     }
@@ -53,7 +56,7 @@ class UserRepository implements UserInterface
      */
     public function update($id, $name, $email, array $roleId): bool
     {
-        $user = $this->userById($id);
+        $user = $this->modelById($id);
 
         return $user && $user->update([
                 'name' => $name,
@@ -67,7 +70,7 @@ class UserRepository implements UserInterface
      */
     public function destroy($id): bool
     {
-        $user = $this->userById($id);
+        $user = $this->modelById($id);
 
         return $user && $user->delete();
     }
@@ -78,7 +81,7 @@ class UserRepository implements UserInterface
      */
     public function usersByRoleName(array $roleNames): Collection|array
     {
-        return $this->user
+        return $this->model
             ->role($roleNames)
             ->get();
     }
@@ -89,7 +92,7 @@ class UserRepository implements UserInterface
      */
     public function users(array $columns = []): mixed
     {
-        return $this->user
+        return $this->model
             ->when(count($columns),
                 fn($eloquent) => $eloquent->select($columns),
                 fn($eloquent) => $eloquent->get()
@@ -103,7 +106,7 @@ class UserRepository implements UserInterface
      */
     public function profileUpdate($name, $password): bool
     {
-        $user = $this->userById(auth()->id());
+        $user = $this->modelById(auth()->id());
 
         return $user && $user->update([
                 'name' => $name,
