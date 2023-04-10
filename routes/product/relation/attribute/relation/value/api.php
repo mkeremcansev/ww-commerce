@@ -11,7 +11,7 @@ Route::name(RouteGroupNameEnumeration::ATTRIBUTE_VALUE_GROUP)->prefix(RouteGroup
         $router->get('/create', 'create')->name('create')->middleware(['auth:sanctum', 'permission:attribute.create']);
         $router->post('/store', 'store')->name('store')->middleware(['auth:sanctum', 'permission:attribute.store']);
         $router->get('/{id}/edit', 'edit')->name('edit')->middleware(['auth:sanctum', 'permission:attribute.edit']);
-        $router->patch('/{id}/update', 'update')->name('update')->middleware(['auth:sanctum', 'permission:attribute.update']);
+        $router->patch('/{id}', 'update')->name('update')->middleware(['auth:sanctum', 'permission:attribute.update']);
         $router->delete('/{id}/destroy', 'destroy')->name('destroy')->middleware(['auth:sanctum', 'permission:attribute.destroy']);
     });
 });

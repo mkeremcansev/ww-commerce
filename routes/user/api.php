@@ -13,7 +13,7 @@ Route::name(RouteGroupNameEnumeration::USER_GROUP)->prefix(RouteGroupPathEnumera
         $router->patch('/profile', 'profileUpdate')->name('profileUpdate')->middleware(['auth:sanctum', 'permission:user.profile.update']);
         $router->get('/logout', 'logout')->name('logout');
         $router->get('/{id}/edit', 'edit')->name('edit')->middleware(['auth:sanctum', 'permission:user.edit']);
-        $router->patch('/{id}/update', 'update')->name('update')->middleware(['auth:sanctum', 'permission:user.update']);
+        $router->patch('/{id}', 'update')->name('update')->middleware(['auth:sanctum', 'permission:user.update']);
         $router->delete('/{id}/destroy', 'destroy')->name('destroy')->middleware(['auth:sanctum', 'permission:user.destroy']);
     });
 });

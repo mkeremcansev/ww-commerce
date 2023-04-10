@@ -11,7 +11,7 @@ Route::name(RouteGroupNameEnumeration::ROLE_GROUP)->prefix(RouteGroupPathEnumera
         $router->get('/create', 'create')->name('create')->middleware(['auth:sanctum', 'permission:role.create', 'permission:permission.create']);
         $router->post('/store', 'store')->name('store')->middleware(['auth:sanctum', 'permission:role.store', 'permission:permission.store']);
         $router->get('/{id}/edit', 'edit')->name('edit')->middleware(['auth:sanctum', 'permission:role.edit', 'permission:permission.edit']);
-        $router->patch('/{id}/update', 'update')->name('update')->middleware(['auth:sanctum', 'permission:role.update', 'permission:permission.update']);
+        $router->patch('/{id}', 'update')->name('update')->middleware(['auth:sanctum', 'permission:role.update', 'permission:permission.update']);
         $router->delete('/{id}/destroy', 'destroy')->name('destroy')->middleware(['auth:sanctum', 'permission:role.destroy', 'permission:permission.destroy']);
     });
 });

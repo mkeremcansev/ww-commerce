@@ -41,8 +41,8 @@ class CouponController extends Controller
     public function create(): array
     {
         return [
-            'status' => EnumerationHelper::enumerationToArray(CouponStatusEnumeration::class),
-            'type' => EnumerationHelper::enumerationToArray(CouponTypeEnumeration::class)
+            'statuses' => EnumerationHelper::enumerationToArray(CouponStatusEnumeration::class),
+            'types' => EnumerationHelper::enumerationToArray(CouponTypeEnumeration::class)
         ];
     }
 

@@ -10,7 +10,7 @@ Route::name(RouteGroupNameEnumeration::ATTRIBUTE_GROUP)->prefix(RouteGroupPathEn
         $router->post('/', 'index')->name('index')->middleware(['auth:sanctum', 'permission:attribute.index']);
         $router->post('/store', 'store')->name('store')->middleware(['auth:sanctum', 'permission:attribute.store']);
         $router->get('/{id}/edit', 'edit')->name('edit')->middleware(['auth:sanctum', 'permission:attribute.edit']);
-        $router->patch('/{id}/update', 'update')->name('update')->middleware(['auth:sanctum', 'permission:attribute.update']);
+        $router->patch('/{id}', 'update')->name('update')->middleware(['auth:sanctum', 'permission:attribute.update']);
         $router->delete('/{id}/destroy', 'destroy')->name('destroy')->middleware(['auth:sanctum', 'permission:attribute.destroy']);
     });
 });
