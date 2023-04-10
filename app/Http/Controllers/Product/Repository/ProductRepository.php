@@ -52,6 +52,7 @@ class ProductRepository implements ProductInterface
      * @param $status
      * @param $variants
      * @param $stock
+     * @param $images
      * @return mixed
      */
     public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images): mixed
