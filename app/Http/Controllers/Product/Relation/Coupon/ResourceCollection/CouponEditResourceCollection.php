@@ -6,12 +6,14 @@ use App\Helpers\EnumerationHelper;
 use App\Http\Controllers\Product\Relation\Coupon\Enumeration\CouponStatusEnumeration;
 use App\Http\Controllers\Product\Relation\Coupon\Enumeration\CouponTypeEnumeration;
 use Illuminate\Http\Resources\Json\JsonResource;
+use ReflectionException;
 
 class CouponEditResourceCollection extends JsonResource
 {
     /**
      * @param $request
      * @return array
+     * @throws ReflectionException
      */
     public function toArray($request): array
     {

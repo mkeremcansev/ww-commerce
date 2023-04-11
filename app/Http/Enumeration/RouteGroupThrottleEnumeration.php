@@ -4,5 +4,5 @@ namespace App\Http\Enumeration;
 
 abstract class RouteGroupThrottleEnumeration
 {
-    const RATE_LIMIT = 150;
+    const RATE_LIMIT = 50;
 }

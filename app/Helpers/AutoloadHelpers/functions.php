@@ -15,7 +15,6 @@ if (!function_exists('skuTitleGenerator')) {
     }
 }
 
-
 if (!function_exists('skuGenerator')) {
     /**
      * @param $id
@@ -87,58 +86,58 @@ if (!function_exists('variantCombination')) {
 
         return $variants;
     }
+}
 
-    if (!function_exists('toObject')) {
-        /**
-         * @param $array
-         * @param $object
-         * @return mixed
-         */
-        function toObject($array, &$object): mixed
-        {
-            foreach ($array as $key => $value) {
-                if (is_array($value)) {
-                    $object->$key = new stdClass();
-                    toObject($value, $object->$key);
-                } else {
-                    $object->$key = $value;
-                }
+if (!function_exists('toObject')) {
+    /**
+     * @param $array
+     * @param $object
+     * @return mixed
+     */
+    function toObject($array, &$object): mixed
+    {
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $object->$key = new stdClass();
+                toObject($value, $object->$key);
+            } else {
+                $object->$key = $value;
             }
-            return $object;
         }
+        return $object;
     }
+}
 
-    if (!function_exists('convertKeyToKey')) {
-        /**
-         * @param $object
-         * @param $property
-         * @return mixed
-         */
-        function convertKeyToKey($object, $property): mixed
-        {
-            foreach ($object as $key => $value) {
-                $value->$property = $key;
-            }
-            return $object;
+if (!function_exists('convertKeyToKey')) {
+    /**
+     * @param $object
+     * @param $property
+     * @return mixed
+     */
+    function convertKeyToKey($object, $property): mixed
+    {
+        foreach ($object as $key => $value) {
+            $value->$property = $key;
         }
+        return $object;
     }
+}
 
-    if (!function_exists('imageKeyCreate')) {
-        /**
-         * @param array $images
-         * @return array
-         */
-        function imageKeyCreate(array $images): array
-        {
-            $array = [];
-            foreach ($images as $image) {
-                $array[] = [
-                    'path' => $image,
-                ];
-            }
-
-            return $array;
+if (!function_exists('imageKeyCreate')) {
+    /**
+     * @param array $images
+     * @return array
+     */
+    function imageKeyCreate(array $images): array
+    {
+        $array = [];
+        foreach ($images as $image) {
+            $array[] = [
+                'path' => $image,
+            ];
         }
+
+        return $array;
     }
 }
 
