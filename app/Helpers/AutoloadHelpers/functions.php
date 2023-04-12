@@ -108,13 +108,13 @@ if (!function_exists('toObject')) {
     }
 }
 
-if (!function_exists('convertKeyToKey')) {
+if (!function_exists('convertKeyToProperty')) {
     /**
      * @param $object
      * @param $property
      * @return mixed
      */
-    function convertKeyToKey($object, $property): mixed
+    function convertKeyToProperty($object, $property): mixed
     {
         foreach ($object as $key => $value) {
             $value->$property = $key;
