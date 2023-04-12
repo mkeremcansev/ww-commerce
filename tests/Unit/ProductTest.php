@@ -50,7 +50,10 @@ class ProductTest extends TestCase
             'brand_id' => resolve(BrandInterface::class)->brands()->first()->id,
             'status' => ProductStatusEnumeration::ACTIVE,
             'variants' => variantCombination(),
-            'stock' => rand(0, 3)
+            'stock' => rand(0, 3),
+            'images' => [
+                'https://via.placeholder.com/150'
+            ]
         ])->assertStatus(200)->getOriginalContent();
         self::$id = $product['data']['id'];
     }
@@ -76,7 +79,10 @@ class ProductTest extends TestCase
             'brand_id' => resolve(BrandInterface::class)->brands()->first()->id,
             'status' => ProductStatusEnumeration::ACTIVE,
             'variants' => variantCombination(),
-            'stock' => rand(0, 3)
+            'stock' => rand(0, 3),
+            'images' => [
+                'https://via.placeholder.com/150'
+            ]
         ])->assertStatus(200);
     }
 
