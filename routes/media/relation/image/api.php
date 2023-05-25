@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Media\Image\Controller\ImageController;
+use App\Http\Controllers\Media\Relation\Image\Controller\ImageController;
 use App\Http\Enumeration\RouteGroupNameEnumeration;
 use App\Http\Enumeration\RouteGroupPathEnumeration;
 use Illuminate\Support\Facades\Route;

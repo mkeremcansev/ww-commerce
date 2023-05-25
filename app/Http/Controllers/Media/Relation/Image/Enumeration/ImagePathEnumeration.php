@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Media\Image\Enumeration;
+namespace App\Http\Controllers\Media\Relation\Image\Enumeration;
 
 class ImagePathEnumeration
 {

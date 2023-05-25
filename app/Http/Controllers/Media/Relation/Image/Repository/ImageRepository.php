@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Media\Image\Repository;
+namespace App\Http\Controllers\Media\Relation\Image\Repository;
 
-use App\Http\Controllers\Media\Image\Contract\ImageInterface;
-use App\Http\Controllers\Media\Image\Model\Image;
+use App\Http\Controllers\Media\Relation\Image\Contract\ImageInterface;
+use App\Http\Controllers\Media\Relation\Image\Model\Image;
 
 class ImageRepository implements ImageInterface
 {

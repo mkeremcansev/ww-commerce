@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Media\Image\Model;
+namespace App\Http\Controllers\Media\Relation\Image\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

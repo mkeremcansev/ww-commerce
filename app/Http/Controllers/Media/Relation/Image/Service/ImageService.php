@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Media\Image\Service;
+namespace App\Http\Controllers\Media\Relation\Image\Service;
 
 use App\Helpers\FileHelper;
-use App\Http\Controllers\Media\Image\Enumeration\ImagePathEnumeration;
+use App\Http\Controllers\Media\Relation\Image\Enumeration\ImagePathEnumeration;
 use Illuminate\Support\Facades\File;
 
 class ImageService

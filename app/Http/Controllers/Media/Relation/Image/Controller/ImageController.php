@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Media\Image\Controller;
+namespace App\Http\Controllers\Media\Relation\Image\Controller;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Media\Image\Request\ImageDestroyRequest;
-use App\Http\Controllers\Media\Image\Request\ImageUploadRequest;
-use App\Http\Controllers\Media\Image\Service\ImageService;
+use App\Http\Controllers\Media\Relation\Image\Request\ImageDestroyRequest;
+use App\Http\Controllers\Media\Relation\Image\Request\ImageUploadRequest;
+use App\Http\Controllers\Media\Relation\Image\Service\ImageService;
 use App\Response\ResponseHandler;
 use Illuminate\Http\JsonResponse;
 

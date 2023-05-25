@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Media\Image\Contract\ImageInterface;
 use App\Http\Controllers\Media\Image\Relation\Contract\ImagePolymorphicInterface;
 use App\Http\Controllers\Media\Image\Relation\Repository\ImagePolymorphicRepository;
-use App\Http\Controllers\Media\Image\Repository\ImageRepository;
+use App\Http\Controllers\Media\Relation\Image\Contract\ImageInterface;
+use App\Http\Controllers\Media\Relation\Image\Repository\ImageRepository;
 use App\Http\Controllers\Product\Contract\ProductInterface;
 use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;

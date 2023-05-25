@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Media\Image\Contract;
+namespace App\Http\Controllers\Media\Relation\Image\Contract;
 
 interface ImageInterface
 {
