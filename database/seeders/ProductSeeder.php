@@ -13,8 +13,6 @@ class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run(): void
     {
@@ -31,21 +29,9 @@ class ProductSeeder extends Seeder
         );
     }
 
-    /**
-     * @param $title
-     * @param $slug
-     * @param $price
-     * @param $content
-     * @param $categoryId
-     * @param $brandId
-     * @param $status
-     * @param $variants
-     * @param $media
-     * @return void
-     */
     public function firstOrCreate($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $media): void
     {
-        if (!resolve(ProductInterface::class)->productBySlug($slug)) {
+        if (! resolve(ProductInterface::class)->productBySlug($slug)) {
             resolve(ProductInterface::class)->store(
                 $title,
                 $slug,

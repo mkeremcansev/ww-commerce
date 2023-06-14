@@ -9,8 +9,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class CategoryEditResourceCollection extends JsonResource
 {
     /**
-     * @param $request
-     * @return array
      * @throws BindingResolutionException
      */
     public function toArray($request): array
@@ -22,7 +20,7 @@ class CategoryEditResourceCollection extends JsonResource
             'media' => $this->firstMedia() ?? null,
             'category_id' => $this->category_id ?? null,
             'categories' => CategoryCreateResourceCollection::collection(resolve(CategoryInterface::class)
-                ->mainCategoriesWithParents(['id', 'title', 'slug']))
+                ->mainCategoriesWithParents(['id', 'title', 'slug'])),
         ];
     }
 }

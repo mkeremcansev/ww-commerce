@@ -10,15 +10,11 @@ use Spatie\Permission\PermissionRegistrar;
 
 class RoleService
 {
-    /**
-     * @param RoleInterface $repository
-     */
     public function __construct(public RoleInterface $repository)
     {
     }
 
     /**
-     * @return mixed
      * @throws Exception
      */
     public function index(): mixed
@@ -26,11 +22,6 @@ class RoleService
         return DatatableHelper::datatable($this->repository->roles(['id', 'name']));
     }
 
-    /**
-     * @param $name
-     * @param $permissionId
-     * @return mixed
-     */
     public function store($name, $permissionId): mixed
     {
         $this->permissionCacheClear();
@@ -38,21 +29,11 @@ class RoleService
         return $this->repository->store($name, $permissionId);
     }
 
-    /**
-     * @param $id
-     * @return Role|null
-     */
     public function edit($id): ?Role
     {
         return $this->repository->roleById($id);
     }
 
-    /**
-     * @param $id
-     * @param $name
-     * @param $permissionId
-     * @return bool
-     */
     public function update($id, $name, $permissionId): bool
     {
         $this->permissionCacheClear();
@@ -60,18 +41,11 @@ class RoleService
         return $this->repository->update($id, $name, $permissionId);
     }
 
-    /**
-     * @param $id
-     * @return bool
-     */
     public function destroy($id): bool
     {
         return $this->repository->destroy($id);
     }
 
-    /**
-     * @return void
-     */
     public function permissionCacheClear(): void
     {
         resolve(PermissionRegistrar::class)

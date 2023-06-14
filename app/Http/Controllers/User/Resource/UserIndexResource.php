@@ -10,15 +10,11 @@ class UserIndexResource extends JsonResource
 {
     use DatatableCollectionTrait;
 
-    /**
-     * @param $request
-     * @return array
-     */
     public function toArray($request): array
     {
         return [
-                'data' => UserIndexCollection::collection($this->data ?? null)
-            ]
+            'data' => UserIndexCollection::collection($this->data ?? null),
+        ]
             +
             $this->datatables($this);
     }

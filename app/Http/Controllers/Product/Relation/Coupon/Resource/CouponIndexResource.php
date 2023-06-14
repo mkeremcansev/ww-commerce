@@ -10,15 +10,11 @@ class CouponIndexResource extends JsonResource
 {
     use DatatableCollectionTrait;
 
-    /**
-     * @param $request
-     * @return array
-     */
     public function toArray($request): array
     {
         return [
-                'data' => CouponIndexCollection::collection($this->data ?? null)
-            ]
+            'data' => CouponIndexCollection::collection($this->data ?? null),
+        ]
             +
             $this->datatables($this);
     }

@@ -8,8 +8,6 @@ class RoleIndexRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -25,7 +23,7 @@ class RoleIndexRequest extends FormRequest
     {
         return [
             'id' => 'nullable|integer',
-            'name' => 'nullable'
+            'name' => 'nullable',
         ];
     }
 }

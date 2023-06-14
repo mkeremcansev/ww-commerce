@@ -3,57 +3,44 @@
 use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;
 
-if (!function_exists('skuTitleGenerator')) {
-    /**
-     * @param $title
-     * @param $sku
-     * @return string
-     */
+if (! function_exists('skuTitleGenerator')) {
+
     function skuTitleGenerator($title, $sku): string
     {
-        return $title . ' ' . rtrim($sku, '-');
+        return $title.' '.rtrim($sku, '-');
     }
 }
 
-if (!function_exists('skuGenerator')) {
-    /**
-     * @param $id
-     * @param $sku
-     * @return string
-     */
+if (! function_exists('skuGenerator')) {
+
     function skuGenerator($id, $sku): string
     {
-        return rtrim($id . '-' . $sku, '-');
+        return rtrim($id.'-'.$sku, '-');
     }
 }
 
-if (!function_exists('skuFormatter')) {
-    /**
-     * @param $sku
-     * @param int $stock
-     * @param $price
-     * @return array
-     */
+if (! function_exists('skuFormatter')) {
+
     function skuFormatter($sku, int $stock, $price = null): array
     {
         $explodedSku = explode('-', $sku);
         $attributeValues = resolve(AttributeValueInterface::class)
             ->attributeValuesByCodes($explodedSku);
+
         return [
             'stock' => $stock,
-            'price' => (float)$price,
+            'price' => (float) $price,
             'attributes' => $attributeValues->map(function ($attributeValue) {
                 $attributeValue->attribute_value_id = $attributeValue->id;
+
                 return $attributeValue;
-            })->toArray()
+            })->toArray(),
         ];
     }
 }
 
-if (!function_exists('variantCombination')) {
-    /**
-     * @return array
-     */
+if (! function_exists('variantCombination')) {
+
     function variantCombination(): array
     {
         $attributes = resolve(AttributeInterface::class)->attributes([], ['values']);
@@ -79,7 +66,7 @@ if (!function_exists('variantCombination')) {
         foreach ($combinations as $combination) {
             $variants[] = [
                 'stock' => rand(1, 100),
-                'price' => (float)rand(100, 1000),
+                'price' => (float) rand(100, 1000),
                 'attributes' => $combination,
             ];
         }
@@ -88,12 +75,8 @@ if (!function_exists('variantCombination')) {
     }
 }
 
-if (!function_exists('toObject')) {
-    /**
-     * @param $array
-     * @param $object
-     * @return mixed
-     */
+if (! function_exists('toObject')) {
+
     function toObject($array, &$object): mixed
     {
         foreach ($array as $key => $value) {
@@ -104,22 +87,19 @@ if (!function_exists('toObject')) {
                 $object->$key = $value;
             }
         }
+
         return $object;
     }
 }
 
-if (!function_exists('convertKeyToProperty')) {
-    /**
-     * @param $object
-     * @param $property
-     * @return mixed
-     */
+if (! function_exists('convertKeyToProperty')) {
+
     function convertKeyToProperty($object, $property): mixed
     {
         foreach ($object as $key => $value) {
             $value->$property = $key;
         }
+
         return $object;
     }
 }
-

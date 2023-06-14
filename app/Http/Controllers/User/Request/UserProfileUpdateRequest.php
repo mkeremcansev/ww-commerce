@@ -9,8 +9,6 @@ class UserProfileUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -28,7 +26,7 @@ class UserProfileUpdateRequest extends FormRequest
             'name' => 'required|string|max:255',
             'old_password' => ['required', new UserOldPasswordCheck()],
             'new_password' => 'required|string|min:8|confirmed',
-            'new_password_confirmation' => 'required|string|min:8'
+            'new_password_confirmation' => 'required|string|min:8',
         ];
     }
 }

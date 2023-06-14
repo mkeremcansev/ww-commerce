@@ -6,10 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CouponIndexCollection extends JsonResource
 {
-    /**
-     * @param $request
-     * @return array
-     */
     public function toArray($request): array
     {
         return [
@@ -17,7 +13,7 @@ class CouponIndexCollection extends JsonResource
             'code' => $this->code ?? null,
             'value' => $this->value ?? null,
             'usage_limit' => $this->usage_limit ?? null,
-            'expired_at' => $this->expired_at ?? null
+            'expired_at' => $this->expired_at ?? null,
         ];
     }
 }

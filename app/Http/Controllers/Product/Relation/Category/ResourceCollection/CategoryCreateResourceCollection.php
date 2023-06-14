@@ -6,10 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoryCreateResourceCollection extends JsonResource
 {
-    /**
-     * @param $request
-     * @return array
-     */
     public function toArray($request): array
     {
         return [
@@ -17,7 +13,7 @@ class CategoryCreateResourceCollection extends JsonResource
             'title' => $this->title ?? null,
             'slug' => $this->slug ?? null,
             'parent_id' => $this->parent_id ?? null,
-            'parents' => self::collection($this->parents)
+            'parents' => self::collection($this->parents),
         ];
     }
 }

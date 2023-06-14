@@ -10,8 +10,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class UserEditResourceCollection extends JsonResource
 {
     /**
-     * @param $request
-     * @return array
      * @throws BindingResolutionException
      */
     public function toArray($request): array
@@ -24,7 +22,7 @@ class UserEditResourceCollection extends JsonResource
             'email' => $this->email ?? null,
             'roles' => RoleRelationResourceCollection::collection($this->roles ?? null),
             'role_id' => RoleRelationResourceCollection::collection(resolve(RoleInterface::class)
-                ->roles())
+                ->roles()),
         ];
     }
 }

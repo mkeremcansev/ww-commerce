@@ -14,6 +14,6 @@ class ProductVariant extends Model
         'sku',
         'stock',
         'price',
-        'product_id'
+        'product_id',
     ];
 }

@@ -4,10 +4,6 @@ namespace App\Traits;
 
 trait DatatableCollectionTrait
 {
-    /**
-     * @param $request
-     * @return array
-     */
     public function datatables($request): array
     {
         return [

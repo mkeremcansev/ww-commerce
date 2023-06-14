@@ -31,44 +31,29 @@ class Product extends Model
         'stock',
         'content',
         'status',
-        'brand_id'
+        'brand_id',
     ];
 
-    /**
-     * @return BelongsToMany
-     */
     public function attributes(): BelongsToMany
     {
         return $this->belongsToMany(Attribute::class, ProductAttribute::class)->withTimestamps()->distinct();
     }
 
-    /**
-     * @return HasMany
-     */
     public function variants(): HasMany
     {
         return $this->hasMany(ProductVariant::class);
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);
     }
 
-    /**
-     * @return BelongsToMany
-     */
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, ProductCategory::class)->withTimestamps();
     }
 
-    /**
-     * @return mixed
-     */
     public function scopeActive(): mixed
     {
         return $this->whereStatus(ProductStatusEnumeration::ACTIVE);

@@ -32,8 +32,6 @@ class PatternBindProvider extends ServiceProvider
 {
     /**
      * Register services.
-     *
-     * @return void
      */
     public function register(): void
     {

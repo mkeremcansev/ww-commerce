@@ -18,15 +18,11 @@ use ReflectionException;
 
 class CouponController extends Controller
 {
-    /**
-     * @param CouponService $service
-     */
     public function __construct(public CouponService $service)
     {
     }
 
     /**
-     * @return CouponIndexResource
      * @throws Exception
      */
     public function index(): CouponIndexResource
@@ -35,21 +31,16 @@ class CouponController extends Controller
     }
 
     /**
-     * @return array
      * @throws ReflectionException
      */
     public function create(): array
     {
         return [
             'statuses' => EnumerationHelper::enumerationToArray(CouponStatusEnumeration::class),
-            'types' => EnumerationHelper::enumerationToArray(CouponTypeEnumeration::class)
+            'types' => EnumerationHelper::enumerationToArray(CouponTypeEnumeration::class),
         ];
     }
 
-    /**
-     * @param CouponStoreRequest $request
-     * @return JsonResponse
-     */
     public function store(CouponStoreRequest $request): JsonResponse
     {
         $coupon = $this->service->store($request->code, $request->type, $request->value, $request->usage_limit, $request->status, $request->expired_at);
@@ -57,10 +48,6 @@ class CouponController extends Controller
         return ResponseHandler::store(['id' => $coupon->id]);
     }
 
-    /**
-     * @param int $id
-     * @return CouponEditResourceCollection|JsonResponse
-     */
     public function edit(int $id): JsonResponse|CouponEditResourceCollection
     {
         $coupon = $this->service->edit($id);
@@ -70,11 +57,6 @@ class CouponController extends Controller
             : ResponseHandler::recordNotFound();
     }
 
-    /**
-     * @param int $id
-     * @param CouponUpdateRequest $request
-     * @return JsonResponse
-     */
     public function update(int $id, CouponUpdateRequest $request): JsonResponse
     {
         $coupon = $this->service->update($id, $request->code, $request->type, $request->value, $request->usage_limit, $request->status, $request->expired_at);
@@ -84,10 +66,6 @@ class CouponController extends Controller
             : ResponseHandler::recordNotFound();
     }
 
-    /**
-     * @param int $id
-     * @return JsonResponse
-     */
     public function destroy(int $id): JsonResponse
     {
         $coupon = $this->service->destroy($id);

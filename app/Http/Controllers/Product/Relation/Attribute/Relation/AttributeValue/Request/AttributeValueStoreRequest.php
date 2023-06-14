@@ -8,8 +8,6 @@ class AttributeValueStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -28,7 +26,7 @@ class AttributeValueStoreRequest extends FormRequest
             'code' => 'required|max:255|unique:attribute_values,code',
             'media' => 'required|array',
             'media.id' => 'required|integer|exists:media,id',
-            'attribute_id' => 'required|exists:attributes,id'
+            'attribute_id' => 'required|exists:attributes,id',
         ];
     }
 }

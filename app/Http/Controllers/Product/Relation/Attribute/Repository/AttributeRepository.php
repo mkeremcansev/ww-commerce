@@ -7,17 +7,10 @@ use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
 
 class AttributeRepository implements AttributeInterface
 {
-    /**
-     * @param Attribute $model
-     */
     public function __construct(public Attribute $model)
     {
     }
 
-    /**
-     * @param $id
-     * @return Attribute|null
-     */
     public function attributeById($id): ?Attribute
     {
         return $this->model
@@ -25,51 +18,33 @@ class AttributeRepository implements AttributeInterface
             ->first();
     }
 
-    /**
-     * @param array $columns
-     * @param array $relation
-     * @return mixed
-     */
     public function attributes(array $columns = [], array $relation = []): mixed
     {
         return $this->model
             ->when(count($columns),
-                fn($eloquent) => $eloquent->select($columns),
-                fn($eloquent) => $eloquent->when(count($relation),
-                    fn($eloquent) => $eloquent->with($relation)
+                fn ($eloquent) => $eloquent->select($columns),
+                fn ($eloquent) => $eloquent->when(count($relation),
+                    fn ($eloquent) => $eloquent->with($relation)
                 )->get()
             );
     }
 
-    /**
-     * @param $title
-     * @return Attribute
-     */
     public function store($title): Attribute
     {
         return $this->model->create([
-            'title' => $title
+            'title' => $title,
         ]);
     }
 
-    /**
-     * @param $id
-     * @param $title
-     * @return bool
-     */
     public function update($id, $title): bool
     {
         $attribute = $this->attributeById($id);
 
         return $attribute && $attribute->update([
-                'title' => $title
-            ]);
+            'title' => $title,
+        ]);
     }
 
-    /**
-     * @param $id
-     * @return bool
-     */
     public function destroy($id): bool
     {
         $attribute = $this->attributeById($id);
@@ -77,14 +52,10 @@ class AttributeRepository implements AttributeInterface
         return $attribute && $attribute->delete();
     }
 
-    /**
-     * @param $title
-     * @return Attribute
-     */
     public function firstOrCreate($title): Attribute
     {
         return $this->model->firstOrCreate([
-            'title' => $title
+            'title' => $title,
         ]);
     }
 }

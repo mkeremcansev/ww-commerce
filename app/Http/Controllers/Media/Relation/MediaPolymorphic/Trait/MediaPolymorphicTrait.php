@@ -9,28 +9,18 @@ use Illuminate\Database\Eloquent\Collection;
 
 trait MediaPolymorphicTrait
 {
-    /**
-     * @param $mediaId
-     * @return mixed
-     */
     public function addMediaFromId($mediaId): mixed
     {
         return resolve(MediaPolymorphicInterface::class)
             ->store($mediaId, self::class, $this->id);
     }
 
-    /**
-     * @return mixed
-     */
     public function destroyMedia(): mixed
     {
         return resolve(MediaPolymorphicInterface::class)
             ->destroy(self::class, $this->id);
     }
 
-    /**
-     * @return Collection
-     */
     public function getMedia(): Collection
     {
         return $this->morphToMany(

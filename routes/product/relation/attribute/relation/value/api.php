@@ -5,8 +5,8 @@ use App\Http\Enumeration\RouteGroupNameEnumeration;
 use App\Http\Enumeration\RouteGroupPathEnumeration;
 use Illuminate\Support\Facades\Route;
 
-Route::name(RouteGroupNameEnumeration::ATTRIBUTE_VALUE_GROUP)->prefix(RouteGroupPathEnumeration::ATTRIBUTE_VALUE_GROUP)->group(function ($router){
-    $router->controller(AttributeValueController::class)->group(function ($router){
+Route::name(RouteGroupNameEnumeration::ATTRIBUTE_VALUE_GROUP)->prefix(RouteGroupPathEnumeration::ATTRIBUTE_VALUE_GROUP)->group(function ($router) {
+    $router->controller(AttributeValueController::class)->group(function ($router) {
         $router->post('/', 'index')->name('index')->middleware(['auth:sanctum', 'permission:attribute.index']);
         $router->get('/create', 'create')->name('create')->middleware(['auth:sanctum', 'permission:attribute.create']);
         $router->post('/store', 'store')->name('store')->middleware(['auth:sanctum', 'permission:attribute.store']);

@@ -10,15 +10,11 @@ class BrandIndexResource extends JsonResource
 {
     use DatatableCollectionTrait;
 
-    /**
-     * @param $request
-     * @return array
-     */
     public function toArray($request): array
     {
         return [
-                'data' => BrandIndexCollection::collection($this->data ?? null)
-            ]
+            'data' => BrandIndexCollection::collection($this->data ?? null),
+        ]
             +
             $this->datatables($this);
     }

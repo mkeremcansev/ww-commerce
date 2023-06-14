@@ -14,15 +14,11 @@ use Illuminate\Http\JsonResponse;
 
 class AttributeController extends Controller
 {
-    /**
-     * @param AttributeService $service
-     */
     public function __construct(public AttributeService $service)
     {
     }
 
     /**
-     * @return AttributeIndexResource
      * @throws Exception
      */
     public function index(): AttributeIndexResource
@@ -30,10 +26,6 @@ class AttributeController extends Controller
         return new AttributeIndexResource($this->service->index());
     }
 
-    /**
-     * @param AttributeStoreRequest $request
-     * @return JsonResponse
-     */
     public function store(AttributeStoreRequest $request): JsonResponse
     {
         $attribute = $this->service->store($request->title);
@@ -41,10 +33,6 @@ class AttributeController extends Controller
         return ResponseHandler::store(['id' => $attribute->id]);
     }
 
-    /**
-     * @param int $id
-     * @return AttributeEditResourceCollection|JsonResponse
-     */
     public function edit(int $id): AttributeEditResourceCollection|JsonResponse
     {
         $attribute = $this->service->edit($id);
@@ -54,11 +42,6 @@ class AttributeController extends Controller
             : ResponseHandler::notFound();
     }
 
-    /**
-     * @param int $id
-     * @param AttributeUpdateRequest $request
-     * @return JsonResponse
-     */
     public function update(int $id, AttributeUpdateRequest $request): JsonResponse
     {
         $attribute = $this->service->update($id, $request->title);
@@ -68,10 +51,6 @@ class AttributeController extends Controller
             : ResponseHandler::notFound();
     }
 
-    /**
-     * @param int $id
-     * @return JsonResponse
-     */
     public function destroy(int $id): JsonResponse
     {
         $attribute = $this->service->destroy($id);

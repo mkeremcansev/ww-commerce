@@ -197,7 +197,7 @@ return [
         \App\Providers\PatternBindProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        \App\Providers\AppStructProvider::class
+        \App\Providers\AppStructProvider::class,
     ],
 
     /*

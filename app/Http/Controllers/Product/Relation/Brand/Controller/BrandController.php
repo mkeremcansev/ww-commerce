@@ -15,16 +15,11 @@ use Illuminate\Support\Str;
 
 class BrandController extends Controller
 {
-    /**
-     * @param BrandService $service
-     * @param Str $str
-     */
     public function __construct(public BrandService $service, public Str $str)
     {
     }
 
     /**
-     * @return BrandIndexResource
      * @throws Exception
      */
     public function index(): BrandIndexResource
@@ -32,10 +27,6 @@ class BrandController extends Controller
         return new BrandIndexResource($this->service->index());
     }
 
-    /**
-     * @param BrandStoreRequest $request
-     * @return JsonResponse
-     */
     public function store(BrandStoreRequest $request): JsonResponse
     {
         $brand = $this->service->store($request->title, $this->str::slug($request->title), $request->media);
@@ -43,10 +34,6 @@ class BrandController extends Controller
         return ResponseHandler::store(['id' => $brand->id]);
     }
 
-    /**
-     * @param int $id
-     * @return BrandResourceCollection|JsonResponse
-     */
     public function edit(int $id): JsonResponse|BrandResourceCollection
     {
         $brand = $this->service->edit($id);
@@ -56,11 +43,6 @@ class BrandController extends Controller
             : ResponseHandler::recordNotFound();
     }
 
-    /**
-     * @param int $id
-     * @param BrandUpdateRequest $request
-     * @return JsonResponse
-     */
     public function update(int $id, BrandUpdateRequest $request): JsonResponse
     {
         $brand = $this->service->update($id, $request->title, $this->str::slug($request->title), $request->media);
@@ -70,10 +52,6 @@ class BrandController extends Controller
             : ResponseHandler::recordNotFound();
     }
 
-    /**
-     * @param int $id
-     * @return JsonResponse
-     */
     public function destroy(int $id): JsonResponse
     {
         $brand = $this->service->destroy($id);

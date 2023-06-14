@@ -27,7 +27,6 @@ class FreshAndSeederCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return void
      * @throws ReflectionException
      */
     public function handle(): void
@@ -38,18 +37,12 @@ class FreshAndSeederCommand extends Command
         ));
     }
 
-    /**
-     * @return void
-     */
     public function freshAndSeed(): void
     {
         $this->callArtisanCommand('migrate:fresh --seed');
         $this->info(__('words.databaseMigratedAndSeeded'));
     }
 
-    /**
-     * @param $result
-     */
     public function action($result)
     {
         match ($result) {
@@ -58,10 +51,6 @@ class FreshAndSeederCommand extends Command
         };
     }
 
-    /**
-     * @param string $command
-     * @return int
-     */
     public function callArtisanCommand(string $command): int
     {
         return Artisan::call($command);

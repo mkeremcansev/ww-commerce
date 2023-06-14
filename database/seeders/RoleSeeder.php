@@ -13,7 +13,6 @@ class RoleSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
      * @throws BindingResolutionException
      */
     public function run(): void
@@ -25,8 +24,6 @@ class RoleSeeder extends Seeder
     }
 
     /**
-     * @param array $columns
-     * @return void
      * @throws BindingResolutionException
      */
     public function firstOrCreate(array $columns): void
@@ -37,8 +34,6 @@ class RoleSeeder extends Seeder
     }
 
     /**
-     * @param $roleName
-     * @return void
      * @throws BindingResolutionException
      */
     public function givePermissionByRoleName($roleName): void

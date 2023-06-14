@@ -4,24 +4,13 @@ namespace App\Http\Controllers\Product\Relation\Brand\Repository;
 
 use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Collection;
 
 class BrandRepository implements BrandInterface
 {
-    /**
-     * @param Brand $model
-     */
     public function __construct(public Brand $model)
     {
     }
 
-    /**
-     * @param $title
-     * @param $slug
-     * @param $media
-     * @return Brand
-     */
     public function store($title, $slug, $media): Brand
     {
         $brand = $this->model
@@ -34,24 +23,12 @@ class BrandRepository implements BrandInterface
         return $brand;
     }
 
-    /**
-     * @param Brand $brand
-     * @param $media
-     * @return mixed
-     */
     public function attachMedia(Brand $brand, $media): mixed
     {
         return $brand
             ->addMediaFromId($media['id']);
     }
 
-    /**
-     * @param $id
-     * @param $title
-     * @param $slug
-     * @param $media
-     * @return bool
-     */
     public function update($id, $title, $slug, $media): bool
     {
         $brand = $this->brandById($id);
@@ -68,19 +45,11 @@ class BrandRepository implements BrandInterface
         return false;
     }
 
-    /**
-     * @param Brand $brand
-     * @return void
-     */
     public function destroyMedia(Brand $brand): void
     {
         $brand->destroyMedia();
     }
 
-    /**
-     * @param $id
-     * @return Brand|null
-     */
     public function brandById($id): ?Brand
     {
         return $this->model
@@ -88,23 +57,15 @@ class BrandRepository implements BrandInterface
             ->first();
     }
 
-    /**
-     * @param array $columns
-     * @return mixed
-     */
     public function brands(array $columns = []): mixed
     {
         return $this->model
             ->when(count($columns),
-                fn($eloquent) => $eloquent->select($columns),
-                fn($eloquent) => $eloquent->get()
+                fn ($eloquent) => $eloquent->select($columns),
+                fn ($eloquent) => $eloquent->get()
             );
     }
 
-    /**
-     * @param $id
-     * @return bool
-     */
     public function destroy($id): bool
     {
         $brand = $this->brandById($id);
@@ -113,10 +74,7 @@ class BrandRepository implements BrandInterface
     }
 
     /**
-     * @param $title
-     * @param $slug
      * @param $path
-     * @return Brand
      */
     public function firstOrCreate($title, $slug): Brand
     {

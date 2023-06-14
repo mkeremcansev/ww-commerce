@@ -6,9 +6,6 @@ use Tests\AuthorizationTestCase;
 
 class AuthorizationTest extends AuthorizationTestCase
 {
-    /**
-     * @return void
-     */
     public function test_can_login_unauthorized(): void
     {
         $this->post(route('user.authorization'), [
@@ -17,13 +14,10 @@ class AuthorizationTest extends AuthorizationTestCase
         ])->assertStatus(401);
     }
 
-    /**
-     * @return void
-     */
     public function test_can_login_authorized(): void
     {
         $this->post(route('user.authorization'), [
-            'email' =>'admin@ww-commerce.com',
+            'email' => 'admin@ww-commerce.com',
             'password' => 'password',
         ])->assertStatus(200);
     }

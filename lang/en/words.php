@@ -1,4 +1,5 @@
 <?php
+
 return [
     'notFound' => 'Not found.',
     'tooManyRequests' => 'Too many requests.',
@@ -18,5 +19,5 @@ return [
     'databaseNotFreshedAndSeeded' => 'Database not freshed and seeded.',
     'actionSuccessfully' => 'Action successfully.',
     'imagesUploadedSuccessfully' => 'Images uploaded successfully.',
-    'theOldPasswordIsIncorrect' => 'The old password is incorrect.'
+    'theOldPasswordIsIncorrect' => 'The old password is incorrect.',
 ];

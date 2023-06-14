@@ -8,8 +8,6 @@ class CouponStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -29,7 +27,7 @@ class CouponStoreRequest extends FormRequest
             'value' => 'required|numeric|max:9999999.99',
             'usage_limit' => 'nullable|numeric',
             'status' => 'required|numeric',
-            'expired_at' => 'nullable|date'
+            'expired_at' => 'nullable|date',
         ];
     }
 }

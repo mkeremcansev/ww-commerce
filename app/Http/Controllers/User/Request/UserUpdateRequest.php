@@ -8,8 +8,6 @@ class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -25,9 +23,9 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $this->id . ',id',
+            'email' => 'required|email|max:255|unique:users,email,'.$this->id.',id',
             'role_id' => 'required|array',
-            'role_id.*' => 'required|integer|exists:roles,id'
+            'role_id.*' => 'required|integer|exists:roles,id',
         ];
     }
 }

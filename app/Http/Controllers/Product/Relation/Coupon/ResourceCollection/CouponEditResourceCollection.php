@@ -11,8 +11,6 @@ use ReflectionException;
 class CouponEditResourceCollection extends JsonResource
 {
     /**
-     * @param $request
-     * @return array
      * @throws ReflectionException
      */
     public function toArray($request): array
@@ -28,7 +26,7 @@ class CouponEditResourceCollection extends JsonResource
             'status' => $this->status ?? null,
             'expired_at' => $this->expired_at ?? null,
             'statuses' => EnumerationHelper::enumerationToArray(CouponStatusEnumeration::class),
-            'types' => EnumerationHelper::enumerationToArray(CouponTypeEnumeration::class)
+            'types' => EnumerationHelper::enumerationToArray(CouponTypeEnumeration::class),
         ];
     }
 }

@@ -17,16 +17,11 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    /**
-     * @param CategoryService $service
-     * @param Str $str
-     */
     public function __construct(public CategoryService $service, public Str $str)
     {
     }
 
     /**
-     * @return CategoryIndexResource
      * @throws Exception
      */
     public function index(): CategoryIndexResource
@@ -34,18 +29,11 @@ class CategoryController extends Controller
         return new CategoryIndexResource($this->service->index());
     }
 
-    /**
-     * @return AnonymousResourceCollection
-     */
     public function create(): AnonymousResourceCollection
     {
         return CategoryCreateResourceCollection::collection($this->service->create());
     }
 
-    /**
-     * @param CategoryStoreRequest $request
-     * @return JsonResponse
-     */
     public function store(CategoryStoreRequest $request): JsonResponse
     {
         $category = $this->service->store($request->title, $this->str::slug($request->title), $request->media, $request->category_id);
@@ -53,10 +41,6 @@ class CategoryController extends Controller
         return ResponseHandler::store(['id' => $category->id]);
     }
 
-    /**
-     * @param int $id
-     * @return CategoryEditResourceCollection|JsonResponse
-     */
     public function edit(int $id): CategoryEditResourceCollection|JsonResponse
     {
         $category = $this->service->edit($id);
@@ -66,11 +50,6 @@ class CategoryController extends Controller
             : ResponseHandler::notFound();
     }
 
-    /**
-     * @param int $id
-     * @param CategoryUpdateRequest $request
-     * @return JsonResponse
-     */
     public function update(int $id, CategoryUpdateRequest $request): JsonResponse
     {
         $category = $this->service->update($id, $request->title, $this->str::slug($request->title), $request->media, $request->category_id);
@@ -80,10 +59,6 @@ class CategoryController extends Controller
             : ResponseHandler::notFound();
     }
 
-    /**
-     * @param int $id
-     * @return JsonResponse
-     */
     public function destroy(int $id): JsonResponse
     {
         $category = $this->service->destroy($id);

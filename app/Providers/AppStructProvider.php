@@ -23,6 +23,7 @@ class AppStructProvider extends ServiceProvider
     {
         Collection::macro('toObject', function () {
             $object = new stdClass();
+
             return toObject($this->items, $object);
         });
     }

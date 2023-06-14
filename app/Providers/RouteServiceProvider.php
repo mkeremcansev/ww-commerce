@@ -42,8 +42,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/product/relation/coupon/api.php')) // Coupon router API's
                 ->group(base_path('routes/user/api.php')) // User router API's
                 ->group(base_path('routes/user/relation/role/api.php')) // Role router API's
-                ->group(base_path('routes/media/relation/image/api.php')) // Image router API's
-            ;
+                ->group(base_path('routes/media/relation/image/api.php')); // Image router API's
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
@@ -52,8 +51,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Configure the rate limiters for the application.
-     *
-     * @return void
      */
     protected function configureRateLimiting(): void
     {

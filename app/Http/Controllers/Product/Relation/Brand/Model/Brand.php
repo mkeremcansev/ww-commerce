@@ -12,7 +12,7 @@ class Brand extends Model
     use HasFactory, SoftDeletes, MediaPolymorphicTrait;
 
     /**
-     * @var string[] $fillable
+     * @var string[]
      */
     protected $fillable = [
         'title',

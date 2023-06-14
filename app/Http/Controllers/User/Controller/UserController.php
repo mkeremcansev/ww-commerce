@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User\Controller;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\User\Collection\UserIndexCollection;
 use App\Http\Controllers\User\Request\UserAuthorizeRequest;
 use App\Http\Controllers\User\Request\UserProfileUpdateRequest;
 use App\Http\Controllers\User\Request\UserUpdateRequest;
@@ -18,15 +17,11 @@ use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
-    /**
-     * @param UserService $service
-     */
     public function __construct(public UserService $service)
     {
     }
 
     /**
-     * @return UserIndexResource
      * @throws Exception
      */
     public function index(): UserIndexResource
@@ -34,10 +29,6 @@ class UserController extends Controller
         return new UserIndexResource($this->service->index());
     }
 
-    /**
-     * @param UserAuthorizeRequest $request
-     * @return Response|JsonResponse
-     */
     public function authorization(UserAuthorizeRequest $request): Response|JsonResponse
     {
         $token = $this->service->authorization($request->email, $request->password);
@@ -46,14 +37,11 @@ class UserController extends Controller
             ? ResponseHandler::authorize([
                 'token' => $token,
                 'permissions' => $this->service->permissionGroupsWithRoleName($request),
-                'user' => $this->service->user($request)
+                'user' => $this->service->user($request),
             ])
             : ResponseHandler::invalidAuthorizationInformation();
     }
 
-    /**
-     * @return JsonResponse
-     */
     public function logout(): JsonResponse
     {
         return $this->service->logout()
@@ -61,10 +49,6 @@ class UserController extends Controller
             : ResponseHandler::invalidAuthorizationInformation();
     }
 
-    /**
-     * @param int $id
-     * @return UserEditResourceCollection|JsonResponse
-     */
     public function edit(int $id): JsonResponse|UserEditResourceCollection
     {
         $user = $this->service->edit($id);
@@ -74,11 +58,6 @@ class UserController extends Controller
             : ResponseHandler::notFound();
     }
 
-    /**
-     * @param int $id
-     * @param UserUpdateRequest $request
-     * @return JsonResponse
-     */
     public function update(int $id, UserUpdateRequest $request): JsonResponse
     {
         $user = $this->service->update($id, $request->name, $request->email, $request->role_id);
@@ -88,10 +67,6 @@ class UserController extends Controller
             : ResponseHandler::notFound();
     }
 
-    /**
-     * @param int $id
-     * @return JsonResponse
-     */
     public function destroy(int $id): JsonResponse
     {
         return $this->service->destroy($id)
@@ -99,18 +74,11 @@ class UserController extends Controller
             : ResponseHandler::notFound();
     }
 
-    /**
-     * @return UserProfileEditResourceCollection
-     */
     public function profile(): UserProfileEditResourceCollection
     {
         return new UserProfileEditResourceCollection(auth()->user());
     }
 
-    /**
-     * @param UserProfileUpdateRequest $request
-     * @return JsonResponse
-     */
     public function profileUpdate(UserProfileUpdateRequest $request): JsonResponse
     {
         $user = $this->service->profileUpdate($request->name, $request->new_password);

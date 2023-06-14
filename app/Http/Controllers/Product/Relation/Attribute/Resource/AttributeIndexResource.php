@@ -10,15 +10,11 @@ class AttributeIndexResource extends JsonResource
 {
     use DatatableCollectionTrait;
 
-    /**
-     * @param $request
-     * @return array
-     */
     public function toArray($request): array
     {
         return [
-                'data' => AttributeIndexCollection::collection($this->data ?? null)
-            ]
+            'data' => AttributeIndexCollection::collection($this->data ?? null),
+        ]
             +
             $this->datatables($this);
     }

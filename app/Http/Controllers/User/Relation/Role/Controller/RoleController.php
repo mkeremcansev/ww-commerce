@@ -17,15 +17,11 @@ use Illuminate\Http\JsonResponse;
 
 class RoleController extends Controller
 {
-    /**
-     * @param RoleService $service
-     */
     public function __construct(public RoleService $service)
     {
     }
 
     /**
-     * @return RoleIndexResource
      * @throws Exception
      */
     public function index(): RoleIndexResource
@@ -34,7 +30,6 @@ class RoleController extends Controller
     }
 
     /**
-     * @return array
      * @throws BindingResolutionException
      */
     public function create(): array
@@ -43,7 +38,7 @@ class RoleController extends Controller
             'permission_id' => PermissionRelationResourceCollection::collection(
                 resolve(PermissionInterface::class)
                     ->permissions()
-            )
+            ),
         ];
     }
 
@@ -54,10 +49,6 @@ class RoleController extends Controller
         return ResponseHandler::store(['id' => $role->id]);
     }
 
-    /**
-     * @param int $id
-     * @return RoleEditResourceCollection|JsonResponse
-     */
     public function edit(int $id): RoleEditResourceCollection|JsonResponse
     {
         $role = $this->service->edit($id);
@@ -67,11 +58,6 @@ class RoleController extends Controller
             : ResponseHandler::recordNotFound();
     }
 
-    /**
-     * @param int $id
-     * @param RoleUpdateRequest $request
-     * @return JsonResponse
-     */
     public function update(int $id, RoleUpdateRequest $request): JsonResponse
     {
         $role = $this->service->update($id, $request->name, $request->permission_id);
@@ -81,10 +67,6 @@ class RoleController extends Controller
             : ResponseHandler::recordNotFound();
     }
 
-    /**
-     * @param int $id
-     * @return JsonResponse
-     */
     public function destroy(int $id): JsonResponse
     {
         $role = $this->service->destroy($id);

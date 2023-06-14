@@ -11,7 +11,7 @@ class Coupon extends Model
     use HasFactory, SoftDeletes;
 
     /**
-     * @var string[] $fillable
+     * @var string[]
      */
     protected $fillable = [
         'code',
@@ -21,6 +21,6 @@ class Coupon extends Model
         'status',
         'expired_at',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 }

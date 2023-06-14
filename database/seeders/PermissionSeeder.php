@@ -11,7 +11,6 @@ class PermissionSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
      * @throws BindingResolutionException
      */
     public function run(): void
@@ -104,8 +103,6 @@ class PermissionSeeder extends Seeder
     }
 
     /**
-     * @param array $columns
-     * @return void
      * @throws BindingResolutionException
      */
     public function firstOrCreate(array $columns): void

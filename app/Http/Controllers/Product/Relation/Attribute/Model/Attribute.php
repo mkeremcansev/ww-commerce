@@ -16,12 +16,9 @@ class Attribute extends Model
      * @var string[]
      */
     protected $fillable = [
-        'title'
+        'title',
     ];
 
-    /**
-     * @return HasMany
-     */
     public function values(): HasMany
     {
         return $this->hasMany(AttributeValue::class);

@@ -7,16 +7,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class AttributeRelationResourceCollection extends JsonResource
 {
-    /**
-     * @param $request
-     * @return array
-     */
     public function toArray($request): array
     {
         return [
             'id' => $this->id ?? null,
             'title' => $this->title ?? null,
-            'attribute_values' => AttributeValueResourceCollection::collection($this->values)
+            'attribute_values' => AttributeValueResourceCollection::collection($this->values),
         ];
     }
 }

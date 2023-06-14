@@ -9,31 +9,18 @@ use Illuminate\Support\Facades\File;
 
 class MediaService
 {
-    /**
-     * @param MediaInterface $repository
-     * @param FileHelper $fileHelper
-     * @param File $file
-     */
     public function __construct(
         public MediaInterface $repository,
-        public FileHelper     $fileHelper,
-        public File           $file,
-    )
-    {
+        public FileHelper $fileHelper,
+        public File $file,
+    ) {
     }
 
-    /**
-     * @return mixed
-     */
     public function index(): mixed
     {
         return $this->repository->media();
     }
 
-    /**
-     * @param $files
-     * @return bool
-     */
     public function store($files): bool
     {
         foreach ($files as $file) {
@@ -50,10 +37,6 @@ class MediaService
         return true;
     }
 
-    /**
-     * @param $media
-     * @return bool
-     */
     public function destroy($media): bool
     {
         foreach ($media as $file) {
@@ -63,10 +46,6 @@ class MediaService
         return true;
     }
 
-    /**
-     * @param $path
-     * @return array|string
-     */
     public function pathReplace($path): array|string
     {
         return str_replace('/', '', str_replace(asset(MediaPathEnumeration::MEDIA_PATH), '', $path));

@@ -20,8 +20,6 @@ use ReflectionException;
 class ProductEditResourceCollection extends JsonResource
 {
     /**
-     * @param $request
-     * @return array
      * @throws BindingResolutionException
      * @throws ReflectionException
      */
@@ -45,7 +43,7 @@ class ProductEditResourceCollection extends JsonResource
                 ->mainCategoriesWithParents(['id', 'title', 'slug'])),
             'brand_id' => BrandResourceCollection::collection(resolve(BrandInterface::class)
                 ->brands()),
-            'status_type' => EnumerationHelper::enumerationToArray(ProductStatusEnumeration::class)
+            'status_type' => EnumerationHelper::enumerationToArray(ProductStatusEnumeration::class),
         ];
     }
 }

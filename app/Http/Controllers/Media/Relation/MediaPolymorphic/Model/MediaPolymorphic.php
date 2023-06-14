@@ -10,11 +10,11 @@ class MediaPolymorphic extends Model
     use HasFactory;
 
     /**
-     * @var string[] $fillable
+     * @var string[]
      */
     protected $fillable = [
         'media_id',
         'model_type',
-        'model_id'
+        'model_id',
     ];
 }

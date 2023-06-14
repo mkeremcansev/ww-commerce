@@ -26,16 +26,11 @@ use ReflectionException;
 
 class ProductController extends Controller
 {
-    /**
-     * @param ProductService $service
-     * @param Str $str
-     */
     public function __construct(public ProductService $service, public Str $str)
     {
     }
 
     /**
-     * @return ProductIndexResource
      * @throws Exception
      */
     public function index(): ProductIndexResource
@@ -44,7 +39,6 @@ class ProductController extends Controller
     }
 
     /**
-     * @return array
      * @throws BindingResolutionException
      * @throws ReflectionException
      */
@@ -57,14 +51,10 @@ class ProductController extends Controller
                 ->mainCategoriesWithParents(['id', 'title', 'slug'])),
             'brand_id' => BrandResourceCollection::collection(resolve(BrandInterface::class)
                 ->brands()),
-            'status' => EnumerationHelper::enumerationToArray(ProductStatusEnumeration::class)
+            'status' => EnumerationHelper::enumerationToArray(ProductStatusEnumeration::class),
         ];
     }
 
-    /**
-     * @param ProductStoreRequest $request
-     * @return JsonResponse
-     */
     public function store(ProductStoreRequest $request): JsonResponse
     {
         $product = $this->service->store(
@@ -83,10 +73,6 @@ class ProductController extends Controller
         return ResponseHandler::store(['id' => $product->id]);
     }
 
-    /**
-     * @param string $slug
-     * @return ProductResourceCollection|JsonResponse
-     */
     public function show(string $slug): ProductResourceCollection|JsonResponse
     {
         $product = $this->service->productBySlug($slug);
@@ -96,10 +82,6 @@ class ProductController extends Controller
             : ResponseHandler::notFound();
     }
 
-    /**
-     * @param int $id
-     * @return ProductEditResourceCollection|JsonResponse
-     */
     public function edit(int $id): ProductEditResourceCollection|JsonResponse
     {
         $product = $this->service->edit($id);
@@ -109,11 +91,6 @@ class ProductController extends Controller
             : ResponseHandler::recordNotFound();
     }
 
-    /**
-     * @param int $id
-     * @param ProductUpdateRequest $request
-     * @return JsonResponse
-     */
     public function update(int $id, ProductUpdateRequest $request): JsonResponse
     {
         $product = $this->service->update(
@@ -135,10 +112,6 @@ class ProductController extends Controller
             : ResponseHandler::recordNotFound();
     }
 
-    /**
-     * @param int $id
-     * @return JsonResponse
-     */
     public function destroy(int $id): JsonResponse
     {
         $product = $this->service->destroy($id);

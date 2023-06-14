@@ -10,15 +10,11 @@ class RoleIndexResource extends JsonResource
 {
     use DatatableCollectionTrait;
 
-    /**
-     * @param $request
-     * @return array
-     */
     public function toArray($request): array
     {
         return [
-                'data' => RoleIndexCollection::collection($this->data ?? null)
-            ]
+            'data' => RoleIndexCollection::collection($this->data ?? null),
+        ]
             +
             $this->datatables($this);
     }

@@ -10,15 +10,11 @@ class CategoryIndexResource extends JsonResource
 {
     use DatatableCollectionTrait;
 
-    /**
-     * @param $request
-     * @return array
-     */
     public function toArray($request): array
     {
         return [
-                'data' => CategoryIndexCollection::collection($this->data ?? null)
-            ]
+            'data' => CategoryIndexCollection::collection($this->data ?? null),
+        ]
             +
             $this->datatables($this);
     }

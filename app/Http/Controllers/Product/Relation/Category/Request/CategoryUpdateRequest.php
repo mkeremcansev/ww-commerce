@@ -8,8 +8,6 @@ class CategoryUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -24,7 +22,7 @@ class CategoryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255|unique:categories,title,' . $this->id . ',id',
+            'title' => 'required|max:255|unique:categories,title,'.$this->id.',id',
             'category_id' => 'nullable|exists:categories,id',
             'media' => 'required|array',
             'media.id' => 'required|integer|exists:media,id',

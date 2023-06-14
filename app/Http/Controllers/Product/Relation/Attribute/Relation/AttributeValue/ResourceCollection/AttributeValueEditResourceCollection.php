@@ -10,8 +10,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class AttributeValueEditResourceCollection extends JsonResource
 {
     /**
-     * @param $request
-     * @return array
      * @throws BindingResolutionException
      */
     public function toArray($request): array

@@ -12,7 +12,7 @@ class Media extends Model
     use HasFactory, SoftDeletes, MediaTrait;
 
     /**
-     * @var string[] $fillable
+     * @var string[]
      */
     protected $fillable = [
         'path',
