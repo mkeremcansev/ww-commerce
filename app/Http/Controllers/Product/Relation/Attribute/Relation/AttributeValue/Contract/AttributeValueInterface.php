@@ -23,5 +23,5 @@ interface AttributeValueInterface
 
     public function destroyMedia(AttributeValue $attributeValue): void;
 
-    public function destroy($id): bool;
+    public function destroy($id): ?bool;
 }

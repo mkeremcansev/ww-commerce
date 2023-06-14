@@ -12,5 +12,5 @@ interface CouponInterface
 
     public function update($id, $code, $type, $value, $usage_limit, $status, $expired_at): bool;
 
-    public function destroy($id): bool;
+    public function destroy($id): ?bool;
 }

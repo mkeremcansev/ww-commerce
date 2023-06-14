@@ -67,7 +67,7 @@ class UserService
         return $this->repository->update($id, $name, $email, $roleId);
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
         return $this->repository->destroy($id);
     }

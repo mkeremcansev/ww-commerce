@@ -15,7 +15,7 @@ interface UserInterface
 
     public function update($id, $name, $email, array $roleId): bool;
 
-    public function destroy($id): bool;
+    public function destroy($id): ?bool;
 
     public function usersByRoleName(array $roleNames): Collection|array;
 

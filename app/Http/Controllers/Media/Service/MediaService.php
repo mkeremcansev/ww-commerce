@@ -37,7 +37,7 @@ class MediaService
         return true;
     }
 
-    public function destroy($media): bool
+    public function destroy($media): ?bool
     {
         foreach ($media as $file) {
             $this->repository->destroy($file['id']);

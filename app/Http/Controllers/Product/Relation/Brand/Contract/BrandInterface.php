@@ -18,7 +18,7 @@ interface BrandInterface
 
     public function brands(array $columns = []): mixed;
 
-    public function destroy($id): bool;
+    public function destroy($id): ?bool;
 
     public function firstOrCreate($title, $slug): Brand;
 }

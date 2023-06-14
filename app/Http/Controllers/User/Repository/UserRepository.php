@@ -34,7 +34,7 @@ class UserRepository implements UserInterface
 
     public function update($id, $name, $email, array $roleId): bool
     {
-        $user = $this->modelById($id);
+        $user = $this->userById($id);
 
         return $user && $user->update([
             'name' => $name,
@@ -42,11 +42,11 @@ class UserRepository implements UserInterface
         ]) && $user->syncRoles($roleId);
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
-        $user = $this->modelById($id);
+        $user = $this->userById($id);
 
-        return $user && $user->delete();
+        return $user?->delete();
     }
 
     public function usersByRoleName(array $roleNames): Collection|array
@@ -67,7 +67,7 @@ class UserRepository implements UserInterface
 
     public function profileUpdate($name, $password): bool
     {
-        $user = $this->modelById(auth()->id());
+        $user = $this->userById(auth()->id());
 
         return $user && $user->update([
             'name' => $name,

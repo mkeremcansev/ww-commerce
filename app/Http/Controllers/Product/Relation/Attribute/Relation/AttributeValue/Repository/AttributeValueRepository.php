@@ -83,10 +83,10 @@ class AttributeValueRepository implements AttributeValueInterface
         $attributeValue->destroyMedia();
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
         $attributeValue = $this->attributeValueById($id);
 
-        return $attributeValue && $attributeValue->delete();
+        return $attributeValue?->delete();
     }
 }

@@ -55,10 +55,10 @@ class RoleRepository implements RoleInterface
         ]) && $role->syncPermissions($permissionId);
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
         $role = $this->roleById($id);
 
-        return $role && $role->delete();
+        return $role?->delete();
     }
 }

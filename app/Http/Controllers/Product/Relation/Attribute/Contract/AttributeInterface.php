@@ -14,7 +14,7 @@ interface AttributeInterface
 
     public function update($id, $title): bool;
 
-    public function destroy($id): bool;
+    public function destroy($id): ?bool;
 
     public function firstOrCreate($title): Attribute;
 }

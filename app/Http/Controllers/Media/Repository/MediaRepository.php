@@ -39,6 +39,6 @@ class MediaRepository implements MediaInterface
     {
         $media = $this->mediaById($mediaId);
 
-        return $media && $media->delete();
+        return $media?->delete();
     }
 }

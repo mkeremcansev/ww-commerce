@@ -41,7 +41,7 @@ class RoleService
         return $this->repository->update($id, $name, $permissionId);
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
         return $this->repository->destroy($id);
     }

@@ -41,7 +41,7 @@ class AttributeValueService
         return $this->repository->update($id, $title, $code, $media, $attribute_id);
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
         return $this->repository->destroy($id);
     }

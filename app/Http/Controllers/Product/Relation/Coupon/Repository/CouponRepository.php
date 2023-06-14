@@ -58,15 +58,10 @@ class CouponRepository implements CouponInterface
         return false;
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
         $coupon = $this->couponById($id);
-        if ($coupon) {
-            $coupon->delete();
 
-            return true;
-        }
-
-        return false;
+        return $coupon?->delete();
     }
 }

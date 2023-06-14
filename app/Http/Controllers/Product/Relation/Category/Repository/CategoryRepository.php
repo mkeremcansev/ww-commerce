@@ -83,11 +83,11 @@ class CategoryRepository implements CategoryInterface
         $category->destroyMedia();
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
         $category = $this->categoryById($id);
 
-        return $category && $category->delete();
+        return $category?->delete();
     }
 
     public function firstOrCreate($title, $slug, $category_id): Category

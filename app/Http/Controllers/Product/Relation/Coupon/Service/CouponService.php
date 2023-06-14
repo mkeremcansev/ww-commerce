@@ -35,7 +35,7 @@ class CouponService
         return $this->repository->update($id, $code, $type, $value, $usage_limit, $status, $expired_at);
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
         return $this->repository->destroy($id);
     }

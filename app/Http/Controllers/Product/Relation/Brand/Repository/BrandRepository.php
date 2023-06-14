@@ -66,16 +66,13 @@ class BrandRepository implements BrandInterface
             );
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
         $brand = $this->brandById($id);
 
-        return $brand && $brand->delete();
+        return $brand?->delete();
     }
 
-    /**
-     * @param $path
-     */
     public function firstOrCreate($title, $slug): Brand
     {
         return $this->model

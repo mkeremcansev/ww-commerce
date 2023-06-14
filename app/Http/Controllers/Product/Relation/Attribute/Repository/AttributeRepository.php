@@ -45,11 +45,11 @@ class AttributeRepository implements AttributeInterface
         ]);
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
         $attribute = $this->attributeById($id);
 
-        return $attribute && $attribute->delete();
+        return $attribute?->delete();
     }
 
     public function firstOrCreate($title): Attribute

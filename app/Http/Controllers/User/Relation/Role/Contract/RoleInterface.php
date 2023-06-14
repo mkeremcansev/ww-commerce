@@ -18,5 +18,5 @@ interface RoleInterface
 
     public function update($id, $name, $permissionId): bool;
 
-    public function destroy($id): bool;
+    public function destroy($id): ?bool;
 }

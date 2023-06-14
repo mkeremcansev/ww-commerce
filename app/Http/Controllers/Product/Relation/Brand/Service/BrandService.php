@@ -36,7 +36,7 @@ class BrandService
         return $this->repository->update($id, $title, $slug, $media);
     }
 
-    public function destroy($id): bool
+    public function destroy($id): ?bool
     {
         return $this->repository->destroy($id);
     }

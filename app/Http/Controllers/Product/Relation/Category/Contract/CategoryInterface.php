@@ -21,7 +21,7 @@ interface CategoryInterface
 
     public function destroyMedia(Category $category): void;
 
-    public function destroy($id): bool;
+    public function destroy($id): ?bool;
 
     public function firstOrCreate($title, $slug, $category_id): Category;
 }
