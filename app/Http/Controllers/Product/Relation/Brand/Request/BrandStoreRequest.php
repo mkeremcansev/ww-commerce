@@ -25,7 +25,8 @@ class BrandStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|unique:brands,title|max:255',
-            'path' => 'required|max:255',
+            'media' => 'required|array',
+            'media.id' => 'required|integer|exists:media,id',
         ];
     }
 }

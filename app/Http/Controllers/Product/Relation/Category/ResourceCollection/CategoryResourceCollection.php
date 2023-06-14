@@ -16,7 +16,7 @@ class CategoryResourceCollection extends JsonResource
             'id' => $this->id ?? null,
             'title' => $this->title ?? null,
             'slug' => $this->slug ?? null,
-            'path' => asset($this->path ?? null)
+            'media' => $this->firstMedia() ?? null,
         ];
     }
 }

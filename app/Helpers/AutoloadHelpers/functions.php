@@ -123,21 +123,3 @@ if (!function_exists('convertKeyToProperty')) {
     }
 }
 
-if (!function_exists('imageKeyCreate')) {
-    /**
-     * @param array $images
-     * @return array
-     */
-    function imageKeyCreate(array $images): array
-    {
-        $array = [];
-        foreach ($images as $image) {
-            $array[] = [
-                'path' => $image,
-            ];
-        }
-
-        return $array;
-    }
-}
-

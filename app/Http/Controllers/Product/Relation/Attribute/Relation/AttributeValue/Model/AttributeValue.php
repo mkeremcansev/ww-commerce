@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Model;
 
+use App\Http\Controllers\Media\Relation\MediaPolymorphic\Trait\MediaPolymorphicTrait;
 use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AttributeValue extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, MediaPolymorphicTrait;
 
     /**
      * @var string[]
@@ -17,7 +18,6 @@ class AttributeValue extends Model
     protected $fillable = [
         'title',
         'code',
-        'path',
         'attribute_id'
     ];
 

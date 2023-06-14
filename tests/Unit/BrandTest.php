@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Http\Controllers\Media\Model\Media;
 use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
 use Tests\TestCase;
 
@@ -41,7 +42,7 @@ class BrandTest extends TestCase
     {
         $brand = $this->post(route('brand.store'), [
             'title' => $this->faker->name,
-            'path' => $this->faker->imageUrl(),
+            'media' => Media::first()->toArray()
         ])->assertStatus(200)->getOriginalContent();
         self::$id = $brand['data']['id'];
     }
@@ -61,7 +62,7 @@ class BrandTest extends TestCase
     {
         $this->patch(route('brand.update', self::$id), [
             'title' => $this->faker->name,
-            'path' => $this->faker->imageUrl(),
+            'media' => Media::first()->toArray()
         ])->assertStatus(200);
     }
 

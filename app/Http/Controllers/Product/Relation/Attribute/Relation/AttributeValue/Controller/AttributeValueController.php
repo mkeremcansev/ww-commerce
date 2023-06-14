@@ -53,7 +53,7 @@ class AttributeValueController extends Controller
      */
     public function store(AttributeValueStoreRequest $request): JsonResponse
     {
-        $attributeValue = $this->service->store($request->title, $request->code, $request->path, $request->attribute_id);
+        $attributeValue = $this->service->store($request->title, $request->code, $request->media, $request->attribute_id);
 
         return ResponseHandler::store(['id' => $attributeValue->id]);
     }
@@ -78,7 +78,7 @@ class AttributeValueController extends Controller
      */
     public function update(int $id, AttributeValueUpdateRequest $request): JsonResponse
     {
-        $attributeValue = $this->service->update($id, $request->title, $request->code, $request->path, $request->attribute_id);
+        $attributeValue = $this->service->update($id, $request->title, $request->code, $request->media, $request->attribute_id);
 
         return $attributeValue
             ? ResponseHandler::update(['id' => $id])

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Product\Relation\Category\Contract;
 
 use App\Http\Controllers\Product\Relation\Category\Model\Category;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 interface CategoryInterface
@@ -28,21 +27,34 @@ interface CategoryInterface
     /**
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @param $category_id
      * @return mixed
      */
-    public function store($title, $slug, $path, $category_id): mixed;
+    public function store($title, $slug, $media, $category_id): mixed;
 
     /**
      * @param $id
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @param $category_id
      * @return bool
      */
-    public function update($id, $title, $slug, $path, $category_id): bool;
+    public function update($id, $title, $slug, $media, $category_id): bool;
+
+    /**
+     * @param Category $category
+     * @param $media
+     * @return void
+     */
+    public function attachMedia(Category $category, $media): void;
+
+    /**
+     * @param Category $category
+     * @return void
+     */
+    public function destroyMedia(Category $category): void;
 
     /**
      * @param $id
@@ -53,9 +65,8 @@ interface CategoryInterface
     /**
      * @param $title
      * @param $slug
-     * @param $path
      * @param $category_id
      * @return Category
      */
-    public function firstOrCreate($title, $slug, $path, $category_id): Category;
+    public function firstOrCreate($title, $slug, $category_id): Category;
 }

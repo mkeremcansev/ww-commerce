@@ -26,7 +26,8 @@ class AttributeValueUpdateRequest extends FormRequest
         return [
             'title' => 'required|max:255|unique:attribute_values,title,' . $this->id . ',id',
             'code' => 'required|max:255|unique:attribute_values,code,' . $this->id . ',id',
-            'path' => 'required|max:255',
+            'media' => 'required|array',
+            'media.id' => 'required|integer|exists:media,id',
             'attribute_id' => 'required|exists:attributes,id'
         ];
     }

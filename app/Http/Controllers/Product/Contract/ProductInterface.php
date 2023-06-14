@@ -28,10 +28,10 @@ interface ProductInterface
      * @param $status
      * @param $variants
      * @param $stock
-     * @param $images
+     * @param $media
      * @return mixed
      */
-    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images): mixed;
+    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed;
 
     /**
      * @param $variants
@@ -42,10 +42,10 @@ interface ProductInterface
 
     /**
      * @param Product $product
-     * @param array $images
+     * @param array $media
      * @return void
      */
-    public function attachImage(Product $product, array $images): void;
+    public function attachMedia(Product $product, array $media): void;
 
     /**
      * @param $product
@@ -89,16 +89,16 @@ interface ProductInterface
      * @param $status
      * @param $variants
      * @param $stock
-     * @param $images
+     * @param $media
      * @return mixed
      */
-    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images): mixed;
+    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed;
 
     /**
      * @param mixed $product
      * @return void
      */
-    public function destroyProductRelationalData(mixed $product): void;
+    public function destroyProductRelationalData(Product $product): void;
 
     /**
      * @param $id
@@ -107,10 +107,10 @@ interface ProductInterface
     public function destroy($id): bool;
 
     /**
-     * @param $product
+     * @param Product $product
      * @return void
      */
-    public function destroyProductImages($product): void;
+    public function destroyMedia(Product $product): void;
 
     /**
      * @param array $columns

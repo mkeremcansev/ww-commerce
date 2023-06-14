@@ -24,18 +24,18 @@ class BrandService
      */
     public function index(): mixed
     {
-        return DatatableHelper::datatable($this->repository->brands(['id', 'title', 'slug', 'path']));
+        return DatatableHelper::datatable($this->repository->brands(['id', 'title', 'slug']));
     }
 
     /**
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @return Brand
      */
-    public function store($title, $slug, $path): Brand
+    public function store($title, $slug, $media): Brand
     {
-        return $this->repository->store($title, $slug, $path);
+        return $this->repository->store($title, $slug, $media);
     }
 
     /**
@@ -51,12 +51,12 @@ class BrandService
      * @param $id
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @return bool
      */
-    public function update($id, $title, $slug, $path): bool
+    public function update($id, $title, $slug, $media): bool
     {
-        return $this->repository->update($id, $title, $slug, $path);
+        return $this->repository->update($id, $title, $slug, $media);
     }
 
     /**

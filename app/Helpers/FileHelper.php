@@ -7,11 +7,11 @@ class FileHelper
     /**
      * @param $file
      * @param $path
-     * @return void
+     * @return mixed
      */
-    public static function upload($file, $path): void
+    public static function upload($file, $path): mixed
     {
-        $file->move(
+        return $file->move(
             public_path($path),
             pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . date('d-m-Y-H-i-s') . rand(1, 99999) . '.' . $file->extension()
         );

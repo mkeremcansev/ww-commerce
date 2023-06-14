@@ -18,7 +18,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->string('path');
             $table->foreignId('category_id')->nullable()->constrained();
             $table->softDeletes();
             $table->timestamps();

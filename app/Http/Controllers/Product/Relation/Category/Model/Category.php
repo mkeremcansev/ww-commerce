@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Product\Relation\Category\Model;
 
+use App\Http\Controllers\Media\Relation\MediaPolymorphic\Trait\MediaPolymorphicTrait;
 use App\Http\Controllers\Product\Relation\Category\Enumeration\CategoryDefaultPathEnumeration;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, MediaPolymorphicTrait;
 
     /**
      * @var string[]
@@ -18,7 +19,6 @@ class Category extends Model
     protected $fillable = [
         'title',
         'slug',
-        'path',
         'category_id'
     ];
 

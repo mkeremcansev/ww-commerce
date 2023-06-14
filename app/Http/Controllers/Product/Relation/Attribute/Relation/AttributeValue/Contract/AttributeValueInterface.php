@@ -34,21 +34,34 @@ interface AttributeValueInterface
     /**
      * @param $title
      * @param $code
-     * @param $path
+     * @param $media
      * @param $attribute_id
      * @return AttributeValue
      */
-    public function store($title, $code, $path, $attribute_id): AttributeValue;
+    public function store($title, $code, $media, $attribute_id): AttributeValue;
 
     /**
      * @param $id
      * @param $title
      * @param $code
-     * @param $path
+     * @param $media
      * @param $attribute_id
      * @return bool
      */
-    public function update($id, $title, $code, $path, $attribute_id): bool;
+    public function update($id, $title, $code, $media, $attribute_id): bool;
+
+    /**
+     * @param AttributeValue $attributeValue
+     * @param $media
+     * @return mixed
+     */
+    public function attachMedia(AttributeValue $attributeValue, $media): mixed;
+
+    /**
+     * @param AttributeValue $attributeValue
+     * @return void
+     */
+    public function destroyMedia(AttributeValue $attributeValue): void;
 
     /**
      * @param $id

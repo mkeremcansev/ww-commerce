@@ -35,14 +35,13 @@ class CategorySeeder extends Seeder
     public function firstOrCreate($title, array $parents): void
     {
         $category = resolve(CategoryInterface::class)
-            ->firstOrCreate($title, Str::slug($title), CategoryDefaultPathEnumeration::DEFAULT_PATH, null);
+            ->firstOrCreate($title, Str::slug($title), null);
 
         foreach ($parents as $parent) {
             $category->parents()
                 ->firstOrCreate([
                     'title' => $parent['title'],
                     'slug' => Str::slug($parent['title']),
-                    'path' => CategoryDefaultPathEnumeration::DEFAULT_PATH
                 ]);
         }
     }

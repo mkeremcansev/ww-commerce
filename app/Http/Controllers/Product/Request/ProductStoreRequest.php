@@ -38,8 +38,8 @@ class ProductStoreRequest extends FormRequest
             'variants.*.price' => 'nullable|numeric',
             'variants.*.attributes.*.attribute_id' => 'required|integer|exists:attributes,id',
             'variants.*.attributes.*.attribute_value_id' => 'required|integer|exists:attribute_values,id',
-            'images' => 'required|array',
-            'images.*' => 'required|string'
+            'media' => 'required|array',
+            'media.*.id' => 'required|integer|exists:media,id',
         ];
     }
 }

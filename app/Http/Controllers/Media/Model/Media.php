@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Media\Relation\Image\Model;
+namespace App\Http\Controllers\Media\Model;
 
+use App\Http\Controllers\Media\Trait\MediaTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Image extends Model
+class Media extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes, MediaTrait;
 
     /**
      * @var string[] $fillable
@@ -16,6 +18,7 @@ class Image extends Model
         'path',
         'extension',
         'mime_type',
-        'size'
+        'size',
+        'path_info',
     ];
 }

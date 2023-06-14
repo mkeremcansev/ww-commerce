@@ -19,35 +19,62 @@ class BrandRepository implements BrandInterface
     /**
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @return Brand
      */
-    public function store($title, $slug, $path): Brand
+    public function store($title, $slug, $media): Brand
     {
-        return $this->model
+        $brand = $this->model
             ->create([
                 'title' => $title,
                 'slug' => $slug,
-                'path' => $path,
             ]);
+        $this->attachMedia($brand, $media);
+
+        return $brand;
+    }
+
+    /**
+     * @param Brand $brand
+     * @param $media
+     * @return mixed
+     */
+    public function attachMedia(Brand $brand, $media): mixed
+    {
+        return $brand
+            ->addMediaFromId($media['id']);
     }
 
     /**
      * @param $id
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @return bool
      */
-    public function update($id, $title, $slug, $path): bool
+    public function update($id, $title, $slug, $media): bool
     {
         $brand = $this->brandById($id);
+        if ($brand) {
+            $this->destroyMedia($brand);
+            $this->attachMedia($brand, $media);
 
-        return $brand && $brand->update([
+            return $brand->update([
                 'title' => $title,
                 'slug' => $slug,
-                'path' => $path,
             ]);
+        }
+
+        return false;
+    }
+
+    /**
+     * @param Brand $brand
+     * @return void
+     */
+    public function destroyMedia(Brand $brand): void
+    {
+        $brand->destroyMedia();
     }
 
     /**
@@ -91,13 +118,12 @@ class BrandRepository implements BrandInterface
      * @param $path
      * @return Brand
      */
-    public function firstOrCreate($title, $slug, $path): Brand
+    public function firstOrCreate($title, $slug): Brand
     {
         return $this->model
             ->firstOrCreate([
                 'title' => $title,
                 'slug' => $slug,
-                'path' => $path,
             ]);
     }
 }

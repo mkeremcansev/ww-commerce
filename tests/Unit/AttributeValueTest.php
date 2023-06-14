@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Http\Controllers\Media\Model\Media;
 use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Model\AttributeValue;
 use Tests\TestCase;
@@ -51,7 +52,7 @@ class AttributeValueTest extends TestCase
             'attribute_id' => self::$parent_id,
             'title' => $this->faker->colorName,
             'code' => $this->faker->colorName,
-            'path' => $this->faker->imageUrl()
+            'media' => Media::first()->toArray()
         ])->assertStatus(200)->getOriginalContent();
 
         self::$id = $attribute_value['data']['id'];
@@ -74,7 +75,7 @@ class AttributeValueTest extends TestCase
             'attribute_id' => self::$parent_id,
             'title' => $this->faker->colorName,
             'code' => $this->faker->colorName,
-            'path' => $this->faker->imageUrl()
+            'media' => Media::first()->toArray()
         ])->assertStatus(200);
     }
 

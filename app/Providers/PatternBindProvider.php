@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Media\Image\Relation\Contract\ImagePolymorphicInterface;
-use App\Http\Controllers\Media\Image\Relation\Repository\ImagePolymorphicRepository;
+use App\Http\Controllers\Media\Contract\MediaInterface;
 use App\Http\Controllers\Media\Relation\Image\Contract\ImageInterface;
 use App\Http\Controllers\Media\Relation\Image\Repository\ImageRepository;
+use App\Http\Controllers\Media\Relation\MediaPolymorphic\Contract\MediaPolymorphicInterface;
+use App\Http\Controllers\Media\Relation\MediaPolymorphic\Repository\MediaPolymorphicRepository;
+use App\Http\Controllers\Media\Repository\MediaRepository;
 use App\Http\Controllers\Product\Contract\ProductInterface;
 use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
 use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;
@@ -85,8 +87,13 @@ class PatternBindProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            ImagePolymorphicInterface::class,
-            ImagePolymorphicRepository::class
+            MediaInterface::class,
+            MediaRepository::class
+        );
+
+        $this->app->bind(
+            MediaPolymorphicInterface::class,
+            MediaPolymorphicRepository::class
         );
     }
 

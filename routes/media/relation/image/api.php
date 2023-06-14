@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\Media\Relation\Image\Controller\ImageController;
+use App\Http\Controllers\Media\Controller\MediaController;
 use App\Http\Enumeration\RouteGroupNameEnumeration;
 use App\Http\Enumeration\RouteGroupPathEnumeration;
 use Illuminate\Support\Facades\Route;
 
-Route::name(RouteGroupNameEnumeration::IMAGE_GROUP)->prefix(RouteGroupPathEnumeration::IMAGE_GROUP)->group(function ($router) {
-    $router->controller(ImageController::class)->group(function ($router) {
-        $router->get('/', 'index')->name('index')->middleware(['auth:sanctum', 'permission:image.index']);
-        $router->post('/upload', 'upload')->name('upload')->middleware(['auth:sanctum', 'permission:image.upload']);
+Route::name(RouteGroupNameEnumeration::MEDIA_GROUP)->prefix(RouteGroupPathEnumeration::MEDIA_GROUP)->group(function ($router) {
+    $router->controller(MediaController::class)->group(function ($router) {
         $router->post('/destroy', 'destroy')->name('destroy')->middleware(['auth:sanctum', 'permission:image.destroy']);
+        $router->get('/', 'index')->name('index')->middleware(['auth:sanctum', 'permission:image.index']);
+        $router->post('/store', 'store')->name('upload')->middleware(['auth:sanctum', 'permission:image.upload']);
     });
 });

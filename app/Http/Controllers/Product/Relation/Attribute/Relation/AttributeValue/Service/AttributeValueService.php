@@ -22,7 +22,7 @@ class AttributeValueService
      */
     public function index(): mixed
     {
-        return DatatableHelper::datatable($this->repository->attributeValues(['id', 'title', 'code', 'path']));
+        return DatatableHelper::datatable($this->repository->attributeValues(['id', 'title', 'code']));
     }
 
     /**
@@ -36,13 +36,13 @@ class AttributeValueService
     /**
      * @param $title
      * @param $code
-     * @param $path
+     * @param $media
      * @param $attribute_id
      * @return AttributeValue
      */
-    public function store($title, $code, $path, $attribute_id): AttributeValue
+    public function store($title, $code, $media, $attribute_id): AttributeValue
     {
-        return $this->repository->store($title, $code, $path, $attribute_id);
+        return $this->repository->store($title, $code, $media, $attribute_id);
     }
 
     /**
@@ -58,13 +58,13 @@ class AttributeValueService
      * @param $id
      * @param $title
      * @param $code
-     * @param $path
+     * @param $media
      * @param $attribute_id
      * @return bool
      */
-    public function update($id, $title, $code, $path, $attribute_id): bool
+    public function update($id, $title, $code, $media, $attribute_id): bool
     {
-        return $this->repository->update($id, $title, $code, $path, $attribute_id);
+        return $this->repository->update($id, $title, $code, $media, $attribute_id);
     }
 
     /**

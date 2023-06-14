@@ -19,10 +19,10 @@ class CategoryEditResourceCollection extends JsonResource
             'id' => $this->id ?? null,
             'title' => $this->title ?? null,
             'slug' => $this->slug ?? null,
-            'path' => asset($this->path ?? null),
+            'media' => $this->firstMedia() ?? null,
             'category_id' => $this->category_id ?? null,
             'categories' => CategoryCreateResourceCollection::collection(resolve(CategoryInterface::class)
-                ->mainCategoriesWithParents(['id', 'title', 'slug', 'path']))
+                ->mainCategoriesWithParents(['id', 'title', 'slug']))
         ];
     }
 }

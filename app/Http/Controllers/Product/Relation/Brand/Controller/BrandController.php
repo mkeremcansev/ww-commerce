@@ -38,7 +38,7 @@ class BrandController extends Controller
      */
     public function store(BrandStoreRequest $request): JsonResponse
     {
-        $brand = $this->service->store($request->title, $this->str::slug($request->title), $request->path);
+        $brand = $this->service->store($request->title, $this->str::slug($request->title), $request->media);
 
         return ResponseHandler::store(['id' => $brand->id]);
     }
@@ -63,7 +63,7 @@ class BrandController extends Controller
      */
     public function update(int $id, BrandUpdateRequest $request): JsonResponse
     {
-        $brand = $this->service->update($id, $request->title, $this->str::slug($request->title), $request->path);
+        $brand = $this->service->update($id, $request->title, $this->str::slug($request->title), $request->media);
 
         return $brand
             ? ResponseHandler::update(['id' => $id])

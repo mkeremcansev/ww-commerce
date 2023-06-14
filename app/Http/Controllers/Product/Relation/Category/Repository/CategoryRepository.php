@@ -59,38 +59,63 @@ class CategoryRepository implements CategoryInterface
     /**
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @param $category_id
      * @return mixed
      */
-    public function store($title, $slug, $path, $category_id): mixed
+    public function store($title, $slug, $media, $category_id): mixed
     {
-        return $this->model->create([
+        $category = $this->model->create([
             'title' => $title,
             'slug' => $slug,
-            'path' => $path,
             'category_id' => $category_id
         ]);
+        $this->attachMedia($category, $media);
+
+        return $category;
     }
 
     /**
      * @param $id
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @param $category_id
      * @return bool
      */
-    public function update($id, $title, $slug, $path, $category_id): bool
+    public function update($id, $title, $slug, $media, $category_id): bool
     {
         $category = $this->categoryById($id);
-
-        return $category && $category->update([
+        if ($category) {
+            $this->destroyMedia($category);
+            $this->attachMedia($category, $media);
+            return $category->update([
                 'title' => $title,
                 'slug' => $slug,
-                'path' => $path,
                 'category_id' => $category_id
             ]);
+        }
+
+        return false;
+    }
+
+    /**
+     * @param Category $category
+     * @param $media
+     * @return void
+     */
+    public function attachMedia(Category $category, $media): void
+    {
+        $category->addMediaFromId($media['id']);
+    }
+
+    /**
+     * @param Category $category
+     * @return void
+     */
+    public function destroyMedia(Category $category): void
+    {
+        $category->destroyMedia();
     }
 
     /**
@@ -107,16 +132,14 @@ class CategoryRepository implements CategoryInterface
     /**
      * @param $title
      * @param $slug
-     * @param $path
      * @param $category_id
      * @return Category
      */
-    public function firstOrCreate($title, $slug, $path, $category_id): Category
+    public function firstOrCreate($title, $slug, $category_id): Category
     {
         return $this->model->firstOrCreate([
             'title' => $title,
             'slug' => $slug,
-            'path' => $path,
             'category_id' => $category_id
         ]);
     }

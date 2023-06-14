@@ -25,8 +25,9 @@ class CategoryStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255|unique:categories,title',
-            'path' => 'required|max:255',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'media' => 'required|array',
+            'media.id' => 'required|integer|exists:media,id',
         ];
     }
 }

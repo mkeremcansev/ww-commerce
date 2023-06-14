@@ -61,38 +61,66 @@ class AttributeValueRepository implements AttributeValueInterface
     /**
      * @param $title
      * @param $code
-     * @param $path
+     * @param $media
      * @param $attribute_id
      * @return AttributeValue
      */
-    public function store($title, $code, $path, $attribute_id): AttributeValue
+    public function store($title, $code, $media, $attribute_id): AttributeValue
     {
-        return $this->model->create([
+        $attributeValue = $this->model->create([
             'title' => $title,
             'code' => $code,
-            'path' => $path,
             'attribute_id' => $attribute_id
         ]);
+       $this->attachMedia($attributeValue, $media);
+
+        return $attributeValue;
     }
 
     /**
      * @param $id
      * @param $title
      * @param $code
-     * @param $path
+     * @param $media
      * @param $attribute_id
      * @return bool
      */
-    public function update($id, $title, $code, $path, $attribute_id): bool
+    public function update($id, $title, $code, $media, $attribute_id): bool
     {
         $attributeValue = $this->attributeValueById($id);
 
-        return $attributeValue && $attributeValue->update([
+        if ($attributeValue){
+            $this->destroyMedia($attributeValue);
+            $this->attachMedia($attributeValue, $media);
+
+            return $attributeValue->update([
                 'title' => $title,
                 'code' => $code,
-                'path' => $path,
                 'attribute_id' => $attribute_id
             ]);
+        }
+
+        return false;
+    }
+
+    /**
+     * @param AttributeValue $attributeValue
+     * @param $media
+     * @return mixed
+     */
+    public function attachMedia(AttributeValue $attributeValue, $media): mixed
+    {
+        return $attributeValue
+            ->addMediaFromId($media['id']);
+    }
+
+    /**
+     * @param AttributeValue $attributeValue
+     * @return void
+     */
+    public function destroyMedia(AttributeValue $attributeValue): void
+    {
+        $attributeValue->destroyMedia();
     }
 
     /**

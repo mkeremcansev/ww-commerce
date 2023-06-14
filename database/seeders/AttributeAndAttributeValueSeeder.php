@@ -33,7 +33,6 @@ class AttributeAndAttributeValueSeeder extends Seeder
                 ->firstOrCreate([
                     'title' => $value,
                     'code' => strtoupper($value),
-                    'path' => AttributeValueDefaultPathEnumeration::DEFAULT_PATH
                 ]);
         }
     }

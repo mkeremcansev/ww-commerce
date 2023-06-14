@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\ResourceCollection;
 
+use App\Http\Controllers\Media\MediaResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AttributeValueResourceCollection extends JsonResource
@@ -16,7 +17,7 @@ class AttributeValueResourceCollection extends JsonResource
             'id' => $this->id ?? null,
             'title' => $this->title ?? null,
             'code' => $this->code ?? null,
-            'path' => asset($this->path ?? null),
+            'media' => new MediaResourceCollection($this->firstMedia() ?? null),
             'attribute_id' => $this->attribute_id ?? null,
         ];
     }

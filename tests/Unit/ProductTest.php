@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Http\Controllers\Media\Model\Media;
 use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Controllers\Product\Model\Product;
 use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
@@ -51,9 +52,7 @@ class ProductTest extends TestCase
             'status' => ProductStatusEnumeration::ACTIVE,
             'variants' => variantCombination(),
             'stock' => rand(0, 3),
-            'images' => [
-                'https://via.placeholder.com/150'
-            ]
+            'media' => Media::limit(3)->get()->toArray(),
         ])->assertStatus(200)->getOriginalContent();
         self::$id = $product['data']['id'];
     }
@@ -80,9 +79,7 @@ class ProductTest extends TestCase
             'status' => ProductStatusEnumeration::ACTIVE,
             'variants' => variantCombination(),
             'stock' => rand(0, 3),
-            'images' => [
-                'https://via.placeholder.com/150'
-            ]
+            'media' => Media::limit(3)->get()->toArray(),
         ])->assertStatus(200);
     }
 

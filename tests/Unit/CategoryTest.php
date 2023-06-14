@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Http\Controllers\Media\Model\Media;
 use App\Http\Controllers\Product\Relation\Category\Model\Category;
 use Tests\TestCase;
 
@@ -41,7 +42,7 @@ class CategoryTest extends TestCase
     {
         $category = $this->post(route('category.store'), [
             'title' => $this->faker->name,
-            'path' => $this->faker->imageUrl(),
+            'media' => Media::first()->toArray()
         ])->assertStatus(200)->getOriginalContent();
         self::$id = $category['data']['id'];
     }
@@ -61,7 +62,7 @@ class CategoryTest extends TestCase
     {
         $this->patch(route('category.update', self::$id), [
             'title' => $this->faker->name,
-            'path' => $this->faker->imageUrl(),
+            'media' => Media::first()->toArray()
         ])->assertStatus(200);
     }
 

@@ -23,7 +23,7 @@ class CategoryService
      */
     public function index(): mixed
     {
-        return DatatableHelper::datatable($this->repository->categories(['id', 'title', 'slug', 'path']));
+        return DatatableHelper::datatable($this->repository->categories(['id', 'title', 'slug']));
     }
 
     /**
@@ -31,19 +31,19 @@ class CategoryService
      */
     public function create(): Collection|array
     {
-        return $this->repository->mainCategoriesWithParents(['id', 'title', 'slug', 'path']);
+        return $this->repository->mainCategoriesWithParents(['id', 'title', 'slug']);
     }
 
     /**
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @param $category_id
      * @return mixed
      */
-    public function store($title, $slug, $path, $category_id): mixed
+    public function store($title, $slug, $media, $category_id): mixed
     {
-        return $this->repository->store($title, $slug, $path, $category_id);
+        return $this->repository->store($title, $slug, $media, $category_id);
     }
 
     /**
@@ -59,13 +59,13 @@ class CategoryService
      * @param $id
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @param $category_id
      * @return mixed
      */
-    public function update($id, $title, $slug, $path, $category_id): mixed
+    public function update($id, $title, $slug, $media, $category_id): mixed
     {
-        return $this->repository->update($id,$title, $slug, $path, $category_id);
+        return $this->repository->update($id,$title, $slug, $media, $category_id);
     }
 
     /**

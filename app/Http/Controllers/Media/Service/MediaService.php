@@ -2,7 +2,73 @@
 
 namespace App\Http\Controllers\Media\Service;
 
+use App\Helpers\FileHelper;
+use App\Http\Controllers\Media\Contract\MediaInterface;
+use App\Http\Controllers\Media\Enumeration\MediaPathEnumeration;
+use Illuminate\Support\Facades\File;
+
 class MediaService
 {
+    /**
+     * @param MediaInterface $repository
+     * @param FileHelper $fileHelper
+     * @param File $file
+     */
+    public function __construct(
+        public MediaInterface $repository,
+        public FileHelper     $fileHelper,
+        public File           $file,
+    )
+    {
+    }
 
+    /**
+     * @return mixed
+     */
+    public function index(): mixed
+    {
+        return $this->repository->media();
+    }
+
+    /**
+     * @param $files
+     * @return bool
+     */
+    public function store($files): bool
+    {
+        foreach ($files as $file) {
+            $uploadedFile = $this->fileHelper::upload($file, MediaPathEnumeration::MEDIA_PATH);
+            $this->repository->store(
+                $uploadedFile->getFilename(),
+                $uploadedFile->getExtension(),
+                $uploadedFile->getMimeType(),
+                $uploadedFile->getSize(),
+                MediaPathEnumeration::MEDIA_PATH
+            );
+        }
+
+        return true;
+    }
+
+    /**
+     * @param $media
+     * @return bool
+     */
+    public function destroy($media): bool
+    {
+        foreach ($media as $file) {
+            $this->repository->destroy($file['id']);
+        }
+
+        return true;
+    }
+
+    /**
+     * @param $path
+     * @return array|string
+     */
+    public function pathReplace($path): array|string
+    {
+        return str_replace('/', '', str_replace(asset(MediaPathEnumeration::MEDIA_PATH), '', $path));
+    }
 }

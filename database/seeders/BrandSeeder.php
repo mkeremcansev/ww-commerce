@@ -27,6 +27,6 @@ class BrandSeeder extends Seeder
     public function firstOrCreate(string $title): void
     {
         resolve(BrandInterface::class)
-            ->firstOrCreate($title, Str::slug($title), BrandDefaultPathEnumeration::DEFAULT_PATH);
+            ->firstOrCreate($title, Str::slug($title));
     }
 }

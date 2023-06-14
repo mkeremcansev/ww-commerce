@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Product\Relation\ProductImage\Model;
+namespace App\Http\Controllers\Media\Relation\MediaPolymorphic\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductImage extends Model
+class MediaPolymorphic extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,8 @@ class ProductImage extends Model
      * @var string[] $fillable
      */
     protected $fillable = [
-        'product_id',
-        'path'
+        'media_id',
+        'model_type',
+        'model_id'
     ];
 }

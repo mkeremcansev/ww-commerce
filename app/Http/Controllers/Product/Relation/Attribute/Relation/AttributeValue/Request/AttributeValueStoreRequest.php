@@ -26,7 +26,8 @@ class AttributeValueStoreRequest extends FormRequest
         return [
             'title' => 'required|max:255|unique:attribute_values,title',
             'code' => 'required|max:255|unique:attribute_values,code',
-            'path' => 'required|max:255',
+            'media' => 'required|array',
+            'media.id' => 'required|integer|exists:media,id',
             'attribute_id' => 'required|exists:attributes,id'
         ];
     }

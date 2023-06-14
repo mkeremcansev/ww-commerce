@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Media\Relation\Image\Request;
+namespace App\Http\Controllers\Media\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ImageUploadRequest extends FormRequest
+class MediaDestroyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class ImageUploadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'files' => 'required|array',
-            'files.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'media' => 'required|array',
+            'media.*.id' => 'required|integer|exists:media,id',
         ];
     }
 }

@@ -11,19 +11,32 @@ interface BrandInterface
     /**
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @return Brand
      */
-    public function store($title, $slug, $path): Brand;
+    public function store($title, $slug, $media): Brand;
+
+    /**
+     * @param Brand $brand
+     * @param $media
+     * @return mixed
+     */
+    public function attachMedia(Brand $brand, $media): mixed;
 
     /**
      * @param $id
      * @param $title
      * @param $slug
-     * @param $path
+     * @param $media
      * @return bool
      */
-    public function update($id, $title, $slug, $path): bool;
+    public function update($id, $title, $slug, $media): bool;
+
+    /**
+     * @param Brand $brand
+     * @return void
+     */
+    public function destroyMedia(Brand $brand): void;
 
     /**
      * @param $id
@@ -47,8 +60,7 @@ interface BrandInterface
     /**
      * @param $title
      * @param $slug
-     * @param $path
      * @return Brand
      */
-    public function firstOrCreate($title, $slug, $path): Brand;
+    public function firstOrCreate($title, $slug): Brand;
 }

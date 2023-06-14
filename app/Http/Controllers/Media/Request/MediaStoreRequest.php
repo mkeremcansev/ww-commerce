@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Product\Relation\Category\Request;
+namespace App\Http\Controllers\Media\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryIndexRequest extends FormRequest
+class MediaStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,8 @@ class CategoryIndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'nullable',
-            'title' => 'nullable',
-            'slug' => 'nullable',
-            'path' => 'nullable'
+            'files' => 'required|array',
+            'files.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

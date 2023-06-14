@@ -17,19 +17,21 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->firstOrCreate(
-            'Microphone',
-            'microphone',
-            1999.99,
-            'Microphone description',
-            resolve(CategoryInterface::class)->categories()->pluck('id')->toArray(),
-            resolve(BrandInterface::class)->brands()->first()->id,
-            ProductStatusEnumeration::ACTIVE,
-            variantCombination(),
-            [
-                'https://cansev.dev/image.png'
-            ]
-        );
+//        $this->firstOrCreate(
+//            'Microphone',
+//            'microphone',
+//            1999.99,
+//            'Microphone description',
+//            resolve(CategoryInterface::class)->categories()->pluck('id')->toArray(),
+//            resolve(BrandInterface::class)->brands()->first()->id,
+//            ProductStatusEnumeration::ACTIVE,
+//            variantCombination(),
+//            [
+//               [
+//                   'id' => 1,
+//               ]
+//            ]
+//        );
     }
 
     /**

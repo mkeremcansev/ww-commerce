@@ -48,7 +48,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request): JsonResponse
     {
-        $category = $this->service->store($request->title, $this->str::slug($request->title), $request->path, $request->category_id);
+        $category = $this->service->store($request->title, $this->str::slug($request->title), $request->media, $request->category_id);
 
         return ResponseHandler::store(['id' => $category->id]);
     }
@@ -73,7 +73,7 @@ class CategoryController extends Controller
      */
     public function update(int $id, CategoryUpdateRequest $request): JsonResponse
     {
-        $category = $this->service->update($id, $request->title, $this->str::slug($request->title), $request->path, $request->category_id);
+        $category = $this->service->update($id, $request->title, $this->str::slug($request->title), $request->media, $request->category_id);
 
         return $category
             ? ResponseHandler::update(['id' => $id])

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\ResourceCollection;
 
+use App\Http\Controllers\Media\MediaResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
 use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeResourceCollection;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -20,7 +21,7 @@ class AttributeValueEditResourceCollection extends JsonResource
             'id' => $this->id ?? null,
             'title' => $this->title ?? null,
             'code' => $this->code ?? null,
-            'path' => asset($this->path ?? null),
+            'media' => $this->firstMedia() ?? null,
             'attribute_id' => $this->attribute_id ?? null,
             'attributes' => AttributeResourceCollection::collection(resolve(AttributeInterface::class)
             ->attributes()),

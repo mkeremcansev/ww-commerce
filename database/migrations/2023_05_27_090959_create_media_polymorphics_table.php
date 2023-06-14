@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('image_polymorphics', function (Blueprint $table) {
+        Schema::create('media_polymorphics', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('image_id')->constrained()->cascadeOnDelete();
-            $table->string('model_type');
-            $table->unsignedBigInteger('model_id');
+            $table->foreignId('media_id')->constrained('media');
+            $table->morphs('model');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('image_polymorphics');
+        Schema::dropIfExists('media_polymorphics');
     }
 };

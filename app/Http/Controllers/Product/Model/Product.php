@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Product\Model;
 
+use App\Http\Controllers\Media\Relation\MediaPolymorphic\Trait\MediaPolymorphicTrait;
 use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
 use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
 use App\Http\Controllers\Product\Relation\Category\Model\Category;
 use App\Http\Controllers\Product\Relation\ProductAttribute\Model\ProductAttribute;
 use App\Http\Controllers\Product\Relation\ProductCategory\Model\ProductCategory;
-use App\Http\Controllers\Product\Relation\ProductImage\Model\ProductImage;
 use App\Http\Controllers\Product\Relation\ProductVariant\Model\ProductVariant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, MediaPolymorphicTrait;
 
     /**
      * @var string[]
@@ -72,13 +72,5 @@ class Product extends Model
     public function scopeActive(): mixed
     {
         return $this->whereStatus(ProductStatusEnumeration::ACTIVE);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function images(): HasMany
-    {
-        return $this->hasMany(ProductImage::class);
     }
 }

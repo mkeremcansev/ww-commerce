@@ -25,7 +25,7 @@ class ProductRepository implements ProductInterface
     {
         return $this->model
             ->active()
-            ->with(['attributes' => ['values'], 'brand', 'categories', 'images'])
+            ->with(['attributes' => ['values'], 'brand', 'categories'])
             ->whereSlug($slug)
             ->first();
     }
@@ -37,7 +37,7 @@ class ProductRepository implements ProductInterface
     public function productById($id): mixed
     {
         return $this->model
-            ->with(['variants', 'categories', 'images'])
+            ->with(['variants', 'categories'])
             ->whereId($id)
             ->first();
     }
@@ -52,12 +52,12 @@ class ProductRepository implements ProductInterface
      * @param $status
      * @param $variants
      * @param $stock
-     * @param $images
+     * @param $media
      * @return mixed
      */
-    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images): mixed
+    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed
     {
-        return DB::transaction(function () use ($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images) {
+        return DB::transaction(function () use ($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media) {
             $product = $this->model->create([
                 'title' => $title,
                 'slug' => $slug,
@@ -67,7 +67,7 @@ class ProductRepository implements ProductInterface
                 'status' => $status,
                 'stock' => $stock
             ]);
-            $this->attachImage($product, $images);
+            $this->attachMedia($product, $media);
             $this->extracted($variants, $product, $categoryId);
 
             return $product;
@@ -90,12 +90,14 @@ class ProductRepository implements ProductInterface
 
     /**
      * @param Product $product
-     * @param array $images
+     * @param array $media
      * @return void
      */
-    public function attachImage(Product $product, array $images): void
+    public function attachMedia(Product $product, array $media): void
     {
-        $product->images()->createMany(imageKeyCreate($images));
+        foreach ($media as $mediaItem) {
+            $product->addMediaFromId($mediaItem['id']);
+        }
     }
 
     /**
@@ -171,12 +173,12 @@ class ProductRepository implements ProductInterface
      * @param $status
      * @param $variants
      * @param $stock
-     * @param $images
+     * @param $media
      * @return mixed
      */
-    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images): mixed
+    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed
     {
-        return DB::transaction(function () use ($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $images) {
+        return DB::transaction(function () use ($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media) {
             $product = $this->productById($id);
             if ($product) {
                 $product->update([
@@ -189,7 +191,7 @@ class ProductRepository implements ProductInterface
                     'stock' => $stock
                 ]);
                 $this->destroyProductRelationalData($product);
-                $this->attachImage($product, $images);
+                $this->attachMedia($product, $media);
                 $this->extracted($variants, $product, $categoryId);
 
                 return $product;
@@ -200,15 +202,15 @@ class ProductRepository implements ProductInterface
     }
 
     /**
-     * @param mixed $product
+     * @param Product $product
      * @return void
      */
-    public function destroyProductRelationalData(mixed $product): void
+    public function destroyProductRelationalData(Product $product): void
     {
         $product->categories()->detach();
         $product->attributes()->detach();
         $product->variants()->delete();
-        $product->images()->delete();
+        $this->destroyMedia($product);
     }
 
     /**
@@ -220,8 +222,6 @@ class ProductRepository implements ProductInterface
         $product = $this->productById($id);
         if ($product) {
             $this->destroyProductRelationalData($product);
-            $this->destroyProductImages($product);
-
             return $product->delete();
         }
 
@@ -229,12 +229,12 @@ class ProductRepository implements ProductInterface
     }
 
     /**
-     * @param $product
+     * @param Product $product
      * @return void
      */
-    public function destroyProductImages($product): void
+    public function destroyMedia(Product $product): void
     {
-        $product->images()->delete();
+        $product->destroyMedia();
     }
 
     /**

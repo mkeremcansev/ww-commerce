@@ -54,7 +54,7 @@ class ProductController extends Controller
             'attribute_id' => AttributeRelationResourceCollection::collection(resolve(AttributeInterface::class)
                 ->attributes([], ['values'])),
             'category_id' => CategoryCreateResourceCollection::collection(resolve(CategoryInterface::class)
-                ->mainCategoriesWithParents(['id', 'title', 'slug', 'path'])),
+                ->mainCategoriesWithParents(['id', 'title', 'slug'])),
             'brand_id' => BrandResourceCollection::collection(resolve(BrandInterface::class)
                 ->brands()),
             'status' => EnumerationHelper::enumerationToArray(ProductStatusEnumeration::class)
@@ -77,7 +77,7 @@ class ProductController extends Controller
             $request->status,
             $request->variants,
             $request->stock,
-            $request->images
+            $request->media
         );
 
         return ResponseHandler::store(['id' => $product->id]);
@@ -127,7 +127,7 @@ class ProductController extends Controller
             $request->status,
             $request->variants,
             $request->stock,
-            $request->images
+            $request->media
         );
 
         return $product
