@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Media\Controller;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Media\MediaResourceCollection;
 use App\Http\Controllers\Media\Request\MediaDestroyRequest;
 use App\Http\Controllers\Media\Request\MediaStoreRequest;
+use App\Http\Controllers\Media\ResourceCollection\MediaResourceCollection;
 use App\Http\Controllers\Media\Service\MediaService;
 use App\Response\ResponseHandler;
 use Illuminate\Http\JsonResponse;

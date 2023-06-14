@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Product\ResourceCollection;
 
 use App\Helpers\EnumerationHelper;
-use App\Http\Controllers\Media\MediaResourceCollection;
+use App\Http\Controllers\Media\ResourceCollection\MediaResourceCollection;
 use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
 use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeRelationResourceCollection;

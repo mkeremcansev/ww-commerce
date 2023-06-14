@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Product\ResourceCollection;
 
-use App\Http\Controllers\Media\MediaResourceCollection;
+use App\Http\Controllers\Media\ResourceCollection\MediaResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeRelationResourceCollection;
 use App\Http\Controllers\Product\Relation\Brand\ResourceCollection\BrandResourceCollection;
 use App\Http\Controllers\Product\Relation\ProductCategory\ResourceCollection\ProductCategoryResourceCollection;

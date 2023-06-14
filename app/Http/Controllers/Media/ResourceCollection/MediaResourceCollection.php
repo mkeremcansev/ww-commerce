@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Media;
+namespace App\Http\Controllers\Media\ResourceCollection;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

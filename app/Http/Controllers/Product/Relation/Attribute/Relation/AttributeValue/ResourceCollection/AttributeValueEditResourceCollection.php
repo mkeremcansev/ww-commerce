@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\ResourceCollection;
 
-use App\Http\Controllers\Media\MediaResourceCollection;
 use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
 use App\Http\Controllers\Product\Relation\Attribute\ResourceCollection\AttributeResourceCollection;
 use Illuminate\Contracts\Container\BindingResolutionException;
