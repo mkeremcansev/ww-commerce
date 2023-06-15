@@ -21,4 +21,6 @@ abstract class RouteGroupPathEnumeration
     const MEDIA_GROUP = 'media/';
 
     const COUPON_GROUP = 'coupon/';
+
+    const SETTING_GROUP = 'setting/';
 }

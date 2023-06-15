@@ -24,7 +24,7 @@ class MediaService
     public function store($files): bool
     {
         foreach ($files as $file) {
-            $uploadedFile = $this->fileHelper::upload($file, MediaPathEnumeration::MEDIA_PATH);
+            $uploadedFile = $this->fileHelper::upload($file);
             $this->repository->store(
                 $uploadedFile->basename,
                 $uploadedFile->extension,
