@@ -26,10 +26,10 @@ class MediaService
         foreach ($files as $file) {
             $uploadedFile = $this->fileHelper::upload($file, MediaPathEnumeration::MEDIA_PATH);
             $this->repository->store(
-                $uploadedFile->getFilename(),
-                $uploadedFile->getExtension(),
-                $uploadedFile->getMimeType(),
-                $uploadedFile->getSize(),
+                $uploadedFile->basename,
+                $uploadedFile->extension,
+                $uploadedFile->mime,
+                $this->file::size(public_path(MediaPathEnumeration::MEDIA_PATH.$uploadedFile->basename)),
                 MediaPathEnumeration::MEDIA_PATH
             );
         }

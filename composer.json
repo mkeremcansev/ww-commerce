@@ -11,6 +11,7 @@
         "php": "^8.0.2",
         "anlutro/l4-settings": "^1.2",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.7",
         "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
