@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
+use App\Http\Struct\Product\Relation\Brand\Contract\BrandInterface;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 

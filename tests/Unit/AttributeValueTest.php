@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\Http\Controllers\Media\Model\Media;
-use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
-use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Model\AttributeValue;
+use App\Http\Struct\Media\Model\Media;
+use App\Http\Struct\Product\Relation\Attribute\Model\Attribute;
+use App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Model\AttributeValue;
 use Tests\TestCase;
 
 class AttributeValueTest extends TestCase

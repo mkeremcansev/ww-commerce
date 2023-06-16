@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\Http\Controllers\User\Enumeration\UserRoleEnumeration;
-use App\Http\Controllers\User\Model\User;
+use App\Http\Struct\User\Enumeration\UserRoleEnumeration;
+use App\Http\Struct\User\Model\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;

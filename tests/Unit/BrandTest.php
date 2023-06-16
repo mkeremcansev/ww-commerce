@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Http\Controllers\Media\Model\Media;
-use App\Http\Controllers\Product\Relation\Brand\Model\Brand;
+use App\Http\Struct\Media\Model\Media;
+use App\Http\Struct\Product\Relation\Brand\Model\Brand;
 use Tests\TestCase;
 
 class BrandTest extends TestCase

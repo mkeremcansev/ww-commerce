@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
+use App\Http\Struct\Product\Relation\Category\Contract\CategoryInterface;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 

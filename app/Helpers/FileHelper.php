@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-use App\Http\Controllers\Media\Enumeration\MediaPathEnumeration;
+use App\Http\Struct\Media\Enumeration\MediaPathEnumeration;
 use Intervention\Image\Facades\Image;
 
 class FileHelper

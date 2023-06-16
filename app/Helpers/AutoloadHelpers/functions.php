@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
-use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;
+use App\Http\Struct\Product\Relation\Attribute\Contract\AttributeInterface;
+use App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;
 
 if (! function_exists('skuTitleGenerator')) {
 

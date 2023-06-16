@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Main\Setting\Controller\SettingController;
 use App\Http\Enumeration\RouteGroupNameEnumeration;
 use App\Http\Enumeration\RouteGroupPathEnumeration;
+use App\Http\Struct\Main\Setting\Controller\SettingController;
 use Illuminate\Support\Facades\Route;
 
 Route::name(RouteGroupNameEnumeration::SETTING_GROUP)->prefix(RouteGroupPathEnumeration::SETTING_GROUP)->group(function ($router) {

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\Media\Contract\MediaInterface;
-use App\Http\Controllers\Media\Enumeration\MediaPathEnumeration;
+use App\Http\Struct\Media\Contract\MediaInterface;
+use App\Http\Struct\Media\Enumeration\MediaPathEnumeration;
 use Illuminate\Database\Seeder;
 
 class MediaSeeder extends Seeder

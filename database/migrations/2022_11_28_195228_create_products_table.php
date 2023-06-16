@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
+use App\Http\Struct\Product\Enumeration\ProductStatusEnumeration;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

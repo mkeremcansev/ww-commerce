@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Http\Controllers\Product\Relation\Attribute\Model\Attribute;
+use App\Http\Struct\Product\Relation\Attribute\Model\Attribute;
 use Tests\TestCase;
 
 class AttributeTest extends TestCase

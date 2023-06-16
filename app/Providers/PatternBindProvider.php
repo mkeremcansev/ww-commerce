@@ -2,30 +2,30 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Media\Contract\MediaInterface;
 use App\Http\Controllers\Media\Relation\Image\Contract\ImageInterface;
 use App\Http\Controllers\Media\Relation\Image\Repository\ImageRepository;
-use App\Http\Controllers\Media\Relation\MediaPolymorphic\Contract\MediaPolymorphicInterface;
-use App\Http\Controllers\Media\Relation\MediaPolymorphic\Repository\MediaPolymorphicRepository;
-use App\Http\Controllers\Media\Repository\MediaRepository;
-use App\Http\Controllers\Product\Contract\ProductInterface;
-use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
-use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;
-use App\Http\Controllers\Product\Relation\Attribute\Relation\AttributeValue\Repository\AttributeValueRepository;
-use App\Http\Controllers\Product\Relation\Attribute\Repository\AttributeRepository;
-use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
-use App\Http\Controllers\Product\Relation\Brand\Repository\BrandRepository;
-use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
-use App\Http\Controllers\Product\Relation\Category\Repository\CategoryRepository;
-use App\Http\Controllers\Product\Relation\Coupon\Contract\CouponInterface;
-use App\Http\Controllers\Product\Relation\Coupon\Repository\CouponRepository;
-use App\Http\Controllers\Product\Repository\ProductRepository;
-use App\Http\Controllers\User\Contract\UserInterface;
-use App\Http\Controllers\User\Relation\Permission\Contract\PermissionInterface;
-use App\Http\Controllers\User\Relation\Permission\Repository\PermissionRepository;
-use App\Http\Controllers\User\Relation\Role\Contract\RoleInterface;
-use App\Http\Controllers\User\Relation\Role\Repository\RoleRepository;
-use App\Http\Controllers\User\Repository\UserRepository;
+use App\Http\Struct\Media\Contract\MediaInterface;
+use App\Http\Struct\Media\Relation\MediaPolymorphic\Contract\MediaPolymorphicInterface;
+use App\Http\Struct\Media\Relation\MediaPolymorphic\Repository\MediaPolymorphicRepository;
+use App\Http\Struct\Media\Repository\MediaRepository;
+use App\Http\Struct\Product\Contract\ProductInterface;
+use App\Http\Struct\Product\Relation\Attribute\Contract\AttributeInterface;
+use App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Contract\AttributeValueInterface;
+use App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Repository\AttributeValueRepository;
+use App\Http\Struct\Product\Relation\Attribute\Repository\AttributeRepository;
+use App\Http\Struct\Product\Relation\Brand\Contract\BrandInterface;
+use App\Http\Struct\Product\Relation\Brand\Repository\BrandRepository;
+use App\Http\Struct\Product\Relation\Category\Contract\CategoryInterface;
+use App\Http\Struct\Product\Relation\Category\Repository\CategoryRepository;
+use App\Http\Struct\Product\Relation\Coupon\Contract\CouponInterface;
+use App\Http\Struct\Product\Relation\Coupon\Repository\CouponRepository;
+use App\Http\Struct\Product\Repository\ProductRepository;
+use App\Http\Struct\User\Contract\UserInterface;
+use App\Http\Struct\User\Relation\Permission\Contract\PermissionInterface;
+use App\Http\Struct\User\Relation\Permission\Repository\PermissionRepository;
+use App\Http\Struct\User\Relation\Role\Contract\RoleInterface;
+use App\Http\Struct\User\Relation\Role\Repository\RoleRepository;
+use App\Http\Struct\User\Repository\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class PatternBindProvider extends ServiceProvider

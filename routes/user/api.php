@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\User\Controller\UserController;
 use App\Http\Enumeration\RouteGroupNameEnumeration;
 use App\Http\Enumeration\RouteGroupPathEnumeration;
+use App\Http\Struct\User\Controller\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::name(RouteGroupNameEnumeration::USER_GROUP)->prefix(RouteGroupPathEnumeration::USER_GROUP)->group(function ($router) {

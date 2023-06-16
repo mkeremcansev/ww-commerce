@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Product\Relation\Brand\Controller\BrandController;
 use App\Http\Enumeration\RouteGroupNameEnumeration;
 use App\Http\Enumeration\RouteGroupPathEnumeration;
+use App\Http\Struct\Product\Relation\Brand\Controller\BrandController;
 use Illuminate\Support\Facades\Route;
 
 Route::name(RouteGroupNameEnumeration::BRAND_GROUP)->prefix(RouteGroupPathEnumeration::BRAND_GROUP)->group(function ($router) {

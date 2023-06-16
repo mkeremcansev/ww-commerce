@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Product\Relation\Attribute\Controller\AttributeController;
 use App\Http\Enumeration\RouteGroupNameEnumeration;
 use App\Http\Enumeration\RouteGroupPathEnumeration;
+use App\Http\Struct\Product\Relation\Attribute\Controller\AttributeController;
 use Illuminate\Support\Facades\Route;
 
 Route::name(RouteGroupNameEnumeration::ATTRIBUTE_GROUP)->prefix(RouteGroupPathEnumeration::ATTRIBUTE_GROUP)->group(function ($router) {

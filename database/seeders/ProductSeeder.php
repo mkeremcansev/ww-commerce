@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\Media\Model\Media;
-use App\Http\Controllers\Product\Contract\ProductInterface;
-use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
-use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
-use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
+use App\Http\Struct\Media\Model\Media;
+use App\Http\Struct\Product\Contract\ProductInterface;
+use App\Http\Struct\Product\Enumeration\ProductStatusEnumeration;
+use App\Http\Struct\Product\Relation\Brand\Contract\BrandInterface;
+use App\Http\Struct\Product\Relation\Category\Contract\CategoryInterface;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder

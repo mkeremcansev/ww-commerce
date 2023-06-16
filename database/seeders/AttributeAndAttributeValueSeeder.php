@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\Product\Relation\Attribute\Contract\AttributeInterface;
+use App\Http\Struct\Product\Relation\Attribute\Contract\AttributeInterface;
 use Illuminate\Database\Seeder;
 
 class AttributeAndAttributeValueSeeder extends Seeder

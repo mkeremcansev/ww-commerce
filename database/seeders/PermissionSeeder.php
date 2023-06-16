@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\User\Relation\Permission\Contract\PermissionInterface;
+use App\Http\Struct\User\Relation\Permission\Contract\PermissionInterface;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Seeder;
 

@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Product\Relation\Coupon\Controller\CouponController;
 use App\Http\Enumeration\RouteGroupNameEnumeration;
 use App\Http\Enumeration\RouteGroupPathEnumeration;
+use App\Http\Struct\Product\Relation\Coupon\Controller\CouponController;
 use Illuminate\Support\Facades\Route;
 
 Route::name(RouteGroupNameEnumeration::COUPON_GROUP)->prefix(RouteGroupPathEnumeration::COUPON_GROUP)->group(function ($router) {

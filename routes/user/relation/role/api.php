@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\User\Relation\Role\Controller\RoleController;
 use App\Http\Enumeration\RouteGroupNameEnumeration;
 use App\Http\Enumeration\RouteGroupPathEnumeration;
+use App\Http\Struct\User\Relation\Role\Controller\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::name(RouteGroupNameEnumeration::ROLE_GROUP)->prefix(RouteGroupPathEnumeration::ROLE_GROUP)->group(function ($router) {

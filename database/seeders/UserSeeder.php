@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\User\Contract\UserInterface;
-use App\Http\Controllers\User\Enumeration\UserRoleEnumeration;
+use App\Http\Struct\User\Contract\UserInterface;
+use App\Http\Struct\User\Enumeration\UserRoleEnumeration;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder

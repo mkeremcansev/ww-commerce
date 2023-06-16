@@ -2,11 +2,11 @@
 
 namespace Tests\Unit;
 
-use App\Http\Controllers\Media\Model\Media;
-use App\Http\Controllers\Product\Enumeration\ProductStatusEnumeration;
-use App\Http\Controllers\Product\Model\Product;
-use App\Http\Controllers\Product\Relation\Brand\Contract\BrandInterface;
-use App\Http\Controllers\Product\Relation\Category\Contract\CategoryInterface;
+use App\Http\Struct\Media\Model\Media;
+use App\Http\Struct\Product\Enumeration\ProductStatusEnumeration;
+use App\Http\Struct\Product\Model\Product;
+use App\Http\Struct\Product\Relation\Brand\Contract\BrandInterface;
+use App\Http\Struct\Product\Relation\Category\Contract\CategoryInterface;
 use Tests\TestCase;
 
 class ProductTest extends TestCase

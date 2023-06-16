@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Http\Controllers\Media\Model\Media;
-use App\Http\Controllers\Product\Relation\Category\Model\Category;
+use App\Http\Struct\Media\Model\Media;
+use App\Http\Struct\Product\Relation\Category\Model\Category;
 use Tests\TestCase;
 
 class CategoryTest extends TestCase

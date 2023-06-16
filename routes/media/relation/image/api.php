@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Media\Controller\MediaController;
 use App\Http\Enumeration\RouteGroupNameEnumeration;
 use App\Http\Enumeration\RouteGroupPathEnumeration;
+use App\Http\Struct\Media\Controller\MediaController;
 use Illuminate\Support\Facades\Route;
 
 Route::name(RouteGroupNameEnumeration::MEDIA_GROUP)->prefix(RouteGroupPathEnumeration::MEDIA_GROUP)->group(function ($router) {
