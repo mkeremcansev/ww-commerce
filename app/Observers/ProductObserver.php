@@ -35,6 +35,46 @@ class ProductObserver
      */
     public function updating(Product $product): void
     {
+        if (! $product->isRestoring) {
+            $this->forceDestroyRelational($product);
+        }
+    }
+
+    /**
+     * Handle the Product "deleted" event.
+     */
+    public function deleted(Product $product): void
+    {
+        $this->destroyRelational($product);
+    }
+
+    /**
+     * Handle the Product "restoring" event.
+     */
+    public function restoring(Product $product): void
+    {
+        $product->isRestoring = true;
+        $this->restoreRelational($product);
+    }
+
+    /**
+     * Handle the Product "force deleting" event.
+     */
+    public function forceDeleting(Product $product): void
+    {
+        $this->forceDestroyRelational($product);
+    }
+
+    /**
+     * Handle the Product "force deleted" event.
+     */
+    public function forceDeleted(Product $product): void
+    {
+        //
+    }
+
+    private function forceDestroyRelational(Product $product): void
+    {
         $product->variants()->forceDelete();
         $this->attribute
             ->where('product_id', $product->id)
@@ -45,10 +85,7 @@ class ProductObserver
         $product->forceDestroyMedia();
     }
 
-    /**
-     * Handle the Product "deleted" event.
-     */
-    public function deleted(Product $product): void
+    private function destroyRelational(Product $product): void
     {
         $product->variants()->delete();
         $this->attribute
@@ -60,19 +97,15 @@ class ProductObserver
         $product->destroyMedia();
     }
 
-    /**
-     * Handle the Product "restored" event.
-     */
-    public function restored(Product $product): void
+    private function restoreRelational(Product $product): void
     {
-        //
-    }
-
-    /**
-     * Handle the Product "force deleted" event.
-     */
-    public function forceDeleted(Product $product): void
-    {
-        //
+        $product->variants()->restore();
+        $this->attribute
+            ->where('product_id', $product->id)
+            ->restore();
+        $this->category
+            ->where('product_id', $product->id)
+            ->restore();
+        $product->restoreMedia();
     }
 }

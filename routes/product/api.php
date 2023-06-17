@@ -13,6 +13,8 @@ Route::name(RouteGroupNameEnumeration::PRODUCT_GROUP)->prefix(RouteGroupPathEnum
         $router->patch('/{id}', 'update')->name('update')->middleware(['auth:sanctum', 'permission:product.update']);
         $router->get('/{id}/edit', 'edit')->name('edit')->middleware(['auth:sanctum', 'permission:product.edit']);
         $router->delete('/{id}/destroy', 'destroy')->name('destroy')->middleware(['auth:sanctum', 'permission:product.destroy']);
+        $router->post('/restore', 'restore')->name('restore')->middleware(['auth:sanctum', 'permission:product.restore']);
+        $router->post('/forceDelete', 'forceDelete')->name('forceDelete')->middleware(['auth:sanctum', 'permission:product.forceDelete']);
         $router->get('/{slug}', 'show')->name('show');
     });
 });

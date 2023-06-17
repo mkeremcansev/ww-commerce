@@ -23,10 +23,11 @@ class ProductRepository implements ProductInterface
             ->first();
     }
 
-    public function productById($id): mixed
+    public function productById($id, $trashed = false): mixed
     {
         return $this->model
             ->with(['variants', 'categories'])
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->whereId($id)
             ->first();
     }
@@ -144,5 +145,19 @@ class ProductRepository implements ProductInterface
                 fn ($eloquent) => $eloquent->select($columns),
                 fn ($eloquent) => $eloquent->get()
             );
+    }
+
+    public function restore($id): ?bool
+    {
+        $product = $this->productById($id, true);
+
+        return $product?->restore();
+    }
+
+    public function forceDelete($id): ?bool
+    {
+        $product = $this->productById($id, true);
+
+        return $product?->forceDelete();
     }
 }

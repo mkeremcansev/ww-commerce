@@ -2,11 +2,11 @@
 
 namespace App\Http\Struct\Product\Relation\ProductVariant\Model;
 
+use App\Model\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ProductVariant extends Model
+class ProductVariant extends BaseModel
 {
     use HasFactory, SoftDeletes;
 

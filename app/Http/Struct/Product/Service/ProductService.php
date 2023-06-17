@@ -44,4 +44,22 @@ class ProductService
     {
         return $this->repository->destroy($id);
     }
+
+    public function restore(array $ids): bool
+    {
+        foreach ($ids as $id) {
+            $this->repository->restore($id);
+        }
+
+        return true;
+    }
+
+    public function forceDelete(array $ids): bool
+    {
+        foreach ($ids as $id) {
+            $this->repository->forceDelete($id);
+        }
+
+        return true;
+    }
 }

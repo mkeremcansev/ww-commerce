@@ -48,7 +48,15 @@ class ResponseHandler
      */
     public static function restore(array $parameters = [], $message = null): JsonResponse
     {
-        return self::result(200, $message ?? __(''), $parameters);
+        return self::result(200, $message ?? __('words.restoredSuccessfully'), $parameters);
+    }
+
+    /**
+     * @param  null  $message
+     */
+    public static function forceDelete(array $parameters = [], $message = null): JsonResponse
+    {
+        return self::result(200, $message ?? __('words.deletedSuccessfully'), $parameters);
     }
 
     /**

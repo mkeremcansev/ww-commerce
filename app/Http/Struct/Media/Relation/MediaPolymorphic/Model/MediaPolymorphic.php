@@ -2,11 +2,11 @@
 
 namespace App\Http\Struct\Media\Relation\MediaPolymorphic\Model;
 
+use App\Model\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class MediaPolymorphic extends Model
+class MediaPolymorphic extends BaseModel
 {
     use HasFactory, SoftDeletes;
 

@@ -27,6 +27,12 @@ trait MediaPolymorphicTrait
             ->forceDestroy(self::class, $this->id);
     }
 
+    public function restoreMedia()
+    {
+        return resolve(MediaPolymorphicInterface::class)
+            ->restore(self::class, $this->id);
+    }
+
     public function getMedia(): Collection
     {
         return $this->morphToMany(

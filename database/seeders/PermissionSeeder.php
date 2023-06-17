@@ -83,6 +83,8 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.edit', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.destroy', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.restore', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.forceDelete', 'guard_name' => 'web']);
 
         //Coupon permissions
         $this->firstOrCreate(['group_name' => 'Coupon', 'name' => 'coupon.index', 'guard_name' => 'web']);

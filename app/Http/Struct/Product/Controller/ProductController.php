@@ -11,6 +11,7 @@ use App\Http\Struct\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Struct\Product\Relation\Brand\ResourceCollection\BrandResourceCollection;
 use App\Http\Struct\Product\Relation\Category\Contract\CategoryInterface;
 use App\Http\Struct\Product\Relation\Category\ResourceCollection\CategoryCreateResourceCollection;
+use App\Http\Struct\Product\Request\ProductRestoreAndForceDeleteRequest;
 use App\Http\Struct\Product\Request\ProductStoreRequest;
 use App\Http\Struct\Product\Request\ProductUpdateRequest;
 use App\Http\Struct\Product\Resource\ProductIndexResource;
@@ -118,6 +119,20 @@ class ProductController extends Controller
 
         return $product
             ? ResponseHandler::destroy(['id' => $id])
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function restore(ProductRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        return $this->service->restore($request->ids)
+            ? ResponseHandler::restore()
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function forceDelete(ProductRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        return $this->service->forceDelete($request->ids)
+            ? ResponseHandler::forceDelete()
             : ResponseHandler::recordNotFound();
     }
 }

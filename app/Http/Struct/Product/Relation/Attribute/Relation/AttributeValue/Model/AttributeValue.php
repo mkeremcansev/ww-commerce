@@ -4,11 +4,11 @@ namespace App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Mod
 
 use App\Http\Struct\Media\Relation\MediaPolymorphic\Trait\MediaPolymorphicTrait;
 use App\Http\Struct\Product\Relation\Attribute\Model\Attribute;
+use App\Model\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AttributeValue extends Model
+class AttributeValue extends BaseModel
 {
     use HasFactory, SoftDeletes, MediaPolymorphicTrait;
 

@@ -8,7 +8,7 @@ interface ProductInterface
 {
     public function productBySlug(string $slug): mixed;
 
-    public function productById($id): mixed;
+    public function productById($id, $trashed = false): mixed;
 
     public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed;
 
@@ -27,4 +27,8 @@ interface ProductInterface
     public function destroyMedia(Product $product): void;
 
     public function products(array $columns = []): mixed;
+
+    public function restore($id): ?bool;
+
+    public function forceDelete($id): ?bool;
 }
