@@ -12,24 +12,15 @@ interface ProductInterface
 
     public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed;
 
-    public function extractedProductInVariants($variants, $product): void;
-
     public function attachMedia(Product $product, array $media): void;
 
-    public function attachCategories($product, $categoryId): void;
+    public function attachCategories(Product $product, $categoryId): void;
 
-    public function extractedVariant($product, ?string $sku, $stock, $price): void;
+    public function attachAttributes($variant, Product $product): array;
 
-    public function extractedAttributes($variant, $product): array;
-
-    public function extracted($variants, $product, $categoryId): void;
+    public function attachVariants(Product $product, $variants);
 
     public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed;
-
-    /**
-     * @param  mixed  $product
-     */
-    public function destroyProductRelationalData(Product $product): void;
 
     public function destroy($id): bool;
 

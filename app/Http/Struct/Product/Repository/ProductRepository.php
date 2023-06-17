@@ -44,21 +44,11 @@ class ProductRepository implements ProductInterface
                 'stock' => $stock,
             ]);
             $this->attachMedia($product, $media);
-            $this->extracted($variants, $product, $categoryId);
+            $this->attachCategories($product, $categoryId);
+            $this->attachVariants($product, $variants);
 
             return $product;
         });
-    }
-
-    /**
-     * @throws BindingResolutionException
-     */
-    public function extractedProductInVariants($variants, $product): void
-    {
-        foreach ($variants as $variant) {
-            [$sku, $stock, $price] = $this->extractedAttributes($variant, $product);
-            $this->extractedVariant($product, $sku, $stock, $price);
-        }
     }
 
     public function attachMedia(Product $product, array $media): void
@@ -68,25 +58,15 @@ class ProductRepository implements ProductInterface
         }
     }
 
-    public function attachCategories($product, $categoryId): void
+    public function attachCategories(Product $product, $categoryId): void
     {
         $product->categories()->attach($categoryId);
-    }
-
-    public function extractedVariant($product, ?string $sku, $stock, $price): void
-    {
-        $product->variants()->create([
-            'title' => skuTitleGenerator($product->title, $sku),
-            'sku' => skuGenerator($product->id, $sku),
-            'stock' => $stock,
-            'price' => $price,
-        ]);
     }
 
     /**
      * @throws BindingResolutionException
      */
-    public function extractedAttributes($variant, $product): array
+    public function attachAttributes($variant, Product $product): array
     {
         $sku = null;
         $stock = null;
@@ -105,17 +85,25 @@ class ProductRepository implements ProductInterface
     /**
      * @throws BindingResolutionException
      */
-    public function extracted($variants, $product, $categoryId): void
+    public function attachVariants(Product $product, $variants)
     {
-        $this->extractedProductInVariants($variants, $product);
-        $this->attachCategories($product, $categoryId);
+        foreach ($variants as $variant) {
+            [$sku, $stock, $price] = $this->attachAttributes($variant, $product);
+            $product->variants()->create([
+                'title' => skuTitleGenerator($product->title, $sku),
+                'sku' => skuGenerator($product->id, $sku),
+                'stock' => $stock,
+                'price' => $price,
+            ]);
+        }
     }
 
     public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed
     {
-        return DB::transaction(function () use ($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media) {
+        return DB::transaction(function () use ($id, $title, $slug, $price, $categoryId, $content, $brandId, $status, $variants, $stock, $media) {
             $product = $this->productById($id);
             if ($product) {
+                $product->touch();
                 $product->update([
                     'title' => $title,
                     'slug' => $slug,
@@ -125,9 +113,9 @@ class ProductRepository implements ProductInterface
                     'status' => $status,
                     'stock' => $stock,
                 ]);
-                $this->destroyProductRelationalData($product);
+                $this->attachCategories($product, $categoryId);
                 $this->attachMedia($product, $media);
-                $this->extracted($variants, $product, $categoryId);
+                $this->attachVariants($product, $variants);
 
                 return $product;
             }
@@ -136,24 +124,11 @@ class ProductRepository implements ProductInterface
         });
     }
 
-    public function destroyProductRelationalData(Product $product): void
-    {
-        $product->categories()->detach();
-        $product->attributes()->detach();
-        $product->variants()->delete();
-        $this->destroyMedia($product);
-    }
-
     public function destroy($id): bool
     {
         $product = $this->productById($id);
-        if ($product) {
-            $this->destroyProductRelationalData($product);
 
-            return $product->delete();
-        }
-
-        return false;
+        return $product?->delete();
     }
 
     public function destroyMedia(Product $product): void
@@ -164,6 +139,7 @@ class ProductRepository implements ProductInterface
     public function products(array $columns = []): mixed
     {
         return $this->model
+            ->withTrashed()
             ->when(count($columns),
                 fn ($eloquent) => $eloquent->select($columns),
                 fn ($eloquent) => $eloquent->get()

@@ -21,6 +21,12 @@ trait MediaPolymorphicTrait
             ->destroy(self::class, $this->id);
     }
 
+    public function forceDestroyMedia()
+    {
+        return resolve(MediaPolymorphicInterface::class)
+            ->forceDestroy(self::class, $this->id);
+    }
+
     public function getMedia(): Collection
     {
         return $this->morphToMany(

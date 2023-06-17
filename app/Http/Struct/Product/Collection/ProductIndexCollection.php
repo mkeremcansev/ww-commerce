@@ -13,6 +13,7 @@ class ProductIndexCollection extends JsonResource
             'title' => $this->title ?? null,
             'slug' => $this->slug ?? null,
             'price' => $this->price ?? null,
+            'deleted_at' => $this->deleted_at ?? null,
         ];
     }
 }

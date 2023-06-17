@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('media_id')->constrained('media');
             $table->morphs('model');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

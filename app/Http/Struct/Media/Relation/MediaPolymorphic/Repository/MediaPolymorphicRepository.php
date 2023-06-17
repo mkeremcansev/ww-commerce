@@ -29,4 +29,15 @@ class MediaPolymorphicRepository implements MediaPolymorphicInterface
             ])
             ?->delete();
     }
+
+    public function forceDestroy($modelType, $modelId): mixed
+    {
+        return $this->model
+            ->withTrashed()
+            ->where([
+                'model_type' => $modelType,
+                'model_id' => $modelId,
+            ])
+            ?->forceDelete();
+    }
 }

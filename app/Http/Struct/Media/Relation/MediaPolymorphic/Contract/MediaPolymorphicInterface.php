@@ -7,4 +7,6 @@ interface MediaPolymorphicInterface
     public function store($mediaId, $modelType, $modelId): mixed;
 
     public function destroy($modelType, $modelId): mixed;
+
+    public function forceDestroy($modelType, $modelId): mixed;
 }
