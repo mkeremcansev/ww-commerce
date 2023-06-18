@@ -50,16 +50,18 @@ class BrandRepository implements BrandInterface
         $brand->destroyMedia();
     }
 
-    public function brandById($id): ?Brand
+    public function brandById($id, $trashed = false): ?Brand
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->whereId($id)
             ->first();
     }
 
-    public function brands(array $columns = []): mixed
+    public function brands(array $columns = [], bool|null $trashed = false): mixed
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->when(count($columns),
                 fn ($eloquent) => $eloquent->select($columns),
                 fn ($eloquent) => $eloquent->get()
@@ -80,5 +82,19 @@ class BrandRepository implements BrandInterface
                 'title' => $title,
                 'slug' => $slug,
             ]);
+    }
+
+    public function restore($id): ?bool
+    {
+        $brand = $this->brandById($id, true);
+
+        return $brand?->restore();
+    }
+
+public function forceDelete($id): ?bool
+{
+        $brand = $this->brandById($id, true);
+
+        return $brand?->forceDelete();
     }
 }

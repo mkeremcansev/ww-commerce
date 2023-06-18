@@ -3,6 +3,8 @@
 namespace App\Http\Struct\Product\Relation\Brand\Controller;
 
 use App\Http\Controller;
+use App\Http\Struct\Product\Relation\Brand\Request\BrandIndexRequest;
+use App\Http\Struct\Product\Relation\Brand\Request\BrandRestoreAndForceDeleteRequest;
 use App\Http\Struct\Product\Relation\Brand\Request\BrandStoreRequest;
 use App\Http\Struct\Product\Relation\Brand\Request\BrandUpdateRequest;
 use App\Http\Struct\Product\Relation\Brand\Resource\BrandIndexResource;
@@ -22,9 +24,9 @@ class BrandController extends Controller
     /**
      * @throws Exception
      */
-    public function index(): BrandIndexResource
+    public function index(BrandIndexRequest $request): BrandIndexResource
     {
-        return new BrandIndexResource($this->service->index());
+        return new BrandIndexResource($this->service->index($request->trashed));
     }
 
     public function store(BrandStoreRequest $request): JsonResponse
@@ -58,6 +60,24 @@ class BrandController extends Controller
 
         return $brand
             ? ResponseHandler::destroy(['id' => $id])
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function restore(BrandRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        $brands = $this->service->restore($request->ids);
+
+        return $brands
+            ? ResponseHandler::restore()
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function forceDelete(BrandRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        $brands = $this->service->forceDelete($request->ids);
+
+        return $brands
+            ? ResponseHandler::forceDelete()
             : ResponseHandler::recordNotFound();
     }
 }

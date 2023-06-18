@@ -41,9 +41,9 @@ class ProductObserver
     }
 
     /**
-     * Handle the Product "deleted" event.
+     * Handle the Product "deleting" event.
      */
-    public function deleted(Product $product): void
+    public function deleting(Product $product): void
     {
         $this->destroyRelational($product);
     }

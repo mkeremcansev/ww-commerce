@@ -14,9 +14,9 @@ interface BrandInterface
 
     public function destroyMedia(Brand $brand): void;
 
-    public function brandById($id): ?Brand;
+    public function brandById($id, $trashed = false): ?Brand;
 
-    public function brands(array $columns = []): mixed;
+    public function brands(array $columns = [], bool|null $trashed = false): mixed;
 
     public function destroy($id): ?bool;
 
