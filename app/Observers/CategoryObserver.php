@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Http\Struct\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Struct\Product\Relation\Category\Model\Category;
 use App\Http\Struct\Product\Relation\ProductCategory\Model\ProductCategory;
 
@@ -36,7 +37,7 @@ class CategoryObserver
         $this->productCategory->where('category_id', $category->id)
             ->each(function ($pivot) {
                 $pivot->delete();
-                $pivot->product->delete();
+                $pivot->product()->update(['status' => ProductStatusEnumeration::PASSIVE]);
             });
     }
 
@@ -54,9 +55,7 @@ class CategoryObserver
             ->where('category_id', $category->id)
             ->each(function ($pivot) {
                 $pivot->restore();
-                $pivot->product()
-                    ->onlyTrashed()
-                    ->restore();
+                $pivot->product()->update(['status' => ProductStatusEnumeration::ACTIVE]);
             });
     }
 
@@ -74,9 +73,7 @@ class CategoryObserver
             ->where('category_id', $category->id)
             ->each(function ($pivot) {
                 $pivot->forceDelete();
-                $pivot->product()
-                    ->onlyTrashed()
-                    ->forceDelete();
+                $pivot->product()->update(['status' => ProductStatusEnumeration::PASSIVE]);
             });
     }
 }

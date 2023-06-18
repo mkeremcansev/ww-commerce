@@ -3,7 +3,6 @@
 namespace App\Http\Struct\Media\Service;
 
 use App\Helpers\FileHelper;
-use function App\Http\Controllers\Media\Service\public_path;
 use App\Http\Struct\Media\Contract\MediaInterface;
 use App\Http\Struct\Media\Enumeration\MediaPathEnumeration;
 use Illuminate\Support\Facades\File;
