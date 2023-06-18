@@ -14,16 +14,18 @@ class CategoryRepository implements CategoryInterface
     {
     }
 
-    public function categoryById($id): ?Category
+    public function categoryById($id, $trashed = false): ?Category
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->whereId($id)
             ->first();
     }
 
-    public function categories(array $columns = []): mixed
+    public function categories(array $columns = [], bool|null $trashed = false): mixed
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->when(count($columns),
                 fn ($eloquent) => $eloquent->select($columns),
                 fn ($eloquent) => $eloquent->get()
@@ -97,5 +99,19 @@ class CategoryRepository implements CategoryInterface
             'slug' => $slug,
             'category_id' => $category_id,
         ]);
+    }
+
+    public function restore($id): ?bool
+    {
+        $category = $this->categoryById($id, true);
+
+        return $category?->restore();
+    }
+
+    public function forceDelete($id): ?bool
+    {
+        $category = $this->categoryById($id, true);
+
+        return $category?->forceDelete();
     }
 }

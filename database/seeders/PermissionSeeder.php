@@ -51,6 +51,8 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.edit', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.destroy', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.restore', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Category', 'name' => 'category.forceDelete', 'guard_name' => 'web']);
 
         //Brand permissions
         $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.index', 'guard_name' => 'web']);
@@ -60,7 +62,7 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.destroy', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.restore', 'guard_name' => 'web']);
-        $this->firstOrCreate(['group_name' => 'Product', 'name' => 'brand.forceDelete', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Brand', 'name' => 'brand.forceDelete', 'guard_name' => 'web']);
 
         //Attribute permissions
         $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.index', 'guard_name' => 'web']);

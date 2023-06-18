@@ -3,6 +3,8 @@
 namespace App\Http\Struct\Product\Relation\Category\Controller;
 
 use App\Http\Controller;
+use App\Http\Struct\Product\Relation\Category\Request\CategoryIndexRequest;
+use App\Http\Struct\Product\Relation\Category\Request\CategoryRestoreAndForceDeleteRequest;
 use App\Http\Struct\Product\Relation\Category\Request\CategoryStoreRequest;
 use App\Http\Struct\Product\Relation\Category\Request\CategoryUpdateRequest;
 use App\Http\Struct\Product\Relation\Category\Resource\CategoryIndexResource;
@@ -24,9 +26,9 @@ class CategoryController extends Controller
     /**
      * @throws Exception
      */
-    public function index(): CategoryIndexResource
+    public function index(CategoryIndexRequest $request): CategoryIndexResource
     {
-        return new CategoryIndexResource($this->service->index());
+        return new CategoryIndexResource($this->service->index($request->trashed));
     }
 
     public function create(): AnonymousResourceCollection
@@ -65,6 +67,24 @@ class CategoryController extends Controller
 
         return $category
             ? ResponseHandler::destroy(['id' => $id])
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function restore(CategoryRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        $brands = $this->service->restore($request->ids);
+
+        return $brands
+            ? ResponseHandler::restore()
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function forceDelete(CategoryRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        $brands = $this->service->forceDelete($request->ids);
+
+        return $brands
+            ? ResponseHandler::forceDelete()
             : ResponseHandler::recordNotFound();
     }
 }

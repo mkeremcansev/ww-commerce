@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface CategoryInterface
 {
-    public function categoryById($id): ?Category;
+    public function categoryById($id, $trashed = false): ?Category;
 
-    public function categories(array $columns = []): mixed;
+    public function categories(array $columns = [], bool|null $trashed = false): mixed;
 
     public function mainCategoriesWithParents(array $columns = []): Collection|array;
 

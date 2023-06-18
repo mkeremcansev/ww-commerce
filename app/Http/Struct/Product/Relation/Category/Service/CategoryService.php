@@ -17,9 +17,9 @@ class CategoryService
     /**
      * @throws Exception
      */
-    public function index(): mixed
+    public function index(bool|null $trashed = false): mixed
     {
-        return DatatableHelper::datatable($this->repository->categories(['id', 'title', 'slug']));
+        return DatatableHelper::datatable($this->repository->categories(['id', 'title', 'slug', 'deleted_at'], $trashed));
     }
 
     public function create(): Collection|array
@@ -45,5 +45,23 @@ class CategoryService
     public function destroy($id): ?bool
     {
         return $this->repository->destroy($id);
+    }
+
+    public function restore(array $ids): bool
+    {
+        foreach ($ids as $id) {
+            $this->repository->restore($id);
+        }
+
+        return true;
+    }
+
+    public function forceDelete(array $ids): bool
+    {
+        foreach ($ids as $id) {
+            $this->repository->forceDelete($id);
+        }
+
+        return true;
     }
 }

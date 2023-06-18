@@ -12,6 +12,7 @@ class CategoryIndexCollection extends JsonResource
             'id' => $this->id ?? null,
             'title' => $this->title ?? null,
             'slug' => $this->slug ?? null,
+            'deleted_at' => $this->deleted_at ?? null,
         ];
     }
 }
