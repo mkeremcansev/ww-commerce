@@ -137,10 +137,10 @@ class ProductRepository implements ProductInterface
         $product->destroyMedia();
     }
 
-    public function products(array $columns = []): mixed
+    public function products(array $columns = [], bool|null $trashed = false): mixed
     {
         return $this->model
-            ->withTrashed()
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->when(count($columns),
                 fn ($eloquent) => $eloquent->select($columns),
                 fn ($eloquent) => $eloquent->get()

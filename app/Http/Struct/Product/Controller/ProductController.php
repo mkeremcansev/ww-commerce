@@ -11,6 +11,7 @@ use App\Http\Struct\Product\Relation\Brand\Contract\BrandInterface;
 use App\Http\Struct\Product\Relation\Brand\ResourceCollection\BrandResourceCollection;
 use App\Http\Struct\Product\Relation\Category\Contract\CategoryInterface;
 use App\Http\Struct\Product\Relation\Category\ResourceCollection\CategoryCreateResourceCollection;
+use App\Http\Struct\Product\Request\ProductIndexRequest;
 use App\Http\Struct\Product\Request\ProductRestoreAndForceDeleteRequest;
 use App\Http\Struct\Product\Request\ProductStoreRequest;
 use App\Http\Struct\Product\Request\ProductUpdateRequest;
@@ -34,9 +35,9 @@ class ProductController extends Controller
     /**
      * @throws Exception
      */
-    public function index(): ProductIndexResource
+    public function index(ProductIndexRequest $request): ProductIndexResource
     {
-        return new ProductIndexResource($this->service->index());
+        return new ProductIndexResource($this->service->index($request->trashed));
     }
 
     /**

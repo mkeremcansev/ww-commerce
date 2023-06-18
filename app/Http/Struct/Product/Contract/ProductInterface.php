@@ -26,7 +26,7 @@ interface ProductInterface
 
     public function destroyMedia(Product $product): void;
 
-    public function products(array $columns = []): mixed;
+    public function products(array $columns = [], bool $trashed = false): mixed;
 
     public function restore($id): ?bool;
 

@@ -15,9 +15,9 @@ class ProductService
     /**
      * @throws Exception
      */
-    public function index(): mixed
+    public function index(bool|null $trashed = false): mixed
     {
-        return DatatableHelper::datatable($this->repository->products(['id', 'title', 'price', 'slug', 'deleted_at']));
+        return DatatableHelper::datatable($this->repository->products(['id', 'title', 'price', 'slug', 'deleted_at'], $trashed));
     }
 
     public function productBySlug(string $slug): mixed
