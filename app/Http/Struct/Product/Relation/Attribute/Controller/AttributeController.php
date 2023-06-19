@@ -3,6 +3,8 @@
 namespace App\Http\Struct\Product\Relation\Attribute\Controller;
 
 use App\Http\Controller;
+use App\Http\Struct\Product\Relation\Attribute\Request\AttributeIndexRequest;
+use App\Http\Struct\Product\Relation\Attribute\Request\AttributeRestoreAndForceDeleteRequest;
 use App\Http\Struct\Product\Relation\Attribute\Request\AttributeStoreRequest;
 use App\Http\Struct\Product\Relation\Attribute\Request\AttributeUpdateRequest;
 use App\Http\Struct\Product\Relation\Attribute\Resource\AttributeIndexResource;
@@ -21,9 +23,9 @@ class AttributeController extends Controller
     /**
      * @throws Exception
      */
-    public function index(): AttributeIndexResource
+    public function index(AttributeIndexRequest $request): AttributeIndexResource
     {
-        return new AttributeIndexResource($this->service->index());
+        return new AttributeIndexResource($this->service->index($request->trashed));
     }
 
     public function store(AttributeStoreRequest $request): JsonResponse
@@ -57,6 +59,20 @@ class AttributeController extends Controller
 
         return $attribute
             ? ResponseHandler::destroy(['id' => $id])
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function restore(AttributeRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        return $this->service->restore($request->ids)
+            ? ResponseHandler::restore()
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function forceDelete(AttributeRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        return $this->service->forceDelete($request->ids)
+            ? ResponseHandler::forceDelete()
             : ResponseHandler::recordNotFound();
     }
 }

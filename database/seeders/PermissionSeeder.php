@@ -71,6 +71,8 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.edit', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.destroy', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.restore', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Attribute', 'name' => 'attribute.forceDelete', 'guard_name' => 'web']);
 
         //Attribute Value permissions
         $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.index', 'guard_name' => 'web']);

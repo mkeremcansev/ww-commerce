@@ -11,16 +11,18 @@ class AttributeRepository implements AttributeInterface
     {
     }
 
-    public function attributeById($id): ?Attribute
+    public function attributeById($id, $trashed = false): ?Attribute
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->whereId($id)
             ->first();
     }
 
-    public function attributes(array $columns = [], array $relation = []): mixed
+    public function attributes(array $columns = [], array $relation = [], bool|null $trashed = false): mixed
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->when(count($columns),
                 fn ($eloquent) => $eloquent->select($columns),
                 fn ($eloquent) => $eloquent->when(count($relation),
@@ -57,5 +59,19 @@ class AttributeRepository implements AttributeInterface
         return $this->model->firstOrCreate([
             'title' => $title,
         ]);
+    }
+
+    public function restore($id): ?bool
+    {
+        $attribute = $this->attributeById($id, true);
+
+        return $attribute?->restore();
+    }
+
+    public function forceDelete($id): ?bool
+    {
+        $attribute = $this->attributeById($id, true);
+
+        return $attribute?->forceDelete();
     }
 }

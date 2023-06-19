@@ -11,6 +11,7 @@ class AttributeIndexCollection extends JsonResource
         return [
             'id' => $this->id ?? null,
             'title' => $this->title ?? null,
+            'deleted_at' => $this->deleted_at ?? null,
         ];
     }
 }
