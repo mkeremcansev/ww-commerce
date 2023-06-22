@@ -15,9 +15,9 @@ class CouponService
     /**
      * @throws Exception
      */
-    public function index(): mixed
+    public function index(bool|null $trashed = false): mixed
     {
-        return DatatableHelper::datatable($this->repository->coupons(['id', 'code', 'value', 'usage_limit', 'expired_at']));
+        return DatatableHelper::datatable($this->repository->coupons(['id', 'code', 'value', 'usage_limit', 'expired_at', 'deleted_at'], $trashed));
     }
 
     public function store($code, $type, $value, $usage_limit, $status, $expired_at): mixed
@@ -38,5 +38,23 @@ class CouponService
     public function destroy($id): ?bool
     {
         return $this->repository->destroy($id);
+    }
+
+    public function restore(array $ids): bool
+    {
+        foreach ($ids as $id) {
+            $this->repository->restore($id);
+        }
+
+        return true;
+    }
+
+    public function forceDelete(array $ids): bool
+    {
+        foreach ($ids as $id) {
+            $this->repository->forceDelete($id);
+        }
+
+        return true;
     }
 }

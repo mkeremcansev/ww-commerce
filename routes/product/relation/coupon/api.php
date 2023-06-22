@@ -13,5 +13,7 @@ Route::name(RouteGroupNameEnumeration::COUPON_GROUP)->prefix(RouteGroupPathEnume
         $router->patch('/{id}', 'update')->name('update')->middleware(['auth:sanctum', 'permission:coupon.update']);
         $router->get('/{id}/edit', 'edit')->name('edit')->middleware(['auth:sanctum', 'permission:coupon.edit']);
         $router->delete('/{id}/destroy', 'destroy')->name('destroy')->middleware(['auth:sanctum', 'permission:coupon.destroy']);
+        $router->post('/restore', 'restore')->name('restore')->middleware(['auth:sanctum', 'permission:coupon.restore']);
+        $router->post('/forceDelete', 'forceDelete')->name('forceDelete')->middleware(['auth:sanctum', 'permission:coupon.forceDelete']);
     });
 });

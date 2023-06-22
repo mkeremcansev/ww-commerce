@@ -6,6 +6,8 @@ use App\Helpers\EnumerationHelper;
 use App\Http\Controller;
 use App\Http\Struct\Product\Relation\Coupon\Enumeration\CouponStatusEnumeration;
 use App\Http\Struct\Product\Relation\Coupon\Enumeration\CouponTypeEnumeration;
+use App\Http\Struct\Product\Relation\Coupon\Request\CouponIndexRequest;
+use App\Http\Struct\Product\Relation\Coupon\Request\CouponRestoreAndForceDeleteRequest;
 use App\Http\Struct\Product\Relation\Coupon\Request\CouponStoreRequest;
 use App\Http\Struct\Product\Relation\Coupon\Request\CouponUpdateRequest;
 use App\Http\Struct\Product\Relation\Coupon\Resource\CouponIndexResource;
@@ -25,9 +27,9 @@ class CouponController extends Controller
     /**
      * @throws Exception
      */
-    public function index(): CouponIndexResource
+    public function index(CouponIndexRequest $request): CouponIndexResource
     {
-        return new CouponIndexResource($this->service->index());
+        return new CouponIndexResource($this->service->index($request->trashed));
     }
 
     /**
@@ -72,6 +74,20 @@ class CouponController extends Controller
 
         return $coupon
             ? ResponseHandler::destroy(['id' => $id])
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function restore(CouponRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        return $this->service->restore($request->ids)
+            ? ResponseHandler::restore()
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function forceDelete(CouponRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        return $this->service->forceDelete($request->ids)
+            ? ResponseHandler::forceDelete()
             : ResponseHandler::recordNotFound();
     }
 }

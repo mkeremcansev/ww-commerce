@@ -4,9 +4,9 @@ namespace App\Http\Struct\Product\Relation\Coupon\Contract;
 
 interface CouponInterface
 {
-    public function couponById($id): mixed;
+    public function couponById($id, $trashed = false): mixed;
 
-    public function coupons(array $columns = []): mixed;
+    public function coupons(array $columns = [], bool|null $trashed = false): mixed;
 
     public function store($code, $type, $value, $usage_limit, $status, $expired_at): mixed;
 

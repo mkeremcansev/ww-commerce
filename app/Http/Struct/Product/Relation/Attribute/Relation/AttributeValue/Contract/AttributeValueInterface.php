@@ -7,13 +7,13 @@ use Illuminate\Support\Collection;
 
 interface AttributeValueInterface
 {
-    public function attributeValueById($id): ?AttributeValue;
+    public function attributeValueById($id, $trashed = false): ?AttributeValue;
 
     public function attributeValueByCode(string $code): ?AttributeValue;
 
     public function attributeValuesByCodes(array $codes): ?Collection;
 
-    public function attributeValues(array $columns = []): mixed;
+    public function attributeValues(array $columns = [], bool|null $trashed = false): mixed;
 
     public function store($title, $code, $media, $attribute_id): AttributeValue;
 
@@ -24,4 +24,8 @@ interface AttributeValueInterface
     public function destroyMedia(AttributeValue $attributeValue): void;
 
     public function destroy($id): ?bool;
+
+    public function restore($id): ?bool;
+
+    public function forceDelete($id): ?bool;
 }

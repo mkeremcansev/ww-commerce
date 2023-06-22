@@ -14,6 +14,7 @@ class CouponIndexCollection extends JsonResource
             'value' => $this->value ?? null,
             'usage_limit' => $this->usage_limit ?? null,
             'expired_at' => $this->expired_at ?? null,
+            'deleted_at' => $this->deleted_at ?? null,
         ];
     }
 }

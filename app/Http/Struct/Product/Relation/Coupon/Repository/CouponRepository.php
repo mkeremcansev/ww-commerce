@@ -11,16 +11,18 @@ class CouponRepository implements CouponInterface
     {
     }
 
-    public function couponById($id): mixed
+    public function couponById($id, $trashed = false): mixed
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->whereId($id)
             ->first();
     }
 
-    public function coupons(array $columns = []): mixed
+    public function coupons(array $columns = [], bool|null $trashed = false): mixed
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->when(count($columns),
                 fn ($eloquent) => $eloquent->select($columns),
                 fn ($eloquent) => $eloquent->get()
@@ -63,5 +65,19 @@ class CouponRepository implements CouponInterface
         $coupon = $this->couponById($id);
 
         return $coupon?->delete();
+    }
+
+    public function restore($id): ?bool
+    {
+        $coupon = $this->couponById($id, true);
+
+        return $coupon?->restore();
+    }
+
+    public function forceDelete($id): ?bool
+    {
+        $coupon = $this->couponById($id, true);
+
+        return $coupon?->forceDelete();
     }
 }

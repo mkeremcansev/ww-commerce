@@ -12,9 +12,10 @@ class AttributeValueRepository implements AttributeValueInterface
     {
     }
 
-    public function attributeValueById($id): ?AttributeValue
+    public function attributeValueById($id, $trashed = false): ?AttributeValue
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->whereId($id)
             ->first();
     }
@@ -33,9 +34,10 @@ class AttributeValueRepository implements AttributeValueInterface
             ->get();
     }
 
-    public function attributeValues(array $columns = []): mixed
+    public function attributeValues(array $columns = [], bool|null $trashed = false): mixed
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->when(count($columns),
                 fn ($eloquent) => $eloquent->select($columns),
                 fn ($eloquent) => $eloquent->get()
@@ -88,5 +90,19 @@ class AttributeValueRepository implements AttributeValueInterface
         $attributeValue = $this->attributeValueById($id);
 
         return $attributeValue?->delete();
+    }
+
+    public function restore($id): ?bool
+    {
+        $attributeValue = $this->attributeValueById($id, true);
+
+        return $attributeValue?->restore();
+    }
+
+    public function forceDelete($id): ?bool
+    {
+        $attributeValue = $this->attributeValueById($id, true);
+
+        return $attributeValue?->forceDelete();
     }
 }

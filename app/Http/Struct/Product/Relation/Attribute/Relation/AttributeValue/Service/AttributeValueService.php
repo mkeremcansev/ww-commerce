@@ -16,9 +16,9 @@ class AttributeValueService
     /**
      * @throws Exception
      */
-    public function index(): mixed
+    public function index(bool|null $trashed = false): mixed
     {
-        return DatatableHelper::datatable($this->repository->attributeValues(['id', 'title', 'code']));
+        return DatatableHelper::datatable($this->repository->attributeValues(['id', 'title', 'code', 'deleted_at'], $trashed));
     }
 
     public function create(): mixed
@@ -44,5 +44,23 @@ class AttributeValueService
     public function destroy($id): ?bool
     {
         return $this->repository->destroy($id);
+    }
+
+    public function restore(array $ids): bool
+    {
+        foreach ($ids as $id) {
+            $this->repository->restore($id);
+        }
+
+        return true;
+    }
+
+    public function forceDelete(array $ids): bool
+    {
+        foreach ($ids as $id) {
+            $this->repository->forceDelete($id);
+        }
+
+        return true;
     }
 }

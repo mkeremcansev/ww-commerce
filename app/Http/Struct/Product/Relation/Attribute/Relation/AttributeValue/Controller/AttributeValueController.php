@@ -4,6 +4,8 @@ namespace App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Con
 
 use App\Http\Controller;
 use App\Http\Struct\Product\Relation\Attribute\Contract\AttributeInterface;
+use App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Request\AttributeValueIndexRequest;
+use App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Request\AttributeValueRestoreAndForceDeleteRequest;
 use App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Request\AttributeValueStoreRequest;
 use App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Request\AttributeValueUpdateRequest;
 use App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Resource\AttributeValueIndexResource;
@@ -25,9 +27,9 @@ class AttributeValueController extends Controller
     /**
      * @throws Exception
      */
-    public function index(): AttributeValueIndexResource
+    public function index(AttributeValueIndexRequest $request): AttributeValueIndexResource
     {
-        return new AttributeValueIndexResource($this->service->index());
+        return new AttributeValueIndexResource($this->service->index($request->trashed));
     }
 
     /**
@@ -71,5 +73,19 @@ class AttributeValueController extends Controller
         return $attributeValue
             ? ResponseHandler::destroy(['id' => $id])
             : ResponseHandler::notFound();
+    }
+
+    public function restore(AttributeValueRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        return $this->service->restore($request->ids)
+            ? ResponseHandler::restore()
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function forceDelete(AttributeValueRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        return $this->service->forceDelete($request->ids)
+            ? ResponseHandler::forceDelete()
+            : ResponseHandler::recordNotFound();
     }
 }

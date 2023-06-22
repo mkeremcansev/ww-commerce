@@ -81,6 +81,8 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.edit', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.destroy', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.restore', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'AttributeValue', 'name' => 'attribute_value.forceDelete', 'guard_name' => 'web']);
 
         //Product permissions
         $this->firstOrCreate(['group_name' => 'Product', 'name' => 'product.index', 'guard_name' => 'web']);
@@ -99,6 +101,8 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'Coupon', 'name' => 'coupon.edit', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Coupon', 'name' => 'coupon.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Coupon', 'name' => 'coupon.destroy', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Coupon', 'name' => 'coupon.restore', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Coupon', 'name' => 'coupon.forceDelete', 'guard_name' => 'web']);
 
         //Media permissions
         $this->firstOrCreate(['group_name' => 'Media', 'name' => 'media.index', 'guard_name' => 'web']);
