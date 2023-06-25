@@ -107,6 +107,11 @@ class PermissionSeeder extends Seeder
         //Media permissions
         $this->firstOrCreate(['group_name' => 'Media', 'name' => 'media.index', 'guard_name' => 'web']);
 
+        //Setting permissions
+        $this->firstOrCreate(['group_name' => 'Setting', 'name' => 'setting.index', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Setting', 'name' => 'setting.edit', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Setting', 'name' => 'setting.update', 'guard_name' => 'web']);
+
         //Image permissions
         $this->firstOrCreate(['group_name' => 'Image', 'name' => 'image.index', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Image', 'name' => 'image.upload', 'guard_name' => 'web']);
