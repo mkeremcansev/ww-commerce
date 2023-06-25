@@ -43,7 +43,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/user/api.php')) // User router API's
                 ->group(base_path('routes/user/relation/role/api.php')) // Role router API's
                 ->group(base_path('routes/media/relation/image/api.php')) // Image router API's
-                ->group(base_path('routes/general/setting/api.php')); // Image router API's
+                ->group(base_path('routes/main/setting/api.php')); // Image router API's
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
