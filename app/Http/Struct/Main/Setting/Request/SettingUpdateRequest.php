@@ -26,6 +26,18 @@ class SettingUpdateRequest extends FormRequest
             'description' => 'required|string|max:1000',
             'keywords' => 'required|string|max:1000',
             'default_image_mime_type' => 'required|string|max:10',
+            'logo' => 'required|array',
+            'logo.id' => 'required|numeric',
+            'logo.mime_type' => 'required|string|max:10',
+            'logo.extension' => 'required|string',
+            'logo.full_path' => 'required|string',
+            'logo.size' => 'required|numeric',
+            'favicon' => 'required|array',
+            'favicon.id' => 'required|numeric',
+            'favicon.mime_type' => 'required|string|max:10',
+            'favicon.extension' => 'required|string',
+            'favicon.full_path' => 'required|string',
+            'favicon.size' => 'required|numeric',
         ];
     }
 }

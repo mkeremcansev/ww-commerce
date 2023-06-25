@@ -4,9 +4,9 @@ namespace App\Http\Struct\Main\Setting\Controller;
 
 use App\Helpers\EnumerationHelper;
 use App\Http\Controller;
+use App\Http\Struct\Main\Setting\Enumeration\SettingMimeTypeEnumeration;
 use App\Http\Struct\Main\Setting\Request\SettingUpdateRequest;
 use App\Http\Struct\Main\Setting\Service\SettingService;
-use App\Http\Struct\Main\Setting\SettingMimeTypeEnumeration;
 use App\Response\ResponseHandler;
 use Illuminate\Http\JsonResponse;
 use ReflectionException;

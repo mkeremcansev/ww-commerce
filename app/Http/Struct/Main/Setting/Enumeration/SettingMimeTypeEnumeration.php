@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Struct\Main\Setting;
+namespace App\Http\Struct\Main\Setting\Enumeration;
 
 abstract class SettingMimeTypeEnumeration
 {
