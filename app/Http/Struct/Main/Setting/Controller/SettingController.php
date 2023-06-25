@@ -17,9 +17,9 @@ class SettingController extends Controller
     {
     }
 
-    public function index(): JsonResponse
+    public function index()
     {
-        return ResponseHandler::successWithoutMessage($this->service->index());
+        return $this->service->index();
     }
 
     /**
