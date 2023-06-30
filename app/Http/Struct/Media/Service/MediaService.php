@@ -16,9 +16,9 @@ class MediaService
     ) {
     }
 
-    public function index(): mixed
+    public function index(bool|null $trashed = false): mixed
     {
-        return $this->repository->media();
+        return $this->repository->media($trashed);
     }
 
     public function store($files): bool

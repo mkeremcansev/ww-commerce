@@ -4,6 +4,7 @@ namespace App\Http\Struct\Media\Controller;
 
 use App\Http\Controller;
 use App\Http\Struct\Media\Request\MediaDestroyRequest;
+use App\Http\Struct\Media\Request\MediaIndexRequest;
 use App\Http\Struct\Media\Request\MediaStoreRequest;
 use App\Http\Struct\Media\ResourceCollection\MediaResourceCollection;
 use App\Http\Struct\Media\Service\MediaService;
@@ -17,9 +18,9 @@ class MediaController extends Controller
     {
     }
 
-    public function index(): AnonymousResourceCollection
+    public function index(MediaIndexRequest $request): AnonymousResourceCollection
     {
-        return MediaResourceCollection::collection($this->service->index());
+        return MediaResourceCollection::collection($this->service->index($request->trashed));
     }
 
     public function store(MediaStoreRequest $request): JsonResponse

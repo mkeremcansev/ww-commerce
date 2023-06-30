@@ -22,9 +22,10 @@ class MediaRepository implements MediaInterface
         ]);
     }
 
-    public function media(): mixed
+    public function media(bool|null $trashed = false): mixed
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->get();
     }
 
