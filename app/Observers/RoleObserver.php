@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use Spatie\Permission\Models\Role;
+use App\Http\Struct\User\Relation\Role\Model\Role;
 
 class RoleObserver
 {
@@ -27,7 +27,7 @@ class RoleObserver
      */
     public function deleting(Role $role): void
     {
-        //
+        $role->users()->detach();
     }
 
     /**
@@ -43,6 +43,7 @@ class RoleObserver
      */
     public function forceDeleting(Role $role): void
     {
-        //
+        $role->users()->detach();
+        $role->permissions()->detach();
     }
 }

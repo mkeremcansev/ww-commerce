@@ -7,36 +7,35 @@ use App\Http\Struct\Product\Relation\Attribute\Model\Attribute;
 use App\Http\Struct\Product\Relation\Attribute\Relation\AttributeValue\Model\AttributeValue;
 use App\Http\Struct\Product\Relation\Brand\Model\Brand;
 use App\Http\Struct\Product\Relation\Category\Model\Category;
+use App\Http\Struct\User\Relation\Role\Model\Role;
 use App\Observers\AttributeObserver;
 use App\Observers\AttributeValueObserver;
 use App\Observers\BrandObserver;
 use App\Observers\CategoryObserver;
 use App\Observers\ProductObserver;
+use App\Observers\RoleObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Brand::observe(BrandObserver::class);
         Category::observe(CategoryObserver::class);
         Product::observe(ProductObserver::class);
         Attribute::observe(AttributeObserver::class);
         AttributeValue::observe(AttributeValueObserver::class);
+        Role::observe(RoleObserver::class);
     }
 }

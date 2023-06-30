@@ -17,9 +17,9 @@ class RoleService
     /**
      * @throws Exception
      */
-    public function index(): mixed
+    public function index(bool|null $trashed = false): mixed
     {
-        return DatatableHelper::datatable($this->repository->roles(['id', 'name']));
+        return DatatableHelper::datatable($this->repository->roles(['id', 'name', 'deleted_at'], $trashed));
     }
 
     public function store($name, $permissionId): mixed
@@ -50,5 +50,23 @@ class RoleService
     {
         resolve(PermissionRegistrar::class)
             ->forgetCachedPermissions();
+    }
+
+    public function restore(array $ids): bool
+    {
+        foreach ($ids as $id) {
+            $this->repository->restore($id);
+        }
+
+        return true;
+    }
+
+    public function forceDelete(array $ids): bool
+    {
+        foreach ($ids as $id) {
+            $this->repository->forceDelete($id);
+        }
+
+        return true;
     }
 }

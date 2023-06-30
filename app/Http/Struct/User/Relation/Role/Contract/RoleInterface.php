@@ -10,9 +10,9 @@ interface RoleInterface
 
     public function roleFirstOrCreate(array $columns): Role;
 
-    public function roles(array $columns = []): mixed;
+    public function roles(array $columns = [], bool|null $trashed = false): mixed;
 
-    public function roleById($id): ?Role;
+    public function roleById($id, $trashed = false): ?Role;
 
     public function store($name, $permissionId): mixed;
 

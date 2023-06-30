@@ -35,6 +35,8 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'Role', 'name' => 'role.edit', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Role', 'name' => 'role.update', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Role', 'name' => 'role.destroy', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Role', 'name' => 'role.restore', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Role', 'name' => 'role.forceDelete', 'guard_name' => 'web']);
 
         //Permission permissions
         $this->firstOrCreate(['group_name' => 'Permission', 'name' => 'permission.index', 'guard_name' => 'web']);

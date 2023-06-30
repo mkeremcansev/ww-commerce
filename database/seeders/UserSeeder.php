@@ -14,6 +14,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $this->firstOrCreate('Admin', 'admin@ww-commerce.com', 'password');
+        $this->firstOrCreate('Moderator', 'moderator@ww-commerce.com', 'password');
     }
 
     public function firstOrCreate(string $name, string $email, string $password): void

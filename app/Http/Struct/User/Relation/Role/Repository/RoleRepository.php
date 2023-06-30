@@ -3,7 +3,7 @@
 namespace App\Http\Struct\User\Relation\Role\Repository;
 
 use App\Http\Struct\User\Relation\Role\Contract\RoleInterface;
-use Spatie\Permission\Models\Role;
+use App\Http\Struct\User\Relation\Role\Model\Role;
 
 class RoleRepository implements RoleInterface
 {
@@ -21,18 +21,20 @@ class RoleRepository implements RoleInterface
         return $this->model->firstOrCreate($columns);
     }
 
-    public function roles(array $columns = []): mixed
+    public function roles(array $columns = [], bool|null $trashed = false): mixed
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->when(count($columns),
                 fn ($eloquent) => $eloquent->select($columns),
                 fn ($eloquent) => $eloquent->get()
             );
     }
 
-    public function roleById($id): ?Role
+    public function roleById($id, $trashed = false): ?Role
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->whereId($id)
             ->first();
     }
@@ -60,5 +62,19 @@ class RoleRepository implements RoleInterface
         $role = $this->roleById($id);
 
         return $role?->delete();
+    }
+
+    public function restore($id): ?bool
+    {
+        $role = $this->roleById($id, true);
+
+        return $role?->restore();
+    }
+
+    public function forceDelete($id): ?bool
+    {
+        $role = $this->roleById($id, true);
+
+        return $role?->forceDelete();
     }
 }

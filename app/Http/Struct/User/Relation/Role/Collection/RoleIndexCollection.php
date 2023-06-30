@@ -11,6 +11,7 @@ class RoleIndexCollection extends JsonResource
         return [
             'id' => $this->id ?? null,
             'name' => $this->name ?? null,
+            'deleted_at' => $this->deleted_at ?? null,
         ];
     }
 }

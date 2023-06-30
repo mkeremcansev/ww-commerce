@@ -4,7 +4,7 @@ namespace App\Http\Struct\User\Relation\Role\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoleIndexRequest extends FormRequest
+class RoleRestoreAndForceDeleteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,8 @@ class RoleIndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'trashed' => 'nullable|boolean',
+            'ids' => 'required|array',
+            'ids.*' => 'required|integer|exists:roles,id',
         ];
     }
 }
