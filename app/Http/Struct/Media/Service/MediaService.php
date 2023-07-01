@@ -46,8 +46,21 @@ class MediaService
         return true;
     }
 
-    public function pathReplace($path): array|string
+    public function restore(array $ids): bool
     {
-        return str_replace('/', '', str_replace(asset(MediaPathEnumeration::MEDIA_PATH), '', $path));
+        foreach ($ids as $id) {
+            $this->repository->restore($id);
+        }
+
+        return true;
+    }
+
+    public function forceDelete(array $ids): bool
+    {
+        foreach ($ids as $id) {
+            $this->repository->forceDelete($id);
+        }
+
+        return true;
     }
 }

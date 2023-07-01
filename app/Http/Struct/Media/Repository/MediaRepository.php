@@ -29,9 +29,10 @@ class MediaRepository implements MediaInterface
             ->get();
     }
 
-    public function mediaById($mediaId): mixed
+    public function mediaById($mediaId, $trashed = false): mixed
     {
         return $this->model
+            ->when($trashed, fn ($query) => $query->onlyTrashed())
             ->whereId($mediaId)
             ->first();
     }
@@ -41,5 +42,19 @@ class MediaRepository implements MediaInterface
         $media = $this->mediaById($mediaId);
 
         return $media?->delete();
+    }
+
+    public function restore($id): ?bool
+    {
+        $media = $this->mediaById($id, true);
+
+        return $media?->restore();
+    }
+
+    public function forceDelete($id): ?bool
+    {
+        $media = $this->mediaById($id, true);
+
+        return $media?->forceDelete();
     }
 }

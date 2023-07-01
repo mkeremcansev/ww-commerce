@@ -5,6 +5,7 @@ namespace App\Http\Struct\Media\Controller;
 use App\Http\Controller;
 use App\Http\Struct\Media\Request\MediaDestroyRequest;
 use App\Http\Struct\Media\Request\MediaIndexRequest;
+use App\Http\Struct\Media\Request\MediaRestoreAndForceDeleteRequest;
 use App\Http\Struct\Media\Request\MediaStoreRequest;
 use App\Http\Struct\Media\ResourceCollection\MediaResourceCollection;
 use App\Http\Struct\Media\Service\MediaService;
@@ -35,5 +36,19 @@ class MediaController extends Controller
         $this->service->destroy($request->media);
 
         return ResponseHandler::success();
+    }
+
+    public function restore(MediaRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        return $this->service->restore($request->ids)
+            ? ResponseHandler::restore()
+            : ResponseHandler::recordNotFound();
+    }
+
+    public function forceDelete(MediaRestoreAndForceDeleteRequest $request): JsonResponse
+    {
+        return $this->service->forceDelete($request->ids)
+            ? ResponseHandler::forceDelete()
+            : ResponseHandler::recordNotFound();
     }
 }

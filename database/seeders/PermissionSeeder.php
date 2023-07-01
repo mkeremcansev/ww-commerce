@@ -118,6 +118,8 @@ class PermissionSeeder extends Seeder
         $this->firstOrCreate(['group_name' => 'Image', 'name' => 'image.index', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Image', 'name' => 'image.upload', 'guard_name' => 'web']);
         $this->firstOrCreate(['group_name' => 'Image', 'name' => 'image.destroy', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Image', 'name' => 'image.restore', 'guard_name' => 'web']);
+        $this->firstOrCreate(['group_name' => 'Image', 'name' => 'image.forceDelete', 'guard_name' => 'web']);
 
     }
 

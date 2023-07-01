@@ -8,7 +8,11 @@ interface MediaInterface
 
     public function media(bool|null $trashed = false): mixed;
 
-    public function mediaById($mediaId): mixed;
+    public function mediaById($mediaId, $trashed = false): mixed;
 
     public function destroy($mediaId): ?bool;
+
+    public function restore($id): ?bool;
+
+    public function forceDelete($id): ?bool;
 }
