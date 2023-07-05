@@ -23,7 +23,7 @@ class AttributeValueRestoreAndForceDeleteRequest extends FormRequest
     {
         return [
             'ids' => 'required|array',
-            'ids.*' => 'required|integer|exists:attributes,id',
+            'ids.*' => 'required|integer|exists:attribute_values,id',
         ];
     }
 }
