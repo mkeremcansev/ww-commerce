@@ -32,9 +32,9 @@ class ProductRepository implements ProductInterface
             ->first();
     }
 
-    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed
+    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media, $variantStatus): mixed
     {
-        return DB::transaction(function () use ($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media) {
+        return DB::transaction(function () use ($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media, $variantStatus) {
             $product = $this->model->create([
                 'title' => $title,
                 'slug' => $slug,
@@ -43,10 +43,11 @@ class ProductRepository implements ProductInterface
                 'brand_id' => $brandId,
                 'status' => $status,
                 'stock' => $stock,
+                'variant_status' => $variantStatus,
             ]);
             $this->attachMedia($product, $media);
             $this->attachCategories($product, $categoryId);
-            $this->attachVariants($product, $variants);
+            $variantStatus && $this->attachVariants($product, $variants);
 
             return $product;
         });
@@ -99,9 +100,10 @@ class ProductRepository implements ProductInterface
         }
     }
 
-    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed
+    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media, $variantStatus): mixed
     {
-        return DB::transaction(function () use ($id, $title, $slug, $price, $categoryId, $content, $brandId, $status, $variants, $stock, $media) {
+
+        return DB::transaction(function () use ($id, $title, $slug, $price, $categoryId, $content, $brandId, $status, $variants, $stock, $media, $variantStatus) {
             $product = $this->productById($id);
             if ($product) {
                 $product->touch();
@@ -113,10 +115,11 @@ class ProductRepository implements ProductInterface
                     'brand_id' => $brandId,
                     'status' => $status,
                     'stock' => $stock,
+                    'variant_status' => $variantStatus,
                 ]);
                 $this->attachCategories($product, $categoryId);
                 $this->attachMedia($product, $media);
-                $this->attachVariants($product, $variants);
+                $variantStatus && $this->attachVariants($product, $variants);
 
                 return $product;
             }

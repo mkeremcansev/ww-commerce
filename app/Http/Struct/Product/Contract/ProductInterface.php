@@ -10,7 +10,19 @@ interface ProductInterface
 
     public function productById($id, $trashed = false): mixed;
 
-    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed;
+    public function store(
+        $title,
+        $slug,
+        $price,
+        $content,
+        $categoryId,
+        $brandId,
+        $status,
+        $variants,
+        $stock,
+        $media,
+        $variantStatus
+    ): mixed;
 
     public function attachMedia(Product $product, array $media): void;
 
@@ -20,7 +32,20 @@ interface ProductInterface
 
     public function attachVariants(Product $product, $variants);
 
-    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed;
+    public function update(
+        $id,
+        $title,
+        $slug,
+        $price,
+        $content,
+        $categoryId,
+        $brandId,
+        $status,
+        $variants,
+        $stock,
+        $media,
+        $variantStatus
+    ): mixed;
 
     public function destroy($id): bool;
 

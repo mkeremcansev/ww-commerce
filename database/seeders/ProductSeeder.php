@@ -25,11 +25,12 @@ class ProductSeeder extends Seeder
             resolve(BrandInterface::class)->brands()->first()->id,
             ProductStatusEnumeration::ACTIVE,
             variantCombination(),
-            Media::limit(3)->get()->toArray()
+            Media::limit(3)->get()->toArray(),
+            true
         );
     }
 
-    public function firstOrCreate($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $media): void
+    public function firstOrCreate($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $media, $variantStatus): void
     {
         if (! resolve(ProductInterface::class)->productBySlug($slug)) {
             resolve(ProductInterface::class)->store(
@@ -42,7 +43,8 @@ class ProductSeeder extends Seeder
                 $status,
                 $variants,
                 rand(0, 3),
-                $media
+                $media,
+                $variantStatus,
             );
         }
     }

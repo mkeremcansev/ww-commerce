@@ -32,6 +32,7 @@ class Product extends BaseModel
         'content',
         'status',
         'brand_id',
+        'variant_status',
     ];
 
     public function attributes(): BelongsToMany

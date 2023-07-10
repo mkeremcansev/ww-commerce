@@ -69,7 +69,8 @@ class ProductController extends Controller
             $request->status,
             $request->variants,
             $request->stock,
-            $request->media
+            $request->media,
+            $request->variant_status
         );
 
         return ResponseHandler::store(['id' => $product->id]);
@@ -106,7 +107,8 @@ class ProductController extends Controller
             $request->status,
             $request->variants,
             $request->stock,
-            $request->media
+            $request->media,
+            $request->variant_status
         );
 
         return $product

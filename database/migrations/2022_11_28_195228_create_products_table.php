@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('price', 9);
             $table->tinyInteger('status')->default(ProductStatusEnumeration::ACTIVE);
             $table->foreignId('brand_id')->constrained();
+            $table->boolean('variant_status');
             $table->softDeletes();
             $table->timestamps();
         });

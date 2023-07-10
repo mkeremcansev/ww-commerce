@@ -25,9 +25,9 @@ class ProductService
         return $this->repository->productBySlug($slug);
     }
 
-    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed
+    public function store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media, $variantStatus): mixed
     {
-        return $this->repository->store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media);
+        return $this->repository->store($title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media, $variantStatus);
     }
 
     public function edit($id): mixed
@@ -35,9 +35,22 @@ class ProductService
         return $this->repository->productById($id);
     }
 
-    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media): mixed
+    public function update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media, $variantStatus): mixed
     {
-        return $this->repository->update($id, $title, $slug, $price, $content, $categoryId, $brandId, $status, $variants, $stock, $media);
+        return $this->repository->update(
+            $id,
+            $title,
+            $slug,
+            $price,
+            $content,
+            $categoryId,
+            $brandId,
+            $status,
+            $variants,
+            $stock,
+            $media,
+            $variantStatus
+        );
     }
 
     public function destroy($id): bool

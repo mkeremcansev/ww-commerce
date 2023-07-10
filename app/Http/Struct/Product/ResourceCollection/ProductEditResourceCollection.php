@@ -34,6 +34,7 @@ class ProductEditResourceCollection extends JsonResource
             'price' => $this->price ?? null,
             'brand' => $this->brand->id ?? null,
             'status' => $this->status ?? null,
+            'variant_status' => $this->variant_status ?? null,
             'variant_groups' => ProductVariantRelationResourceCollection::collection($this->variants ?? null),
             'categories' => ProductCategoryResourceCollection::collection($this->categories ?? null),
             'media' => MediaResourceCollection::collection($this->getMedia() ?? null),
