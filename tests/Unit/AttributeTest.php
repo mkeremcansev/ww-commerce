@@ -50,6 +50,6 @@ class AttributeTest extends TestCase
 
     public function test_can_force_attribute(): void
     {
-        $this->assertTrue($this->model->find(self::$id)->forceDelete());
+        $this->assertTrue($this->model->onlyTrashed()->find(self::$id)->forceDelete());
     }
 }

@@ -67,7 +67,7 @@ class AttributeValueTest extends TestCase
 
     public function test_can_force_brand(): void
     {
-        $this->assertTrue($this->model->find(self::$id)->forceDelete());
-        $this->assertTrue($this->parent_model->find(self::$parent_id)->forceDelete());
+        $this->assertTrue($this->model->onlyTrashed()->find(self::$id)->forceDelete());
+        $this->assertTrue($this->parent_model->onlyTrashed()->find(self::$parent_id)->forceDelete());
     }
 }

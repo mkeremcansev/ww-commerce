@@ -53,6 +53,6 @@ class CategoryTest extends TestCase
 
     public function test_can_force_category(): void
     {
-        $this->assertTrue($this->model->find(self::$id)->forceDelete());
+        $this->assertTrue($this->model->onlyTrashed()->find(self::$id)->forceDelete());
     }
 }

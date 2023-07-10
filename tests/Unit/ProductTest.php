@@ -39,6 +39,7 @@ class ProductTest extends TestCase
             'variants' => variantCombination(),
             'stock' => rand(0, 3),
             'media' => Media::limit(3)->get()->toArray(),
+            'variant_status' => true,
         ])->assertStatus(200)->getOriginalContent();
         self::$id = $product['data']['id'];
     }
@@ -60,6 +61,7 @@ class ProductTest extends TestCase
             'variants' => variantCombination(),
             'stock' => rand(0, 3),
             'media' => Media::limit(3)->get()->toArray(),
+            'variant_status' => true,
         ])->assertStatus(200);
     }
 
@@ -70,6 +72,6 @@ class ProductTest extends TestCase
 
     public function test_can_force_product(): void
     {
-        $this->assertTrue($this->model->find(self::$id)->forceDelete());
+        $this->assertTrue($this->model->onlyTrashed()->find(self::$id)->forceDelete());
     }
 }
