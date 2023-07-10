@@ -43,7 +43,10 @@ class MediaObserver
      */
     public function forceDeleting(Media $media): void
     {
-        unlink(public_path($media->path_info).$media->path);
+        if (file_exists(public_path($media->path_info).$media->path)) {
+            unlink(public_path($media->path_info).$media->path);
+        }
+
         $media->items()->forceDelete();
     }
 }
