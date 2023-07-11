@@ -8,7 +8,6 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Http;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -69,18 +68,6 @@ class Handler extends ExceptionHandler
         })->renderable(function (RoleAlreadyExists $e) {
             return ResponseHandler::roleAlreadyExists();
         });
-
-        Http::post('https://discord.com/api/webhooks/1119335178481963119/nb3cZwEpvvHHv-dILPxonVLcb1392dHpZcXE1mDGBxbXkgZCcNUbFuFyuYKdSz0AxePS', [
-            'content' => '**URL :** '.url()->current()
-                ."\n"
-                .'**Date :** '.now()->format('Y-m-d H:i:s')
-                ."\n"
-                .'**Message :** '.$e->getMessage()
-                ."\n"
-                .'**File:** '.$e->getFile()
-                ."\n"
-                .'**Line:** '.$e->getLine(),
-        ]);
 
         return parent::render($request, $e);
     }
