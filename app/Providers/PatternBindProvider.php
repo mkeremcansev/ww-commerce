@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Media\Relation\Image\Contract\ImageInterface;
-use App\Http\Controllers\Media\Relation\Image\Repository\ImageRepository;
 use App\Http\Struct\Media\Contract\MediaInterface;
 use App\Http\Struct\Media\Relation\MediaPolymorphic\Contract\MediaPolymorphicInterface;
 use App\Http\Struct\Media\Relation\MediaPolymorphic\Repository\MediaPolymorphicRepository;
@@ -77,11 +75,6 @@ class PatternBindProvider extends ServiceProvider
         $this->app->bind(
             CouponInterface::class,
             CouponRepository::class
-        );
-
-        $this->app->bind(
-            ImageInterface::class,
-            ImageRepository::class
         );
 
         $this->app->bind(
