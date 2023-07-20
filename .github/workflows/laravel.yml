@@ -47,6 +47,15 @@ jobs:
       - name: Install composer dependencies
         uses: ramsey/composer-install@v2
 
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Migration
+        run: php artisan migrate:refresh --seed
+
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
       - name: Execute tests
         env:
           DB_PORT: 33306
