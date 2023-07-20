@@ -18,7 +18,7 @@ jobs:
       mysql-service:
         image: mysql:8.0
         env:
-          MYSQL_DATABASE: test
+          MYSQL_DATABASE: ww_commerce_test
           MYSQL_ALLOW_EMPTY_PASSWORD: true
         ## map the "external" 33306 port with the "internal" 3306
         ports:
