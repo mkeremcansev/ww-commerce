@@ -9,8 +9,8 @@ on:
 
 jobs:
   test:
-    name: pest
-    runs-on: self-hosted
+    name: phpunit
+    runs-on: ubuntu-latest
     container:
       image: kirschbaumdevelopment/laravel-test-runner:8.1
 
