@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use App\Http\Struct\Media\Model\Media;
 use App\Http\Struct\Product\Relation\Brand\Model\Brand;

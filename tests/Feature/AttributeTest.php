@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use App\Http\Struct\Product\Relation\Attribute\Model\Attribute;
 use Tests\TestCase;
