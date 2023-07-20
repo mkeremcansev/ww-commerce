@@ -27,9 +27,9 @@ class CategoryService
         return $this->repository->mainCategoriesWithParents(['id', 'title', 'slug']);
     }
 
-    public function store($title, $slug, $media, $category_id): mixed
+    public function store($title, $slug, $media, $categoryId, $attributeIds): mixed
     {
-        return $this->repository->store($title, $slug, $media, $category_id);
+        return $this->repository->store($title, $slug, $media, $categoryId, $attributeIds);
     }
 
     public function edit($id): ?Category
@@ -37,9 +37,9 @@ class CategoryService
         return $this->repository->categoryById($id);
     }
 
-    public function update($id, $title, $slug, $media, $category_id): mixed
+    public function update($id, $title, $slug, $media, $categoryId, $attributeIds): mixed
     {
-        return $this->repository->update($id, $title, $slug, $media, $category_id);
+        return $this->repository->update($id, $title, $slug, $media, $categoryId, $attributeIds);
     }
 
     public function destroy($id): ?bool

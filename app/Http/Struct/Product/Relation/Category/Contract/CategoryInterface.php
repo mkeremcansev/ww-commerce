@@ -13,9 +13,11 @@ interface CategoryInterface
 
     public function mainCategoriesWithParents(array $columns = []): Collection|array;
 
-    public function store($title, $slug, $media, $category_id): mixed;
+    public function store($title, $slug, $media, $categoryId, $attributeIds): mixed;
 
-    public function update($id, $title, $slug, $media, $category_id): bool;
+    public function attachAttributes(Category $category, $attributeIds): void;
+
+    public function update($id, $title, $slug, $media, $categoryId, $attributeIds): bool;
 
     public function attachMedia(Category $category, $media): void;
 
@@ -23,5 +25,5 @@ interface CategoryInterface
 
     public function destroy($id): ?bool;
 
-    public function firstOrCreate($title, $slug, $category_id): Category;
+    public function firstOrCreate($title, $slug, $categoryId): Category;
 }

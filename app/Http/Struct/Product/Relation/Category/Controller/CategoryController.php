@@ -7,14 +7,13 @@ use App\Http\Struct\Product\Relation\Category\Request\CategoryIndexRequest;
 use App\Http\Struct\Product\Relation\Category\Request\CategoryRestoreAndForceDeleteRequest;
 use App\Http\Struct\Product\Relation\Category\Request\CategoryStoreRequest;
 use App\Http\Struct\Product\Relation\Category\Request\CategoryUpdateRequest;
+use App\Http\Struct\Product\Relation\Category\Resource\CategoryCreateResource;
 use App\Http\Struct\Product\Relation\Category\Resource\CategoryIndexResource;
-use App\Http\Struct\Product\Relation\Category\ResourceCollection\CategoryCreateResourceCollection;
 use App\Http\Struct\Product\Relation\Category\ResourceCollection\CategoryEditResourceCollection;
 use App\Http\Struct\Product\Relation\Category\Service\CategoryService;
 use App\Response\ResponseHandler;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -31,14 +30,20 @@ class CategoryController extends Controller
         return new CategoryIndexResource($this->service->index($request->trashed));
     }
 
-    public function create(): AnonymousResourceCollection
+    public function create(): CategoryCreateResource
     {
-        return CategoryCreateResourceCollection::collection($this->service->create());
+        return new CategoryCreateResource($this->service->create());
     }
 
     public function store(CategoryStoreRequest $request): JsonResponse
     {
-        $category = $this->service->store($request->title, $this->str::slug($request->title), $request->media, $request->category_id);
+        $category = $this->service->store(
+            $request->title,
+            $this->str::slug($request->title),
+            $request->media,
+            $request->category_id,
+            $request->attribute_ids
+        );
 
         return ResponseHandler::store(['id' => $category->id]);
     }
@@ -54,7 +59,14 @@ class CategoryController extends Controller
 
     public function update(int $id, CategoryUpdateRequest $request): JsonResponse
     {
-        $category = $this->service->update($id, $request->title, $this->str::slug($request->title), $request->media, $request->category_id);
+        $category = $this->service->update(
+            $id,
+            $request->title,
+            $this->str::slug($request->title),
+            $request->media,
+            $request->category_id,
+            $request->attribute_ids
+        );
 
         return $category
             ? ResponseHandler::update(['id' => $id])

@@ -46,29 +46,37 @@ class CategoryRepository implements CategoryInterface
             ->get();
     }
 
-    public function store($title, $slug, $media, $category_id): mixed
+    public function store($title, $slug, $media, $categoryId, $attributeIds): mixed
     {
         $category = $this->model->create([
             'title' => $title,
             'slug' => $slug,
-            'category_id' => $category_id,
+            'category_id' => $categoryId,
         ]);
         $this->attachMedia($category, $media);
+        $this->attachAttributes($category, $attributeIds);
 
         return $category;
     }
 
-    public function update($id, $title, $slug, $media, $category_id): bool
+    public function attachAttributes(Category $category, $attributeIds): void
+    {
+        $category->attributes()->attach($attributeIds);
+    }
+
+    public function update($id, $title, $slug, $media, $categoryId, $attributeIds): bool
     {
         $category = $this->categoryById($id);
         if ($category) {
+            $category->touch();
             $this->destroyMedia($category);
             $this->attachMedia($category, $media);
+            $this->attachAttributes($category, $attributeIds);
 
             return $category->update([
                 'title' => $title,
                 'slug' => $slug,
-                'category_id' => $category_id,
+                'category_id' => $categoryId,
             ]);
         }
 
@@ -92,12 +100,12 @@ class CategoryRepository implements CategoryInterface
         return $category?->delete();
     }
 
-    public function firstOrCreate($title, $slug, $category_id): Category
+    public function firstOrCreate($title, $slug, $categoryId): Category
     {
         return $this->model->firstOrCreate([
             'title' => $title,
             'slug' => $slug,
-            'category_id' => $category_id,
+            'category_id' => $categoryId,
         ]);
     }
 

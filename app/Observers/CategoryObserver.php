@@ -4,11 +4,12 @@ namespace App\Observers;
 
 use App\Http\Struct\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Struct\Product\Relation\Category\Model\Category;
+use App\Http\Struct\Product\Relation\Category\Relation\Model\CategoryAttribute;
 use App\Http\Struct\Product\Relation\ProductCategory\Model\ProductCategory;
 
 class CategoryObserver
 {
-    public function __construct(public ProductCategory $productCategory)
+    public function __construct(public ProductCategory $productCategory, public CategoryAttribute $categoryAttribute)
     {
     }
 
@@ -21,11 +22,14 @@ class CategoryObserver
     }
 
     /**
-     * Handle the Category "updated" event.
+     * Handle the Category "updating" event.
      */
-    public function updated(Category $category): void
+    public function updating(Category $category): void
     {
-        //
+        if (! $category->isRestoring) {
+            $this->categoryAttribute->where('category_id', $category->id)->each(fn ($attribute) => $attribute->forceDelete());
+            $category->forceDestroyMedia();
+        }
     }
 
     /**
