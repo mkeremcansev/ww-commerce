@@ -4,12 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths:
-      - "**.php"
   pull_request:
     branches: [main]
-    paths:
-      - "**.php"
 
 jobs:
   test:
