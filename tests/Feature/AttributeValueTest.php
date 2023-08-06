@@ -29,7 +29,7 @@ class AttributeValueTest extends TestCase
     public function test_can_store_attribute_value(): void
     {
         $attribute = $this->post(route('attribute.store'), [
-            'title' => $this->faker->colorName,
+            'title' => $this->faker->colorName.rand(1, 100),
         ])->assertStatus(200)->getOriginalContent();
 
         self::$parent_id = $attribute['data']['id'];
