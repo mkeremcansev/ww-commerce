@@ -4,7 +4,7 @@ namespace App\Observers;
 
 use App\Http\Struct\Product\Enumeration\ProductStatusEnumeration;
 use App\Http\Struct\Product\Relation\Category\Model\Category;
-use App\Http\Struct\Product\Relation\Category\Relation\Model\CategoryAttribute;
+use App\Http\Struct\Product\Relation\Category\Relation\CategoryAttribute\Model\CategoryAttribute;
 use App\Http\Struct\Product\Relation\ProductCategory\Model\ProductCategory;
 
 class CategoryObserver

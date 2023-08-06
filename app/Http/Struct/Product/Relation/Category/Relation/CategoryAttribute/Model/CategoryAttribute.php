@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Struct\Product\Relation\Category\Relation\Model;
+namespace App\Http\Struct\Product\Relation\Category\Relation\CategoryAttribute\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
